@@ -1,0 +1,299 @@
+\chapter{初等数论}
+
+\section{整除理论}
+
+\subsection{ $a \wvert bc $}
+
+如果 $(a,b) = 1$，那么 $a \wvert bc $ 可以得到 $a \wvert c$，证明如下：
+
+\begin{align*}
+    & a \wvert bc \\
+    & a \wvert ac \\
+    & a \wvert axc + byc, \quad ax+by=1  \\
+    & a \wvert c
+\end{align*}
+
+
+\subsection{ $ab \wvert c $ }
+
+如果 $a \wvert c$， $b \wvert c$ 而且 $(a,b) = 1$ 则有 $ab \wvert c$。证明如下：
+
+\begin{align*}
+    & ab \wvert bc \\
+    & ab \wvert ac \\
+    & ab \wvert axc + byc \\
+    & ab \wvert c
+\end{align*}
+
+
+\subsection{唯一分解定理}
+
+假设 $n = p_1p_2...p_k $ 而且 $n = q_1 q_2...q_s$，那么必然有 $p_1 \wvert q_1q_2...q_s$。根据素数的性质必然有 $q_1 \wvert p_1$ 或者
+$p_1 \wvert q_2q_3...q_s$。所有对于 $p_1$ 必然存在 $q_i$ 满足 $p_1 = q_i$，如此重复后可以发现两种分解形式是相同的。
+
+使用唯一分解定理后，我们可以把整除关系转化成分解后各个素数上幂次的大小关系。
+
+
+\subsection{除数函数}
+
+\subsubsection{定义}
+ 
+除数函数 $\tau(n)$ 定义为
+
+\[
+\tau(n) = \sum_{m \in \mathbb{Z}^+, m \le n, m \wvert n }1
+\]
+
+\subsubsection{素数的除数函数}
+
+$\tau(p) = 2$，因为对于素数，只有 $1$ 和 自身能整除素数。\\
+
+\subsubsection{唯一分解}
+
+如果 $n = p_1^{\alpha_1}p_2^{\alpha_2}..p_s^{\alpha_s}$，其中 $0 < \alpha_i$ 而且 $p_i \ne p_j $ 且 $p_i$ 都是素数。那么 
+
+\[
+\tau(n) = \prod_{i=1}^{s}(\alpha_i + 1)
+\]
+
+原因很简单，就是通过唯一分解定理构造因子，只要 $0 \le \beta_i \le \alpha_i$ 那么 $\prod_{i=1}^{s}p_i^{\beta_i}$ 就是 $n$ 的因子。而且 
+$\prod_{i=1}^{s}p_i^{\beta_i} = \prod_{i=1}^{s}p_i^{\alpha_i}$ 当且仅当 $\forall \, 1 \le i \le s \,, \alpha_i = \beta_i$。
+
+\subsection{除数和函数}
+
+\subsubsection{定义}
+
+$\sigma(n) $ 表示为
+
+\[
+    \sigma(n) = \sum_{m \in \mathbb{Z}^+, m \le n, m \wvert n }m
+\]
+
+\subsubsection{素数的除数和函数}
+
+显然有 $\sigma(p) = 1 + p$
+
+\subsubsection{两个互素数乘积的\,除数和}
+
+若 $(a,b) = 1$ ，则 $\sigma(ab) = \sigma(a) \sigma(b)$
+
+证明：\\
+若 $(a,b) = 1$，且 $c \wvert ab$ 我们可以对 $(a,c)$ 进行枚举。因为 $(a,c) \wvert a$ 而且 $(a,c_1) \ne (a,c_2)$ 可以得出 $c_1 \ne c_2$，所以这个枚举是合理的。\\
+所以 
+\begin{align*}
+\sum_{c \wvert ab} c = \sum_{d \wvert a}\sum_{(a,c)=d, c \wvert ab}c 
+\end{align*}
+
+因为有 $(a/d,c/d) = 1$ 而且 $c/d \wvert (a/d)  b$ 所以 $c/d \wvert b$，所以当枚举到 $d$ 时，$c \wvert ab$ 和 $c/d \wvert b$ 等价，我们可以令 $ s = c/d, \, c = sd$。
+
+\begin{align*}
+\sum_{c \wvert ab} c & = \sum_{d \wvert a}\sum_{(a,c)=d, c \wvert ab}c \\
+& = \sum_{d \wvert a} \sum_{s \wvert b} sd = \sum_{d \wvert a} d \sigma(b) \\
+& = \sigma(b) \sum_{d \wvert a }d  = \sigma(b) \sigma(a)
+\end{align*}
+
+
+\subsubsection{素数幂的除数和函数}
+
+假设我们已知 $\sigma(p^k)$ 下面分析 $\sigma(p^{k+1})$，首先 $p^k$ 的除数一定是 $p^{k+1}$ 的除数。其次 $p^{k}$ 的乘 $p$ 也是 $p^{k+1}$ 的除数，反之也成立。 \\
+所以 $\sigma(p^{k+1}) = \sigma(p^{k}) + p \sigma(p^{k})$，在由归纳法得到。
+
+\[
+    \sigma(p^n) = \frac{p^{n+1} - 1}{p-1}
+\]
+
+\subsubsection{素因分解后的 除数和}
+
+\[
+    a= \prod_{i=1}^{s}p_i^{\alpha_i}, \, (p_i \, \mathrm{is \, prime}\,, 0 < \alpha_i) \, \sigma(a) = \prod_{i=1}^{s}\frac{p_i^{\alpha_i+1} - 1}{p_i - 1}
+\]
+
+\section{公约数公倍数性质}
+
+\subsection{最小公倍数的本质}
+
+如果 $\forall i \le n, a_i \wvert c$ 那么必然有 $\left[ a_1, a_2, .., a_n \right]  \wvert c$。证明如下。
+
+设 $L = \left[ a_1, a_2, .., a_n \right], c = kL + r$，因为 $a_i \wvert c$ 而且 $a_i \wvert L$ 所以有 $a_i \wvert r$，所以 $r$ 也是公倍数。
+因为 $L$ 是最小的公倍数所以 $ r = 0 $。
+
+
+\subsection{最大公约数的本质}
+
+如果 $\forall i \le n, c \wvert a_i$ 那么必然有 $ c \wvert (a_1, a_2, .., a_n)$。证明如下。
+
+令 $d_1, d_2, d_m $ 是所有 $a_1, a_2, .., a_n$ 的公倍数，令 $L = \left[ d_1, d_2, .., d_m \right]$。根据最小公倍数的性质对于每个 $a_i$ 都有
+$L \wvert a_i $，所以 $L$ 也是 $a_1, a_2, .., a_n$ 的公约数，又因为 $m = (a_1, a_2, .., a_n)$ 之最大的公约数所以有 $L \le m$，因为 $m \wvert L$ 所以  $ m = L$。
+所以 $m$ 是最大公约数可以得出 $m$ 是所有公约数的最小公倍数。
+
+\subsection{$m \cdot \gcd = \gcd \cdot m $}
+
+$m(a_1, a_2, .., a_n) = (ma_1, ma_2, .., ma_n)$。证明如下。
+
+假设 $d = (a_1, a_2, .., a_n), \quad d' = (ma_1, ma_2, .., ma_n)$，显然 $md \wvert ma_i$，所以 $md \wvert d'$。因为 $m \wvert ma_i$，所以 $m \wvert d'$，
+所以 $d'/m \wvert a_i$，所以  $d'/m \wvert d$，所以 $d' \wvert md$，所以 $md = d'$。
+
+\subsection{最大公约数的结合律交换律}
+
+首先有 $((a_1, a_2, .., a_n), a_{n+1}) =(a_1, a_2, .., a_n, a_{n+1}) $。令 $d = ((a_1, a_2, .., a_n), a_{n+1})$，$d' = (a_1, a_2, .., a_n, a_{n+1})$。
+根据定义可以得出 $d \wvert d'$ 并且 $d' \wvert d$，所以 $d = d'$。
+
+
+\subsection{$(m,a) = 1, (m, ab) = (m,b)$}
+
+设 $c \wvert ab$ ，因为  $c \wvert m$，所以一定存在线性组合使 $cx + ya = 1$，所以  $(c,a) = 1$。所以 $c \wvert ab$ 可以得到 $c \wvert b$。
+
+
+\subsection{两个数的公倍数}
+
+
+$\left[ a, b\right] = ab /(a,b)$，令 $d = \left[ a, b\right], \quad d' = ab/(a,b)$，因为 $a \wvert d'$ 而且 $b \wvert d'$，所以 $ d \wvert d'$。
+因为 $(a, b/(a,b)) = 1$，而且 $a \wvert d, \quad b/(a,b) \wvert d$，所以 $d' \wvert d$。综上所示 $d = d'$。
+
+
+\subsection{最大公约数是线性组合}
+
+这里的线性组合有个特点，就是一定能被公约数整除。
+
+$(a_1,a_2,..,a_n) = d$，则 $d$ 是 $a_1, a_2, .., a_n$ 线性组合的最小正整数。首先 $(a_1, a_2, .., a_n) = ((a_1, a_2, .., a_{n-1}), a_n)$。
+所以可以通过递归的欧几里得算法得到 $d$ 关于 $a_1, a_2, .., a_n$ 的线性组合。下面继续证明 $d$ 最小的线性组合，假设存在更小的线性组合 $d' < d$。
+因为 $d \wvert a_i$，所以 $d \wvert d'$，这和 $d' < d$ 矛盾。
+
+反之，根据最小值的唯一性，还能证明，$a_1, a_2, .., a_n$ 最小且是正整数的线性组合 $d$ 就是 $a_1, a_2, .., a_n$ 的最大公约数。
+
+
+\section{取整函数}
+
+\subsection{定义}
+
+\begin{itemize}
+\item 取整函数的定义是 $[x] = \max \{ n \, \vert n \in \mathbb{Z}, n \le x \} $
+\item 取小数部分用 $\{x\}$ 表示， $ \{x\} = x - [x] $
+\end{itemize}
+
+\subsection{性质}
+
+\begin{enumerate}[label=(\roman*)]
+    \item $[x] \le x < [x] + 1$ 
+    \item 若 $n = mq + r \,,0 \le r < m $，那么 $[n/m] = q$
+    \item 若 $x \le y $，那么 $[x] \le [y]$
+    \item 若 $0 \le y < 1, \, n \in \mathbb{Z}$，那么 $[n + y] = n$
+    \item $[x] + [y] \le [x + y] \le [x] + [y] + 1$
+    \item 若 $ x \in \mathbb{Z} $ 则 $[-x] = - [x]$，否则 $[-x] = - [x]  + 1 $
+    \item 若 $m \in \mathbb{Z}^+$ 那么 $[\frac{[x]}{m}]= [\frac{x}{m}]$
+    \item 向上取整可以用 $-[-x]$ 表示
+    \item 小于 $x$ 的最大整数是 $-[-x] - 1$
+    \item 大于 $x$ 的最小整数是 $[x] + 1$
+    \item 若 $x \ge 0$ 则有 $\sum_{1 \le n \le x, n \in \mathbb{Z}}1 = [x]$
+    \item 设 $a$ 和 $N$ 都是正整数，那么 $1,2,..N$ 中被 $a$ 整除的正整数的个数是 $[N/a]$
+\end{enumerate}
+
+
+
+\setcounter{nproof}{5}
+证明 (\nextproof)：
+
+令 $[x] = n, [y] = m$ 则 $[x + y] = [n + m + \{x\} + \{y\}] = n + m + [\{x\} + \{y\}]$，那么如果有 
+$\{x\} + \{y\} < 1$，则 $[x] + [y] = [x + y] < [x] + [y] + 1$。如果 $ 1 \le \{x\} + \{y\} < 2$，那么
+$[x] + [y] < [x + y] = [x] + [y] + 1$
+
+\newline
+
+证明 (\nextproof) ：
+
+令 $n = [x]$， $[-x] = [-(n + \{ x\})] = [-n - 1 + (1 - \{x\}))]$，所以若 $\{x\} = 0$，那么 $[-x] = -[x]$，若 $0 < \{x\} < 1$，
+那么 $[-x] = -[x] - 1$ 
+
+\newline
+
+证明(\nextproof)：
+
+记 $n = [x]$，且 $n = mq + r$ 则 $[\frac{[x]}{m}] = q$ 因为 $n \le x < n + 1$，所以 $ n/m \le x/m <(n+1)/m$，所以有 $x/m < q + (1+r)/m$ ，所以 $x/m < q + 1$
+所以 $ q \le [x/m] \le q$，所以 $[x/m] = q = [\frac{[x]}{m}]$ 
+
+\newline
+
+证明(\nextproof)：
+
+记 $[x] = n + \{x\}$，则 $-[-x] = - [- n - \{x\}] = - [-n - 1 + 1 - \{x\}]$。\\
+若 $\{x\} = 0$ 那么 $-[-x] = [x]$，否则 $-[-x] = n + 1$
+
+所以我们得到 $ -[-x] - 1 < x \le -[-x]$
+
+\newline
+
+证明(\nextproof)：
+
+$ -[-x] - 1 < x \le -[-x] - 1 + 1$
+
+\newline
+
+证明(\nextproof)：
+
+因为 $[x] \le < [x] + 1$，所以 $[x] + 1 - 1 \le x < [x] + 1$
+
+\newline
+
+证明(\nextproof)：
+
+令 $f(x) = \sum_{1 \le n \le x, n \in \mathbb{Z}}1$ \\
+$f(x) = f([x] + \{x\})$，显然，当 $n \in \mathbb{Z}$ 时， $n \le x $ 和  $n \le [x]$ 等价。
+
+\newline
+
+证明(\nextproof)：
+
+这可能是整除函数最重要的性质了，假设 $N = ka +r \,, 0 \le r < a$，所以当 $1 \le n \le N$ 时，$a \wvert n$ 等价于存在 $1 \le s \le k$ 满足 $sa = n$，所以当$N = ka +r \,, 0 \le r < a$ 时，有 $k$ 个小于等于$N$的正整数能够被$a $ 整除。\\
+而且易证 $k = [N/a]$
+
+\section{$n!$ 的素因分解}
+
+\subsection{$n!$ 的素因数分解有如下性质}
+
+有如下性质: 
+
+\begin{align*}
+n! &= \prod_{i=1}^{s}p_i^{\alpha_i} \\
+\alpha_i & = \sum_{j=1}^{\infty}[\frac{n}{p_i^j}]
+\end{align*}
+
+下面给出证明:
+
+下面令 $\alpha = \alpha_i$，$p = p_i$，那么 $1,2,..n$ 中整除 $p^j$ 的数量等于 $c_j = [n/p^j]$。假设 $p^t \le n < p^{t+1}$。所以 $1,2,..n$ 中恰好能整除 $p_j$ 的数量就等于 $d_j = [n/p^j] - [n/p^{j+1}]$。
+根据素因式的性质，而且 $c_{t+1} = 0$ 得到：
+
+\begin{align*}
+\alpha & = \sum_{j=1}^{t} j d_j = \sum_{j=1}^{t}j(c_j - c_{j+1}) \\
+    & = \sum_{j=1}^{t}jc_j - \sum_{j=1}^{t}jc_{j+1} = \sum_{j=1}^{t}jc_j - \sum_{j=2}^{t+1}(j-1)c_{j} \\
+    & = \sum_{j=1}^{t}c_j - tc_{t+1} = \sum_{j=1}^{t} c_j
+\end{align*}
+
+\subsection{推论：连续 $m$ 个数相乘能被 $m!$ 整除}
+
+设 $a = (n+1)(n+2)..(n+m)$，$b = m!$。则有
+
+\[
+a = \frac{(n+m)!}{n!}
+\]
+
+设素数 $p \le m$  且 $p^\alpha$ 恰好整除 $m$，$p^{\beta_1}$ 恰好整除 $(n+m)!$，$p^{\beta_2}$ 恰好整除 $n!$，$p^{\beta_1 - \beta2}$ 恰好整除 $a$。则有：
+
+\begin{align*}
+    \alpha &= \sum_{j=1}^{\infty}[\frac{m}{p^j}] \\
+    \beta_1 &= \sum_{j=1}^{\infty}[\frac{n+m}{p^j}] \\
+    \beta_2 &= \sum_{j=1}^{\infty}[\frac{n}{p^j}] \\
+\end{align*}
+
+注意到对任意 $j$ 有 
+
+\begin{align*}
+    [\frac{m}{p^j}] + [\frac{n}{p^j}] & \le [\frac{n+m}{p^j}]
+\end{align*}
+
+所以有
+
+\[
+\alpha + \beta_2 \le \beta_1, \, \alpha \le \beta_1 - \beta_2
+\]
+
+所以 $p^\alpha$ 也一定能整除 $a$，所以 $m \wvert a$

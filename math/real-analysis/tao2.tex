@@ -1,0 +1,133 @@
+\chapter{实分析 II}
+
+\section{拓扑空间}
+
+\subsection{拓扑空间定义}
+
+拓扑空间的核心在于开集，因为开集必须满足对有限的交集封闭，同时对任意多个并集封闭。
+
+\subsection{$ \sigma $ 代数}
+
+$\sigma$ 代数经常和可测集联系到一起，$\sigma$ 代数是一个集合族，这个集合族内的集合要对可数的并集运算封闭，对补集运算封闭。
+从这里可以轻易的证明可数的交集也封闭。
+
+\subsection{点集拓扑}
+
+\subsubsection{内点}
+集合$S$ 包含内点 $x$ 是指有一个包含$x$ 的开集$A$，满足 $A \subseteq S$。
+
+\subsubsection{外点}
+
+补集的内点就是外点。 
+
+
+\subsubsection{边界点}
+
+既不是内点也不是外点，边界点有个很好的性质，它的任意邻域都既有集合内的点又有集合外的点，它既是当前集合的极限点，又是当前集合补集的极限点。
+
+\subsubsection{极限点}
+$x$ 是集合 $S$ 的极限点，是指对于任意一个包含 $x$ 的开集 $A$ 都有 $ (A \setminus \{ x \}) \cap S \ne \emptyset$
+
+\subsubsection{附着点}
+
+比极限点宽松，$x$ 是集合 $S$ 的附着点，是指对于任意一个包含 $x$ 的开集 $A$ 都有 $A \cap S \ne \emptyset$。
+
+\subsubsection{闭包}
+$S$ 的闭包 $\overline{S}$ 是指 $S$ 和所有极限点的 union
+
+\subsubsection{闭集可以用闭包定义}
+
+闭包一定是闭集，证明如下。
+
+假设 $\overline{S}$ 不是闭集，那么 $ Y = X \setminus \overline{S}$ 就不是开集，所以 $Y$ 内会有一个点 $y$ 不是 $ Y$ 的内点。
+所以 $y$ 附近的任意小的邻域都有 $ \overline{S}$ 内的点，于是 $y$ 成为了 $\overline{S}$ 的一个极限点，于是 $y \in \overline{S}$，这与 $y \in Y$ 矛盾。
+
+Q.E.D
+
+闭集的闭包就是自身，证明如下。
+
+假设 $S$ 是一个闭集，于是 $Y = X \setminus S$ 就是一个开集，假设 $S$ 内存在一个点列收敛到 $y \in Y$，因为 $Y$ 是开集，所以可以取 $y$ 附近的一个邻域 $A$ 满足 
+$ y \in A, A \subseteq Y $，再利用极限的定义可以在点列里面找到位于 $Y$ 内的点，这个显然矛盾。
+
+如果一个集合的闭包就是自身，那么这个集合就是闭集。
+
+假设 $S$ 不是一个闭集，那么 $ Y \setminus S$ 一定不是开集，那么 $ S $ 一定存在收敛到 $ y \in Y$ 的一个点列。 
+
+\subsection{紧集}
+
+\subsubsection{紧集定义}
+
+度量空间 $(X,d)$ 紧致，当且仅当每个序列都至少有一个收敛子列。对于拓扑空间，紧集的集合更具有一般性，拓扑空间上的紧集定义为：任意开覆盖都有有限子覆盖。
+
+
+\section{一致收敛}
+
+\subsection{度量空间上函数极限的定义}
+
+\subsubsection{定义}
+
+假设有函数 $f: E \to Y$，其中 $E \subseteq X$，$(X, d_X)$ 和 $(Y, d_Y)$ 是两个度量空间。$x_0 \in X $ 是 $E$ 的附着点，注意这里没有要求 $x_0 \in E$，
+如果对任意 $ \epsilon > 0$ 都存在 $ \delta > 0$，只要 $x \in E$ 满足 $d_X(x, x_0) \le \delta $ 就有 $d_Y(f(x), L) < \epsilon$，那么我们称 $x$ 沿着 $E$ 收敛于 $x_0$ 时 $f(x)$ 沿着 $Y$ 收敛于 $L$。
+
+以下是一些等价命题，及其证明。
+
+\begin{enumerate}
+    \item 对任意 $x_n \in E, x_n$ 收敛到 $x_0$ 有 $f(x_n)$ 收敛到 $L$。这个要用反证法，假设存在一个不收敛到 $L$ 的 $f(x_n)$，那么存在一个 $\epsilon$，有无限个 $d(f(x_n), L) > \epsilon$，这个和函数极限的定义矛盾了。
+    \item 对任意包含 $L$ 的开集 $V \subseteq Y$，都存在一个包含 $x_0$ 的开集 $U \subseteq X$ 使的 $f(U \cap E) \subseteq V$。同样用反证法，假设存在一个包含 $L$ 的开集 $V \subseteq Y$，对任意的包含 $x_0$ 的开集 $U \subseteq X$ 都存在 $v \in  f(U \cap E), v \notin V $。因为 $V$ 是一个包含 $L$ 的开集，所以我们可以找到 $L$ 附近的一个开球 $B(L)$，而且这个开球是 $V$ 的子集，
+    再套上函数极限的定义，存在 $x_0$ 附近的开球 $B(x_0)$ 满足 $f(B(x_0) \cap E) \subseteq B(L)$，显然这个和 存在 $v \in  f(U \cap E), v \notin V $ 矛盾。
+\end{enumerate}
+
+\subsubsection{函数极限唯一}
+
+假设 $f(x)$ 再 $x_0$ 处有极限 $L$ 和 $L'$。令 $\epsilon = d(L, L')$，根据极限定义有 $f(B(x_0, \delta) \cap E) \subseteq B(L, \epsilon/4)$ 而且 $f(B(x_0, \delta) \cap E) \subseteq B(L', \epsilon/4)$，这里没有用两个 $\delta$ 是因为我们可以取他们的最小值。我们在这个开球取一个点得到 $d(f(x_1), L) \le \epsilon/4 $ 和 $d(f(x_1), L') \le \epsilon/4$ 运用三角不等式得到 $d(L, L') \le  \epsilon/2 $ 这里和 $d(L, L') \ne 0 $ 矛盾。
+
+\subsection{逐点收敛的定义}
+
+\subsubsection{定义}
+
+设有函数序列 $f^{(n)}(x): E \to Y$，如果对任意的 $x \in E$ 都有 $f^{(n)}(x)$ 收敛到 $f(x)$，那么称函数 $f(x)$ 是函数序列 $f^{(n)}(x)$ 的逐点极限。
+
+\subsubsection{局限性}
+
+逐点收敛不能保持连续性，导数运算，极限运算和积分运算。因为逐点收敛的函数列中，不同 $x$ 取值之间的收敛速度可能有很大的差异。一个经典的例子是 $f^{(n)}(x) = x^n, \, x \in [0,1]$。这个函数每一项都是连续的而且可微的，但是逐点极限不再连续，也不可微。
+
+\subsection{一致收敛}
+
+\subsubsection{定义}
+
+$f^{(n)}(x): E \to Y$ 一致收敛到 $f(x)$ 定义为对任意 $\epsilon$ 都存在 $N$，只要 $n \ge N$，则 $\max \{ d( f^{(n)}(x), f(x)) \wvert x \in E \} \le \epsilon$。
+
+\subsubsection{性质}
+
+一致收敛具有很多如下的性质
+
+\begin{enumerate}
+    \item 保持连续性 \\
+    如果 $f^{(n)}(x)$ 在 $x_0$ 处都连续，那么 $f(x)$ 在 $x_0$ 处连续。证明很容易，对任意 $\epsilon > 0$，我们可以选择一个 $N$ 满足 $\forall x \in E, d(f^{(N)}(x), f(x_0)) \le \epsilon$，因为
+    $f^{(N)}(x)$ 连续，所以存在 $\delta_N$ 满足 $\forall x \in B(x_0, \delta_N) \cap E, d(f^{(N)}(x), f^{(N)}(x_0)) \le \epsilon $。于是在 $B(x_0, \delta_N)$ 内我们得到了 $d(f(x), f(x_0)) \le d(f(x), f^{(N)}(x)) + d(f^{(N)}(x), f^{(N)}(x_0)) + d(f^{(N)}(x_0), f(x_0)) \le 3\epsilon $
+    因为 $\epsilon$ 可以取任意小，所以 $f(x)$ 连续。
+
+    \item 极限运算可交换： 如果 $f^{(n)}(x): E \to Y$ 一致收敛到 $f(x)$，而且度量空间 $(X, d_X)$ 和度量空间 $(Y, d_Y)$ 都是完备的，而且$f^{(n)}(x)$ 在 $f^{(n)}(x_0)$ 处都收敛到 $y_n$，那么 $y_n$ 收敛到极限 $L$，而且函数
+    $f(x)$ 在 $x_0$ 处有极限 $L$。证明：首先我们证明 $y_n$ 是一个柯西列，当 $n \ge N$ 时取 $p,q \ge N$  有 $d(y_p, y_q) \le d(y_p, y_s) + d(y_s, y_t) + d(y_t, y_q)$ 其中 $f^{(p)}(x_s) = y_s$，$f^{(q)}(x_t) = y_t$，$d(x_s, x_0) \le \delta$，$d(x_t, x_0) \le \delta $
+    这就得到了  $d(y_p, y_q) \le 3\epsilon $ 因为 $\epsilon $ 可以任意小，所以 $y_n$ 是一个柯西列，因为 $Y$ 是完备的，所以有 $y_n$ 收敛到 $L$。 \\
+    继续证明 $f(x)$ 收敛到 $L$，对任意 $\epsilon > 0$，有 $N$，只要 $n \ge N$ 同时满足 $d(y_n, L) \le \epsilon$，$\forall x \in E, \, d(f(x), f^{(n)}(x) ) \le \epsilon $，因为 $f^{(N)}$ 在 $x_0$ 有极限 $y_N$，存在 $\delta_N$ 满足 $f(B(x_0, \delta_N) \cap E) \subseteq B(y_N, \epsilon)$
+    那么对于 $x \in B(x_0, \delta_N) \cap E$ 有 $d(f(x), L) \le d(f(x), f^{(N)}(x)) + d(f^{(N)}(x), y_n) + d(y_n, L) \le 3\epsilon$ 所以我们得到了下面的式子：
+
+\[
+    \lim_{x \to x_0}\lim_{n \to \infty}f^{(n)}(x) = \lim_{n \to \infty}\lim_{x \to x_0}f^{(n)}(x)
+\]
+
+
+    \item 如果 $f^{(n)}: E \to Y$ 是连续的，而且 $f^{(n)}(x)$ 一致收敛到 $f(x)$，$x_n$ 收敛到 $x_0$，那么 $f^{(n)}(x_n)$ 收敛到 $f(x_0)$ \\
+    证明：根据上面的结论我们可以得出 $f$ 是连续的，所以我们可以确定 $f(x_n)$ 是收敛到 $f(x_0)$，如果我们能证明 $f(x_n)$ 和 $f^{(n)}(x_n)$ 等价那么就可以证明了。这个根据一致收敛的定义也很容易证明。
+
+    \item 保持有界， $f^{(n)}(x): E \to Y$ 一致收敛到 $f(x): E \to Y$，而且 $\forall f^{(n)}(x), \, f^{(n)}(E) \subseteq B(y_n, Rn)$ 那么 $f(x)$ 也是有界的。我们可以随意取一个 $\epsilon$ 并且可以得到一个 $N$ 满足
+    $\forall x \in E, d(f(x), f^{(N)}(x)) \le \epsilon$，因为对任意 $y \in f^{(N)}(E)$ 有 $d(y, y_N) \le R_N$ 所以对任意 $y' \in f(E)$ 有 $d(y', y_N) \le d(y', y) + d(y, y_N) \le R_N + \epsilon $ 所以 $f(x)$ 也是有界的。
+
+
+
+
+
+
+
+\end{enumerate}

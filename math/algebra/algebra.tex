@@ -1,0 +1,101 @@
+\chapter{抽象代数}
+
+
+\section{群论}
+
+\subsection{幺半群}
+
+\subsubsection{幺半群}
+
+幺半群的定义是集合 $S$ 和二元运算 $\cdot$，二元运算 $\cdot$ 满足结合律，而且集合包含一个幺元 $e$，对任意 $x \in S$ 满足，
+$x \cdot e = e \cdot x = x$。下文为了简洁会省略运算符号。
+
+\subsubsection{广义结合律}
+
+首先证明一个引理 
+
+\[
+    (x_1 x_2 \dotsb x_n) (y_1 y_2 \dotsb y_m) = (x_1 x_2 \dotsb x_n y_1 y_2 \dotsb y_m)
+\]
+
+证明的思路是对 $m$ 作归纳法，当 $m=1$ 时自然成立，当 $m=k+1$ 时
+
+\begin{align*}
+(x_1 x_2 \dotsb x_n) (y_1 y_2 \dotsb y_{k+1}) & = (x_1 x_2 \dotsb x_n) (y_1 y_2 \dotsb y_{k}) y_{k+1} \\
+& = (x_1 x_2 \dotsb x_n y_1 y_2 \dotsb y_{k}) y_{k+1} \\
+& = (x_1 x_2 \dotsb x_n y_1 y_2 \dotsb y_{k+1})
+\end{align*}
+
+矩阵乘法的结合律也可以用线性变换或者线性映射的结合律证明。
+
+
+\subsubsection{幺元唯一}
+
+这个证明只需要用到幺元的定义即可。
+
+\[
+e_1e_2 = e_1 = e_2
+\]
+
+\subsubsection{同态}
+
+同态可以针对两个不同的幺半群，这两个幺半群会具有很多相似的性质。下面给出定义，幺半群 $(S, \cdot)$ 和 $(T, *)$ 同态当且仅单存在映射 $f: S \to T$
+满足对 $x,y \in S $ 满足 $f(x \cdot x) = f(x) * f(y)$，且 $f(e) = e'$。这里要注意和同构的区别。
+
+
+\subsection{循环群}
+
+\subsubsection{群的定义}
+
+群的定义可以概括为: 封闭的二元运算，结合律，单位元以及逆元。
+
+如果一个群中的元素是有限多个，这个群中元素的数量定义为群的阶。
+
+
+\subsubsection{循环群}
+
+如果一个群中所有元素都可以用某一个元素的整数次幂表示，这个群就是循环群。例如整数集合，加法运算构成循环群。
+
+循环群一定是阿贝尔群，循环群可能是有限群，也可能是无限群。
+
+\subsubsection{元素的阶}
+
+对于群 $G$ 中的元素 $a$，如果存在最小的正整数 $n$ 满足 $a^n = e$，那么 $n$ 就是这个元素的阶。如果不存在这样的 $n$，称这个 $a$ 是无限阶元素。
+
+
+\subsubsection{有限群是循环群的等价条件}
+
+有限群 $G$ 是循环群，当且仅当存在 $a \in G$，满足 $a$ 的阶等于 $G$ 的阶。下面给出证明。
+
+充分性：如果 $a$ 的阶等于 $n$，那么集合 $X = \{ k \in \mathbb{Z} | a^k \}$ 中包含的元素数量一定是 $n$，由于二元运算的封闭性，必然有 $X \subseteq G$，
+因为 $X$ 和 $G$ 包含的元素数量相等所以 $X = G$。
+
+必要性：根据循环群定义就可以证明。
+
+
+\subsubsection{$a^k$ 的阶}
+
+已知 $a$ 的阶等于 $n$，则$a^k$ 的阶等于 $\frac{n}{(n,k)}$。下面给出证明。
+
+假设 $a^{ks} = e$，则必然有 $n \vert ks$，因此有 $\frac{n}{(n,k)} \vert \frac{k}{(n,k)}s $，因为 
+
+$\frac{n}{(n,k)}$ 和 $\frac{k}{(n,k)}$ 互素，所以有  $\frac{n}{(n,k)} \vert s$。
+
+再考虑 $(a^k)^{\frac{n}{(n,k)}} = (a ^ {n})^{\frac{k}{(n,k)}} = e$，所以 $s \vert \frac{n}{(n,k)} $
+
+所以 $s = \frac{n}{(n, k)}$
+
+
+\subsubsection{$ab$ 的阶}
+
+若满足 $ab = ba$ 且 $a$ 的阶 $n$ 和 $b$ 的阶 $m$ 互素，则 $ab$ 的阶等于 $nm$。
+
+证明：假设$ab$ 的阶为 $s$， $(ab)^{nm} = a^{nm}b^{mn} = e$ 说明 $s \vert nm$。
+又因为 $e = (ab)^{sn} = b^{sn}$ 所以 $m \vert sn$，因为 $m,n$ 互素可以得出 $m \vert s$，同理可得 $n \vert s$，再结合 $m,n $ 互素得到 $nm \vert s$。
+
+
+\subsubsection{有限阿贝尔群}
+
+有限阿贝群里面，存在一个元素，它的阶是其他所有元素阶的倍数。证明如下：
+
+

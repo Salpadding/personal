@@ -1,0 +1,630 @@
+\chapter{实分析 I}
+
+\section{实数}
+
+\subsection{实数定义: 柯西列}
+
+我们要找到一种合理的方式定义实数，让实数可以做运算，可以相互比较。
+
+\subsubsection{柯西列定义}
+
+柯西列的定义可以不依赖于实数，所以可以用于定义实数。柯西列的可以定义为满足如下条件的有理数数列 $ a_n $。
+
+\[ \forall \epsilon > 0, \exists N \in \mathbb{N}, 
+    \forall j, k \ge N, \lvert a_j - a_k \rvert \le \epsilon \] 
+
+\subsubsection{柯西列的等价条件}
+
+两个柯西列 $a_n$ 和 $b_n$ 等价的定义如下:
+
+\[ 
+    \forall \epsilon > 0, \exists N \in \mathbb{N},
+    \forall n \ge N, \lvert a_n - b_n \rvert \le \epsilon 
+\]
+
+\subsubsection{柯西列等价是良定义的}
+
+首先是自反性，易证。其次是传递性，通过三角不等式也很容易证明。最后是对称性，也易证。
+
+\subsubsection{柯西列有界}
+
+我们令 $\epsilon = 1 $，可以找到 $N$ 满足 $\forall n \ge N , \lvert a_n - a_N \rvert \le 1 $ 于是 $a_n$ 在 $n \ge N$ 的那部分是有界的，
+而 $n < N$ 的那部分是有限的自然也是有界的，所以柯西列有界。
+
+\subsubsection{习题5.2.1}
+
+证明: $a_n$ 和 $b_n$ 是等价有理数序列，$a_n$ 是柯西列当且仅当 $b_n$ 是柯西列。 \\
+
+$\forall j, k \ge N, \lvert a_j - a_k \rvert \le \epsilon/4 $, 且 $ \lvert b_j - a_j \rvert \le \epsilon / 4 $, $\lvert b_k - a_k \rvert \le \epsilon / 4$， 那么有
+$\lvert b_j - b_k \rvert \le \lvert  b_j - a_j + a_j - a_k + a_k - b_k \rvert \le \frac{3}{4} \epsilon $
+
+\subsubsection{实数定义}
+
+实数被定义为有理数柯西列的形式极限 也就是 
+\[ x = \lim_{n \to \infty} a_n \]
+
+\subsection{实数的运算}
+
+\subsubsection{实数的加减乘运算}
+
+通过柯西列，我们可以很方便地定义实数的加减乘运算。 \\
+首先我们可以定义加减运算。
+
+\begin{align*} 
+x & = \lim_{n \to \infty}a_n \quad y  = \lim_{n \to \infty} b_n \\
+x + y & := \lim_{n \to \infty} a_n + b_n 
+\end{align*} \\
+
+这个定义看似很合理，实际上并没有被证明是合理的。我们要证明这个定义要满足 $x +y $ 是一个柯西列，并且与柯西列的等价定义不冲突，最后还要满足加法的交换律和结合律，这才是真正意义上的加法。 \\
+首先证明 $x +y $ 是一个柯西列，这个对于 $\epsilon $只要取 $N_x $ 和 $N_y$ 之间较大的 $N$ 就可以了。\\
+
+证明等价性: $ \lvert a'_n + b'_n - a_n - b_n \rvert \le 2\epsilon $。\\
+
+最后证明交换律和结合律: $ \lvert a_n + b_n - (b_n + a_n) \rvert = 0 \le \epsilon $ 以及 $ \lvert a_n + b_n + c_n - (a_n + (b_n + c_n)) \rvert = 0 \le \epsilon $ \\
+
+我们继续定义乘法运算。 \\
+\begin{align*} 
+x & = \lim_{n \to \infty}a_n \quad y  = \lim_{n \to \infty} b_n \\
+xy & := \lim_{n \to \infty} a_nb_n 
+\end{align*} \\
+
+同样我们要证明 $a_nb_n$ 是一个柯西列， 我们观察下 $\lvert (a_k + \epsilon)(b_k + \epsilon ) - a_jb_j \rvert = \lvert a_kb_k - a_jb_j + \epsilon^2 + \epsilon(a_k + b_k) \rvert \le \epsilon + \epsilon^2 + \epsilon \lvert a_k + b_k\rvert$。
+因为 $\lvert ak+b_k \rvert$ 有界，所以对于 $\delta$，我们可以取一个很大的 $N$, 满足 $\lvert a_k - a_j \rvert \le \epsilon $，$ \lvert b_k - b_j \rvert \le \epsilon $ 且$\epsilon + \epsilon^2 + \epsilon M \le \delta $ 其中 $\lvert a_k + b_k\rvert \le M$，
+这样就能得到 $\lvert a_kb_k - a_jb_j\rvert \le \delta $ \\
+
+同理可以继续证明等价性: $\lvert a'_nb'+n - a_nb_n\rvert \le \epsilon + \epsilon^2 + \epsilon \lvert a_n + b_n \rvert$
+
+\subsubsection{实数的三歧性}
+有理数具有三歧性，通过柯西列我们也可以证明实数的三岐性。我们先定义正实数和负实数和零。\\
+零很好定义，$\forall \epsilon >0, \exists N, \forall n \ge N, \lvert a_n \rvert \le \epsilon$ \\
+以此类推可以定义正数，$\exists \epsilon > 0, \exists N, \forall n \ge N, a_n \ge \epsilon $ \\
+同理可以定义负数，$\exists \epsilon > 0, \exists N, \forall n \ge N, a_n \le -\epsilon $
+
+这些定义的合理性也需要证明，首先证明每个实数都具有三岐性之一。\\
+对于实数 $x = \lim_{n\to \infty} a_n$，假设 $x = 0$，那么易证。如果 $x \ne 0$，根据柯西等价性的定义，那么就有 
+\[ \exists \epsilon > 0, \forall N , \exists n \ge N, \lvert a_n \rvert \ge \epsilon \]
+我们取这个 $\epsilon / 4 $ 代入 柯西列的定义 那么 $\exists N_{\epsilon} \ge N , \forall j,k \ge N_{\epsilon}, \lvert a_k - a_j\rvert \le \epsilon / 4 $，把 $j$ 换成 $N$ 得到 
+$\lvert a_k  \rvert \ge  \lvert a_N \rvert - \lvert a_k - a_N \rvert \ge \frac{3}{4} \epsilon $。所以 $x$ 如果不为 0 的时候，只能是负数或者正数，显然 $x$ 不可能同时是正数和负数，所以 $x$ 满足三岐性。
+
+\subsubsection{倒数}
+
+对于正数和负数，我们可以定义倒数运算 $x^{-1} = \lim_{n \to \infty} a_n^{-1}$。
+倒数运算是良定义的而且保持等价性。
+
+\[
+\lvert \frac{1}{a_k} - \frac{1}{a_j} \rvert = \frac{\lvert a_k - a_j \rvert}{\lvert a_ka_j \rvert} \le \frac{\epsilon}{M}
+\]
+
+而且 $xx^{-1} = 1$，这个很容易证明。于是我们可以定义除法 $x / y = xy^{-1}$
+
+\subsubsection{实数的封闭性}
+如果 $a_n \ge 0$ 那么 $x = \lim_{n \to \infty} a_n \ge 0$
+证明: 假设 $x < 0$ ，那么存在 $\epsilon > 0 , N_{\epsilon}$，$\forall n \ge N, a_n \le -\epsilon $，显然矛盾了。\\
+
+如果 $a_n \ge x$ 那么 $y = \lim_{n \to \infty} a_n, y \ge x$，假设 $y < x, \lim_{n \to \infty} b_n = x$ 。
+根据负实数定义，存在 $ \exists \epsilon > 0, N \; \forall n \ge N,  a_n - b_n  \le -\epsilon $ 。注意到这里 $N$ 可以取任意大，
+我们可以把 $ \epsilon / 2$ 代入 $b_n$ 的柯西列定义，让 $ \lvert b_n - b_N \rvert \le \epsilon /2$ 。于是当 $n \ge N$ 时，有 $a_N - b_n = a_N - b_N + b_N - b_n \le - \epsilon / 2$
+这时候得到了矛盾 $a_N < x$
+
+
+\subsubsection{习题5.4.5}
+
+对于任意实数 $ x < y$，存在有理数 $q$ 满足 $x < q < y$
+
+这里用反证法比较容易，假设所有的有理数都满足 $ q \le x \quad or \quad q \ge y $，我们分析一下 $c = (x+y)/2$，显然有 $x < c < y$。
+假设 $ c = \lim_{n \to \infty}a_n$，因为 $a_n$ 是有理数，所以 $a_n$ 必然满足 $a_n \le x$ 或者 $a_n \ge y$，又因为 $a_n$ 是柯西列而且存在有理数 $\delta $ 满足 $\delta \le y-x$。
+所有存在 $N_{\delta}$ 使得 $\forall k,j \ge N_{\delta}$，$\lvert a_k - a_j \rvert \le \delta $。假设 $a_{N_{\delta}} \le x$，那么对于 $n \ge N_{\delta}$，必然有 $a_n \le x$。
+因为如果存在 $a_k \ge y$ 的话那么 $\lvert a_k - a_{N_\delta} \rvert \ge y -x > \delta $，矛盾了。同理如果 $a_{N_{\delta}} \ge y$，那么对于 $n \ge N_{\delta}$ 多有 $a_n \ge y$。
+那么我们得到了 $ c \le x$ 或者 $c \ge y$, 显然矛盾了。
+
+\subsubsection{习题5.4.3}
+
+对于任意实数，存在唯一的整数满足 $N \le x < N + 1$
+
+存在性: 因为 $x$ 是有界的，所以存在 $M > 0, M \in \mathbb{Z}$ 满足 $ -M \le x \le M $。定义 $ N $ 为满足 $N \le x, \lvert N \rvert \le M$ 的最大整数。显然有 $ N \le x < N + 1 $\\
+
+唯一性: 假设 $N_1 \le x < N_1 + 1$ 且 $N_2 \le x < N_2$，那么有 $N_2 < N_1 + 1$, $N_1 < N_2 + 1$，也就是 $\lvert N_2 - N_1 \rvert < 1$，所以 $N_2 = N_1$
+
+
+\subsubsection{习题5.4.8}
+如果 $a_n \in \mathbb{Q}, x \in \mathbb{R},  a_n \ge x $，那么 $\lim_{n \to \infty} a_n \ge x$。 \\
+证明: 假设 $y = \lim_{n \to \infty}a_n, y < x$, 令 $q \in \mathbb{Q}, y < q < x$。注意到 $y - q = \lim_{n \to \infty} (a_n -q ) < 0$
+所以存在 $N$, 当 $n \ge N$ 时 $a_n \le q$, 这个和 $a_n \ge x$ 矛盾了。
+
+\subsection{上确界性质}
+
+对于任意的非空实数集合，存在最小上界。\\
+
+证明: 假设 $E \subset \mathbb{R}, E \ne \emptyset $ 而且 $ E $ 具有上界 $M, M \in \mathbb{Q}$。取 $x \in E$, 有理数 $q \le x$
+对于 $n$，我们把 $q \le y \le M$，分成 $n$ 份，每一份的长度为 $c_n = (M -q) / n$。于是对于 $N$，我们构造了有限的点集 $q + kC_n, 0 \le k \le n $
+可以用数学归纳法证明，这个点集中存在 $E$ 的上界，我们取 $a_n = k $ 满足 $q + kC_n$ 是 $E$ 的上界，而且 $q + (k-1)C_n $ 不是 $E$ 的上界。
+于是得到了
+
+\begin{align*}
+\frac{a_{n} - 1}{n} - \frac{a_n}{n} \le \frac{a_{n+1}}{n+1} - \frac{a_n}{n} & \le \frac{a_{n+1}}{n+1} - \frac{a_{n+1} - 1}{n+1} \\
+\lvert \frac{a_{n+1}}{n+1} - \frac{a_n}{n} \rvert & \le \frac{1}{n}
+\end{align*}
+
+注意到这里的 $n+1$ 换成 $n + k$ 可以得到同样的结论，所以 $q + \frac{a_n}{n}$ 是一个柯西列，而且 $a + \frac{a_n - 1}{n}$ 也是柯西列。
+
+令 $y = \lim_{n \to \infty} q + \frac{a_n}{n}$，可以得到 $y$ 是 $E$ 的上界。而且 $y$ 是最小上界，假设 $y' < y$，而且 $y'$ 也是 $E$ 的上界，注意到有 $q + \frac{a_n-1}{n} \le y'$，于是得到 $y \le y'$，矛盾。
+
+\subsection{实数的幂运算(1)}
+
+\subsubsection{整数次幂}
+正整数和负整数的幂运算很容易定义这里不作说明，对应的良定义，保持等价性，以及性质用数学归纳法都很好证明。
+
+\subsubsection{n次根}
+定义非负实数 $y$ 的 $n$ 次根为集合 $ \{ x \vert \, x^n \le y \} $ 的最小上界。
+
+对于这个定义，因为这个集合是有界的，所以存在性和等价性都很好证明。
+
+\subsubsection{习题5.6.1}
+
+1. $(x^{1/n})^n = x$\\
+
+这个并没有看上去那么好证明，需要用到反证法。假设 $c = x^{1/n}$ 而且 $ c^n < x$。我们的思路是尝试找一个非常小的 $\epsilon \in \mathbb{R}$ 满足 $(c+\epsilon)^n < x$。首先 $n$ 目前是固定的，所以我们可以使用数学归纳法。
+
+下面证明引理: $\forall \delta > 0, \exists \epsilon > 0 , \forall \lvert o \rvert \le \epsilon $， 满足 $ \lvert c^n - (c+o)^n \rvert \le \delta $。这个可以理解为幂函数的连续性。
+我们对 $n $ 采用数学归纳法，首先 $n = 1$ 时很好证明，令 $\epsilon = \delta / 2$ 即可。
+假设 $n = k$ 时结论成立，考虑 $n = k + 1$ 时，我们代入 $n = k$ 条件下的 $\epsilon$，取 $ \lvert o \rvert \le \epsilon $，而且 $\lvert o \rvert < 1$ 注意到 $\lvert c^{k+1} - (c+o)^{k+1} \rvert = \lvert c(c^k - (c+o)^k) - o(c+o)^{k+1} \rvert \le  \lvert c \delta \rvert  + o \lvert (c+o)^{k+1} \rvert \le  c \delta + \lvert \epsilon (c+1)^{k+1} \rvert $
+注意到 $n = k + 1$ 时，这里的 $\delta$ $\epsilon $ 都是可以取任意小的。对于 $n = k + 1$ 的 $\delta $ 我们可以针对 $n = k$ 取很小的 $\delta' $ 和很小的 $\epsilon $，满足 
+$c \delta' + \lvert \epsilon (c+1)^{k+1} \rvert  \le \delta $ 于是证明成功。 \\
+
+假设 $c ^n < x$，那么根据引理我们可以找到一个很小的 $\epsilon$ 满足 $(c+\epsilon)^n < x$，于是根据 $c$ 是上界得到 $c + \epsilon \le c$，矛盾。 \\
+假设 $c ^n > x$，那么根据引理我们可以找到一个很小的 $\epsilon$ 满足 $(c-\epsilon)^n > x$，于是 $c - \epsilon$ 也是集合 $\{ a \vert \, a^n \le x \}$ 的上界，这里和 $c$ 是最小上界矛盾。\\
+
+2. $(x^n)^{1/n} = x$ \\
+
+根据定义 $(x^n)^{1/n}$ 是集合 $\{a \vert \, a^n \le x^n \}$ 的最小上界。显然这个集合包含了 $x$，而且对于任意的 $a$，都有 $a \le x$，所以 $x$ 就是该集合的最小上界。\\
+
+3. $x^{1/n}$ 是严格单调增 \\
+
+原理很简单，子集的最小上界一定小于等于父集的最小上界。再假设 $x^{1/n} = y ^{1/n}$，得到 $x = y$。
+
+4. $a < 1$ 时 $a^{1/k}$ 是关于 $k$ 的递减函数。\\
+还是那个原理，当 $a < 1 $ 时，$a^{k+1} < a^{k} $，所以也存在子集关系。$x < a^{k+1} $ 可以得到 $ x^{k+1} < a$ 是 $x ^k < a$ 的子集。
+所以 $a^{1/(k+1)} \le a^{1/k} $，而且这个等号也不可能成立。 \\
+
+5. $a > 1$ 时 $a^{1/k}$ 是关于 $k$ 的递增函数。\\
+同理。\\
+
+6. $x ^{1/n}$ 连续 。\\
+上面已经证明了 $ x^n$ 是连续的，因为 $ x ^{1/n}$ 是 $x^n$ 的反函数，所以 $x^{1/n}$ 连续。
+可逆连续的函数在拓扑学也叫做同胚映射，如果 $f$ 在 $x_0$ 附近连续，考虑 $\delta$ 领域的象集，这个象集同样是 $f(x_0)$ 附近的 $\epsilon$ 领域。
+因为可逆映射可以把象集映射回原象，所以找反函数的 $\epsilon$ 和 $\delta$ 只要找原函数的 $\delta$ 和 $\epsilon$ 即可。
+
+\subsection{实数的有理数次幂}
+
+假设有理数 $q = a/b $，其中 $a$ 和 $b$ 都是整数，那么定义 $x^q = (x^{1/b})^a $。 \\
+
+首先要证明保持等价性，假设 $q = a/b$ 而且 $q = c/d$，我们要证明 $(x^{1/b})^a = (x^{1/d})^c$。\\
+根据 $x^{1/(ad)} = x^{1/(bc)}$ 得到 $(x^{1/(ad)})^{ac} = (x^{1/(bc)})^{ac}$，根据定义得到 $x ^{ac/(ad)} = x^{ac/(bc)}$
+再得到 $ x^{c/d} = x^{a/b}$
+
+其他基本性质:
+
+$x^{q+r} = x^qx^r $ 把 $q$ 和 $r$ 分解成比例形式很容易证明。\\
+
+$x^{-q} = 1/x^q $ 同理 \\
+
+$q > 0$ 时 $x^q < y^q$ 等价于 $x < y$ 同理 \\
+
+$a > 1$ 时 $a^q$ 关于 $q$ 单调增，也是同理 \\
+
+$(xy)^q = x^q y ^ q $，同理，左右同时做幂运算
+
+\subsection{序列的极限}
+
+\subsubsection{实数的柯西列}
+
+这个定义也很容易理解。
+
+\[ \forall \epsilon \in \mathbb{R}, \epsilon >0, \exists N, \forall n \ge N, \lvert a_k - a_j \rvert \le \epsilon \]。
+
+为了能够使用这个定义，我们要证明这个定义和之前的定义是一致的。这个定义和之前的定义的区别在于，前面的 $\epsilon $ 是有理数，现在的 $\epsilon$ 是实数。
+因为有理数就是实数，而正实数和0之间一定存在有理数。
+
+\subsubsection{实数序列的极限}
+
+$x_n$ 收敛到 $L$ 定义为: $\forall \epsilon > 0, \exists N, \forall n \ge N, \lvert a_n -L \rvert \le \epsilon $。
+
+
+\subsubsection{收敛序列是柯西列}
+
+利用三角不等式，很容易证明。
+
+\subsubsection{形式极限和极限的定义一致}
+
+假设 $\mathrm{LIM}_{n \to \infty} a_n = x$，我们观察 $a_N - x$ 也就是 $\mathrm{LIM}_{n \to \infty} a_N - a_n$ 。因为 $a_n$ 是柯西列，所以当 $N$ 充分大的时候，有 $\lvert a_N - a_n \rvert \le \epsilon $。
+所以 $N$ 充分大的时候有 $ \lvert a_N - x \rvert \le \epsilon $，所以 $\lim_{n \to \infty} a_n = x$。\\
+
+\subsubsection{柯西列有界}
+
+很容易证明
+
+\subsubsection{极限点，上下极限，收敛子列}
+
+极限点的定义: $\forall \epsilon > 0, \forall N, \exists n \ge N, \lvert a_n - L\rvert \le \epsilon $。
+通过极限点的定义可以构造收敛的子列，通过收敛子列可以构造出极限点，所以这两者是等价的。 \\
+
+上下极限定义比较复杂，这里不给出，请牢记。同时上极限和下极限也都是极限点，上极限和下极限的定义依赖于单调有界原理。 \\
+
+上极限是最大的极限点，下极限是最小的极限点。这个很好证明，首先我们要证明一个引理，子列的上极限不大于序列的上极限。然后我们假设存在更大的极限点，这个极限点可以转化成子列，
+对这个子列去上极限得到了更大的上极限，这个与引理相矛盾。
+
+如果上下极限都存在而且相等，那么这个序列收敛，而且收敛到上下极限，这个可以用三明治定理证明。
+
+\subsubsection{柯西列收敛}
+
+这是一个非常重要的定理，柯西列是有界的所以存在上极限和下极限。柯西列有个特点，就是任意两个子列都是 $\epsilon$ 稳定的，这个用柯西列的定义很容易证明。考虑到柯西列有界，上下极限也是子列，所以柯西列的上下极限存在并且相等。
+所以柯西列收敛。这个性质可以推广到度量空间，更一般的形式是有限覆盖。
+
+\subsubsection{一些常见的极限}
+
+$\lim_{n \to \infty}x^{1/n} = 1$ \\
+
+这个需要分成 $x > 1$ 和 $x < 1 $ 讨论，当 $ x > 1$ 时，对于任意小的 $ \epsilon$ 我们可以找一个很大 $N$ 满足 $(1 + \epsilon) ^ N \ge x$，于是得到
+$x^{1/N} - 1 \le  \epsilon$。当 $x < 1$ 时，我们先利用单调有界证明极限存在，再利用 $y=x^{-1}$ 的连续性可以证明。
+
+\subsection{指数的幂运算(2)}
+
+有理数对于幂运算来说并不封闭，我们希望实数在幂运算下保持封闭，也就是说实数的实数次幂依然是实数。
+
+\subsubsection{实数的实数次幂}
+
+我们可以通过极限定义实数的实数次幂，对于非负实数 $x$，并且形式极限 $y = \lim_{n \to \infty }q_n, q_n \in \mathbb{Q}$ ，定义 $x^y = \lim_{n \to \infty} x^{q_n}$ 。
+首先我们要证明这个定义有意义，也就是 $x^{q_n}$ 收敛，但目前我们不知道收敛到哪里，所以只能用柯西列的定义证明。
+注意到 $\lvert x^{q_k} - x^{q_j} \rvert = \lvert x^{q_j} \rvert \lvert (x^{q_k-q_j}-1) \rvert$，因为 $q_n$ 有界所以 $x^{q_j}$ 有界，前面我们也证明过 $a^x, x \in \mathbb{Q} $ 在 $x = 0$
+附近可以无限接近 $1$， 也就是 $\lim_{n \to \infty} a^{1/n} = 1$。所以 $x^y$ 是一个柯西列。
+
+我们用到了形式极限来定义实数次幂，所以还需要证明幂运算的结果保持等价性，也就是 $q_n$ 和  $q'_n$ 如果等价那么 $x^y = x^{y'}$
+这个证明和上面的很相似，注意到$ \lvert x^{q_n} -x ^{q'_n} \rvert = \lvert x^{q'_n} \rvert \lvert x^{q_n -q'_n}-1\rvert$。同理得证。
+
+\subsubsection{实数的实数次幂的性质}
+
+包含了所有有理数的性质
+
+1. $x^{s+t} = x^sx^t$，把 $s$ 和 $t$ 表示成形式极限，然后用定义证明。\\
+
+2. $x^{st} = (x^s)^t $ 这个证明没有看上去那么简单，要避免使用二重极限。 \\
+我们先证明对于有理数 $q$ 和 实数 $s$，有 $x^{sq} = (x^s)^q = (x^q)^s$
+证明: $(x^q)^s = \lim_{n \to \infty} (x^q)^a_n = \lim_{n \to \infty} x^{qa_n} = x^{sq} $ \\
+$(x^s)^q = (\lim_{n \to \infty}x^{a_n})^q$，利用幂函数的连续性，得到 $(x^s)^q = \lim_{n \to \infty}(x^{a_n})^q = x^{qs}$
+
+对于实数 $s$ 和 $t$，可以利用上面的结论。$(x^{s})^{t} = \lim_{n \to \infty}(x^s)^{b_n} = \lim_{n \to \infty}x^{s b_n} = x^{st}$
+
+3. $(xy)^s = x^sy^s$ 很容易证明
+
+4. 对于实数 $a \ge 0, x \in \mathbb{R}, y = a^x$ 连续。 \\
+
+这个和之前证明 $\lim_{n \to \infty}x^{1/n} = 1$ 的方法是一样的。\\
+
+5. 对于实数 $a \in \mathbb{R}, x \ge 0, y = x^a$ 连续。 \\
+这个要用到三明治定理，先假定 $a >0$，先证明 $y = x^a$ 在 $x = 1$ 处连续。把 $a $ 框定在 $1/N \le a \le N $ 之间。利用 $x^N$ 和 $x^{1/N}$ 连续进行证明。
+$(x+\epsilon)^a - x^a = x^a((1+\epsilon/x)^a-1)$
+
+6. $y = a^x$ ，在 $a > 1$ 时单调增，在 $a < 1$ 时单调减。利用定义展开成极限，很容易证明。
+
+\section{级数}
+
+\subsection{判别法}
+
+\subsubsection{交错级数判别法}
+$a_n \ge 0 $ 并且 $a_n$ 单调减，那么 $S_n = (-1)^na_n$ 收敛当且仅当 $\lim_{n \to \infty}a_n = 0$ 。
+证明: 令 $T_n = \sum_{k=1}^{2n}(-1)^na_n$，并且 $T'_n = \sum_{k=1}^{2n+1}(-1)^na_n$ \\
+注意到 $T_{n+1} = T_n  - a_{2n+1} + a_{2n+2} \le T_n$，$T'_{n+1} = T'_n  + a_{2n+2} - a_{2n+3} \ge T'_n$ \\
+所以 $T_n $ 具有上界，而 $T'n$ 具有下界，同时 $T'_n = T_n + (-1)^na_{2n+1}$，因为 $a_n$ 是有界的，所以 $T_n$ 和 $T'_n$ 都有界，所以
+$T_n$ 和 $T'_n$ 都收敛。\\
+又因为 $T'_n - T_n = a_{2n+1}$，所以如果 $\lim_{n \to \infty} a_n = 0$，$\lim_{n \to \infty}T_n = \lim_{n \to \infty} T'_n$，所以 $S_n$ 收敛。
+同理如果 $S_n$ 收敛 $T_n$ 和 $T'_n$ 必然等价，所以 $a_n$ 必然也收敛。
+
+\subsubsection{调和级数发散}
+针对调和级数这类，也就是 $a_n \ge 0$，而且$a_n$ 单调减，可以找到一种判别法。
+可以根据 $T_n = \sum_{k = 0}^{n-1}2^ka_{2^k}$ 来判断 $S_n$ 是否收敛。
+证明也很容易，利用放缩法证明，$S_{2^k-1} \le T_k$。这里 $T_n$ 的定义是为了保证 $T_n$ 恰好有 $n$ 项，
+而且每项的系数之和等于 $2^{k-1}$。
+
+下面给出具体证明:
+
+\begin{align*}
+\sum_{n=1}^{2^k - 1}a_n & = \sum_{i=1}^{k}\sum_{j=2^{i-1}}^{2^i-1}a_j \le \sum_{i=1}^{k}2^{i-1}a_{2^{i-1}} \\
+& \le \sum_{i=0}^{k-1}2^ia_{2^i}
+\end{align*} \\
+
+同时又有 \\
+
+\begin{align*}
+\sum_{n=1}^{2^{k+1}-1}a_n & \ge a_1 + \sum_{n=2}^{2^k}a_n \ge a_1 + \sum_{n=1}^{2^k-1}a_{n+1} \\
+ & \ge a_1 + \sum_{i=1}^{k}\sum_{j=2^{i-1}}^{2^i-1}a_{j+1} \ge a_1 + \sum_{i=1}^{k}2^{i-1}a_{2^i} \\
+2\sum_{n=1}^{2^{k+1}-1}a_n & \ge 2a_1 + \sum_{i=1}^{k}2^ia_{2^i} \ge \sum_{n=0}^{k}2^na_{2^n}
+\end{align*} \\
+
+所以有  \\
+
+\[ \sum_{n=1}^{2^k-1}a_n \le \sum_{n=0}^{k-1}2^na_{2^n} \le 2\sum_{n=1}^{2^k-1}a_n \]
+
+\subsubsection{黎曼函数}
+
+利用柯西判别法可以判断 $\sum_{n=1}^{\infty}1/n^s$ 是否收敛。这个数列是单调减而且非负的。
+
+\[ \sum_{n=0}^{k-1}2^k\frac{1}{2^{ks}} = \sum_{n=0}^{k-1}(2^{1-s})^k \]
+
+所以当且仅当 $1-s < 0$ 也就是 $s > 1$ 时收敛，这个 $s$ 级数可以看作是一个关于 $s$ 的函数。
+
+\subsection{级数重排}
+
+
+\subsubsection{非负项级数重排保持收敛}
+
+非负项级数经过重排后可以保持收敛，而且和原来的收敛保持一致。
+
+这个结论看上去不平凡，但证明却相当容易，因为非负项级数可以看作单调的数列，只要证明有界就可以证明收敛。证明有界很容易:
+
+\[ \sum_{n=1}^{m}a_{f(n)} \le \sum_{n=1}^{M}a_{n}, \; M = \max \{f^{-1}(n) \vert 1 \le n \le m \} \]
+
+证明收敛到相同的值也很容易。
+
+假设 $ L - S_n  \le \epsilon $ 对 $n \ge N$ 恒成立。我们取 $M = \max \{f^{-1}(n) \vert 1 \le n \le N \} $ 
+于是必然有 $ \forall n \ge M, \sum_{n=1}^{N} \le \sum_{n=1}^{M}a_{f(n)} \le L $
+
+\subsubsection{绝对收敛的级数重排后保持收敛}
+这个结论比刚才的使用范围更广，因为绝对收敛的级数可能包含负项。首先重排后，我们可以用证明非负项级数收敛的方法证明收敛。注意到绝对收敛蕴涵了收敛。\\
+证明重排后收敛到相同的值需要一定的技巧。
+
+注意我们取 $M = \{ f^{-1}(n) \vert 1 \le n \le N \} $ 的时候 $ \{ f(m) \vert 1 \le m \le M \}$ 可能包含大于 $N$ 的数值，但好就好在这一点大于 $N$，
+因为 $N$ 很大的时候，这部分的值就会很小。
+
+\begin{align*}
+\lvert \sum_{k=1}^{M}a_{f(k)} - L \rvert & =  \lvert \sum_{n=1}^{N}a_{n} + \sum_{k=P}^{Q}a_{k} - L \rvert \\
+& \le \lvert \sum_{n=1}^{N}a_n - L \rvert + \sum_{k=N+1}^{M}\lvert a_k \rvert \\
+& \le 2\epsilon
+\end{align*}
+
+上面的 $N$ 取的是 $\sum_{n=1}^{\infty}a_n$ 极限和 $a_n$ 绝对收敛对应的柯西列，而且这个小于号不取决于 $M$ 的增加。
+
+
+\subsection{判别法}
+
+\subsubsection{根值判别法}
+这个判别法只需要考虑 $a_n$ 的性质，不需要考虑 $S_n$ 的性质。\\
+
+1. $\lvert a_n \rvert ^{1/n}$ 的上极限如果小于 1，那么 $S_n$ 绝对收敛。 \\
+
+2. $\lvert a_n \rvert ^{1/n}$ 的上极限如果大于 1，那么 $S_n$ 发散。 \\
+
+3. $\lvert a_n \rvert ^{1/n}$ 的上极限如果等于 1，那么未知。 \\
+
+1很容易证明，根据定义能找到一个 $ \alpha < 1 $ 和 $N$，满足 $\forall n \ge N, \lvert a_n \rvert ^{1/n} \le \alpha $。
+这样就得到了 $\lvert a_n \rvert \le \alpha ^n$，因为 $\sum_{n=1}^{M}\alpha^n$ 有界，所以 $\sum_{n=1}^{M}\lvert a_n \rvert $ 收敛。 \\
+
+2也很容易证明，根据定义对任意 $N$ 都能找到 $n \ge N$，满足 $\lvert a_n \rvert ^{1/n} > 1$ 从而有 $\lvert a_n \rvert > 1$，假如 $\sum_{n=1}^{\infty}a_n$ 收敛，必然有 $\lim_{n \to \infty}\lvert a_n \rvert = 0$
+
+
+\subsubsection{比值判别法}
+
+\begin{align*}
+\varliminf_{n \to \infty}\frac{c_{n+1}}{c_n} \le \varliminf_{n \to \infty} c_n ^{1/n} \le \overline{\lim_{n \to \infty}} c_n ^{1/n} \le \overline{\lim_{n \to \infty}} \frac{c_{n+1}}{c_n}
+\end{align*}
+
+\section{黎曼积分}
+
+\subsection{划分}
+
+\subsubsection{有界区间}
+
+回顾下有界区间的定义，$(a,b) \,\, (a,b] \,\, [a,b) \,\, [a,b]$ 都是区间。注意这里不要求 $a$ 和 $b$ 不相等，也没有要求 $a \le b$，所以空集也是区间，一个只包含一个实数的集合也是区间。
+
+\subsubsection{连通集}
+
+连通集 $A$ 定义为 $x, y \in A$ 则 $\forall x \le t \le y, \, t \in A$ 
+
+\subsubsection{实数集上的有界连通集和区间等价}
+
+下面证明实数集上的有界连通集是区间，我们分别取 $A$ 的上确界为 $b$，下确界为 $a$，下面证明 $(a,b) \subseteq A \subseteq [a,b]$。
+假设存在 $c \in (a,b), c \notin A$，因为上确界和下确界都是附着点，
+所以我们可以找到 $a' \in A $ 和 $b' \in A$ 满足 $a \le a' < c < b' \le b$，这就跟 $A$ 是连通集矛盾了。
+右半部分易证明，所以 $A$ 是一个区间。
+
+\subsubsection{有界区间的交集也是有界区间}
+
+连通集合的交集依然是连通集，有界集合的交集依然是有界的。
+
+
+\subsubsection{区间的长度}
+
+对于空集，定义区间长度为 $0$，对于非空的区间 $(a,b) \subseteq I \subseteq [a,b]$ 定义 $I$ 的长度为 $b-a$，这里也包含了单点集。
+
+\subsubsection{划分}
+
+$\mathbf{P} = \{ J \vert J \subseteq I,\, J \in \mathbf{P} \}$ 是对有界区间 $I$ 的一个划分当且仅当 $I$ 中的每个元素 $x$ 恰好属于 $\mathbf{P}$ 中的一个有界区间 $J$。
+
+\subsubsection{有限可加性}
+
+我们上面之所以这样定义划分就是为了能够满足有限可加性，这对黎曼积分的定义有重要的意义。
+
+\[
+    \lvert I \rvert = \sum_{J \in \mathbf{P}} \lvert J \rvert
+\]
+
+下面给出证明，假设 $(a,b) \subseteq I \subseteq [a,b] $，并且 $\mathbf{P}$ 是对 $I$ 的一个划分。如果 $I$ 是空集，那么成立。如果 $I$ 不是空集，那么设 $\mathbf{P}$ 中元素的数量为 $n > 0$。令 $a_0=a, I_0 = I, \mathbf{P_0} = \mathbf{P}$ 我们讨论 $a_0$ 是否属于 $I_0$，
+如果 $a_0 \in I_0$，那么必然有 $a_0 \in J_0 ,\, J_0 \in \mathbf{P_0}$ 令 $[a_0, b_0) \subseteq J_0 \subseteq [a_0, b_0]$ 同时有 $I_0 = \bigcup_{J \in \mathbf{P_0}} J $ 两边同时对 $J_0$ 作差集得到 $I_0 \setminus J_0 = \bigcup_{J \in \mathbf{P_0}, J \ne J_0}J$ 
+注意到 $I_0 \setminus J_0$ 依然是一个区间，我们可以记它为 $I_1$ ，注意到此时 $J \in \mathbf{P_0}, J \ne J_0$ 组成了对 $I_1$ 的一个划分，我们记这个划分为 $\mathbf{P_1}$ 所以我们可以对 $I_1, \mathbf{P_1}$ 作重复的操作，同时 $I_1$ 的下确界一定是 $b_0$。同理如果 $a_0 \notin I_0$，那么 $\mathbf{P_0}$ 中一定存在一个 $J_0$ 满足 $J_0$ 的下确界等于 $a_0$，否则 $a_0$ 附近一定有点不会被覆盖。同样的可以做上面的操作得到 $I_1, \mathbf{P_1}$。
+我们重复以上操作和得到了 $\{ J_0, J_1, .., J_{n-1} \} = \mathbf{P}$，注意到 $J_0$ 的上确界就是 $J_1$ 的下确界，以此类推。我们得到 $\lvert J_0 \rvert + \lvert J_1 \rvert  + .. + \lvert J_{n-1} \rvert = a_1 -a_0 + a_2 - a_1 + .. + a_n - a_{n-1} = a_n - a_0 = b - a$。
+注意到 $I_{n-1} \setminus J_{n-1} = I_n = \emptyset$，所以 $J_{n-1}$ 的上确界一定是 $b$。
+
+\subsubsection{更细划分}
+
+假设 $I $ 有两个划分 $\mathbf{P}$ 和 $\mathbf{P'}$ 我们称 $\mathbf{P'}$ 是 $\mathbf{P}$ 的更细划分当且仅当对任意 $J \in \mathbf{P}$ 都有 $J' \in \mathbf{P'}$ 满足 $J' \subseteq J$ 。
+
+\subsubsection{公共加细}
+
+假设 $I $ 有两个划分 $\mathbf{P}$ 和 $\mathbf{P'}$，$\mathbf{P}$ 和 $\mathbf{P'}$ 的公共加细定义为 
+
+\[
+    \mathbf{P} \# \mathbf{P'} = \{ J \cap K \wvert J \in \mathbf{P}, K \in \mathbf{P'}\}
+\]
+
+\subsection{分段常数函数}
+
+\subsubsection{定义}
+设 $f: I \to \mathbb{R}$，其中 $I$ 是有界区间，如果存在一个划分 $\mathbf{P}$ 使得 $\forall J \in \mathbf{P}, J \ne \emptyset \, f(J)$ 是一个单点集，那么 $f$ 就是关于 $\mathbf{P}$ 的分段常数函数。
+
+注意到如果 $\mathbf{P'}$ 比 $\mathbf{P}$ 更细，那么 $f$ 也是在 $\mathbf{P'}$ 上的分段常数函数。所以分段常数函数对加减乘，$\max$ 和 $\min$ 运算保持封闭，如果 $\forall x, g(x) \ne 0$ 那么 $f/g$ 也是分段常数函数。
+
+\subsubsection{分段常值积分}
+
+若 $f$ 是在划分 $\mathbf{P}$ 上的分段常数函数，定义 $f$ 的分段常值积分为 
+\[
+    \int_{[\mathbf{P}]} f = \sum_{J \in \mathbf{P}}c_J \lvert J \rvert
+\]
+
+分段常值积分是和 $\mathbf{P}$ 无关的，为了证明这个，我们需要证明一个引理，如果 $\mathbf{P'}$ 是比 $\mathbf{P}$ 更细的划分，那么
+
+\[
+    \int_{[\mathbf{P}]} f =\int_{[\mathbf{P'}]} f
+\]
+
+如果 $\mathbf{P'}$ 是比 $\mathbf{P}$ 更细的划分，那么 $J' \in \mathbf{P'}$ 可以分类成 $J'_{11}, J'_{12}, .. \subseteq J_1$， $J'_{21}, J'_{22}, .. \subseteq J_2$ 其中 $J_i \in \mathbf{P}$。
+并且 $J' \subseteq J_i$ 也是对 $J_i$ 的划分。首先 $J'$ 是不相交的有界区间，其次 $x \in J_i$ 必然有 $x \in J'$ 且 $J' \subseteq J_i$ ，因为如果 $J'$ 不是 $J_i$ 的子集的话就会出现 $J_i \cap J_j \ne \emptyset$。
+于是我们计算 $f$ 在 $\mathbf{P'}$ 上的分段常值积分可以分组计算再求和，按照 $J \in \mathbf{P}$ 进行分组，这样各组的结果相加得到了 $\sum_{J \in \mathbf{P}}c_J \lvert J \rvert$
+
+证明如下假设 $\mathbf{P}$ 和 $\mathbf{P'}$ 都是 $f$ 的一个划分，而且 $f$ 在 $\mathbf{P}$ 和 $\mathbf{P'}$ 上都是分段常值函数。我们根据引理可以得到  
+
+\[
+    \int_{[\mathbf{P}]} f =\int_{[\mathbf{P \# P'}]} f = \int_{[\mathbf{P'}]} f
+\]
+
+所以分段常值函数的积分可以写成如下形式
+
+\[
+\int_{I} f
+\]
+
+\subsubsection{分段常值积分性质}
+
+\begin{enumerate}
+    \item $\int_{I} (f + g) = \int_{I} f + \int_{I} g$ 这个用公共加细很容易证明。
+    \item $\int_{I} cf = c\int_{I} f$ 这个可以套定义。
+    \item $\int_{I} (f - g) = \int_{I} f - \int_{I} g$ 用上面两个的组合可以证明
+    \item 如果 $f(x) \ge 0$， $\int_{I} f \ge 0$，套定义。
+    \item 如果 $f(x) \ge g(x)$ 那么 $\int_{I} f \ge \int_{I}g $，也是套定义。
+    \item 如果 $f(x) = c$ 那么 $\int_{I} f  = c \lvert I \rvert $，也是套定义。
+    \item 有限可加性，如果 $\{J,K \}$ 是对 $I$ 的一个划分，那么 $\int_{I}f = \int_{J}f + \int_{K} f$，因为我们可以从 $J$ 和 $K$ 各自的划分得到 $I$ 的一个划分。
+\end{enumerate}
+
+\subsection{黎曼积分}
+
+\subsubsection{上方控制和下方控制}
+
+$f: I \to \mathbb{R}$ 且 $g: I \to \mathbb{R}$，如果 $g(x) \ge f(x)$，那么 $g(x) $ 从上方控制 $f(x)$。
+如果 $g(x) \le f(x)$ 那么 $g(x)$ 从下方控制 $f(x) $。
+
+\subsubsection{上下黎曼积分的定义}
+
+假设 $A = \{ g(x) \}$ 是所有上方控制 $f(x)$ 的分段常数函数的集合，有界函数 $f(x)$ 的上黎曼积分定义为:
+
+\[
+   \overline{\int}_I f =  \inf \{ \int_{I} g \wvert \forall x \in I ,\, g(x) \ge f(x), g(x) \mathrm{\; is\; p.c.} \}
+\]
+
+下黎曼积分定义为
+
+\[
+    \underline{\int}_I = f\sup \{ \int_{I} g \wvert \forall x \in I ,\, g(x) \le f(x), g(x) \mathrm{\; is\; p.c.} \}
+\]
+
+这里要注意的是，上黎曼积分是用下确界定义的，而下黎曼积分是用上确界定义的。因为上确界可以用最大附着点定义，下确界可以用最小附着点定义，后面做证明的时候可以利用数列极限的性质。
+
+
+\subsubsection{黎曼可积的定义}
+
+假设 $f: I \to \mathbb{R}$ 是有界的，如果 $f$ 的上黎曼积分等于 $f$ 的下黎曼积分，那么 $f$ 黎曼可积。
+
+
+\subsubsection{分段常数函数是黎曼可积的}
+
+这个很容易证明。
+
+
+\subsubsection{黎曼和}
+
+为了便于构造分段常数函数，我们定义上黎曼和 还有 下黎曼和。假设 $f: I \to \mathbb{R}$ 是有界的，而且 $\mathbf{P}$ 是 $I$ 的一个划分，那么定义 $f$ 的上黎曼和为
+
+\[
+    U(f, \mathbf{P}) = \sum_{J \in \mathbf{P}} (\sup_{x \in J}f(x)) \lvert J \rvert
+\]
+
+定义下黎曼和为
+
+\[
+    L(f, \mathbf{P}) = \sum_{J \in \mathbf{P}} (\inf_{x \in J}f(x)) \lvert J \rvert
+\]
+
+\subsubsection{上下黎曼和与上下黎曼积分}
+
+上黎曼和的下确界就是上黎曼积分，首先上黎曼和的定义中隐含了一个上方控制的分段常数函数，所以上黎曼和这个集合的附着点也是上黎曼积分这个集合的附着点，所以
+
+\[
+    \overline{\int}_I f \le \inf \{ U(f, \mathbf{P}) \}
+\]
+
+假设有一个从上方控制的分段常数函数 $g(x)$ 还有划分 $\mathbf{P}$，我们取 $h(x)$ 为
+
+\[
+    h(x) = \sup \{ f(J) \}, \: x \in J
+\]
+
+于是我们得到了 $h(x) \le g(x)$ 所以通过上黎曼积分对应的附着点，可以构造出上黎曼和的附着点，而且上黎曼和的附着点小于等于上黎曼积分对应的附着点。所以有
+
+\[
+ \inf \{ U(f, \mathbf{P}) \}   \le  \overline{\int}_I f
+\]
+
+结合之前的结论得到
+
+\[
+ \inf \{ U(f, \mathbf{P}) \}  =  \overline{\int}_I f
+\]
+
+同理可以证明
+
+
+\[
+ \sup \{ L(f, \mathbf{P}) \}  =  \underline{\int}_I f
+\]
+
+\subsection{黎曼积分的性质}
+
+下面假设有界函数 $f: I \to \mathbb{R}$ 和 $g: I \to \mathbb{R}$ 都是黎曼可积的
+
+\begin{enumerate}
+    \item $\int(f+g) = \int f + \int g $ 这个很好证明，$f'$从上方控制 $f$，$g'$ 从上方控制 $g$ 可以得到 $f'+g'$ 从上方控制 $f+g$。利用附着点的性质得到
+    \[
+  \underline{\int}f + \underline{\int}g \le \underline{\int}(f+g)  \le \overline{\int}(f+g) \le \overline{\int}f + \overline{\int}g
+    \]
+
+    \item $\int cf = c \int f$ 这个要讨论 $c > 0$ 和 $c < 0$，$c > 0$ 时，$f'$ 上方控制 $f$ 可以得到 $cf'$ 上方控制 $cf$。
+    \[
+  c\underline{\int}f \le  \underline{\int}cf \le \overline{\int}cf \le c \overline{\int}f 
+    \]
+
+    如果 $c < 0$，如果 $f'$ 上方控制 $f$ 可以得到 $cf'$ 从下方控制 $cf$ 所以得到
+
+    \[
+      c\overline{\int}f   \le \underline{\int}cf \le \overline{\int} cf \le c \underline{\int}f
+    \]
+
+    \item $\int_{I}(f-g) = \int_{I}f - \int_{I}g $ 使用上面的结论可以证明
+
+    \item $f(x) \ge 0$ 则 $\int_{I} f(x) \ge 0$，因为 $0$ 从下方控制了 $f(x)$ 所以有
+    \[
+        0 \le \underline{\int}_{I} f
+    \]
+
+    \item $f(x) \ge g(x)$ 则 $\int_{I}f \ge \int_{I} g$ 用上面的结论很容易证明。
+
+    \item $f(x) = c$ 则 $\int_{I}f = c \lvert I \rvert$，因为 $f(x) =c$ 从上方控制也从下方控制。
+
+
+\end{enumerate}

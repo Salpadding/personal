@@ -1,0 +1,46 @@
+%!LW recipe=latexmk (xelatex)
+% a4 页面 字体大小12像素
+\documentclass[12pt,a4paper]{ctexbook}
+% 数学公式
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{geometry}
+
+
+\geometry{left=1.5cm, right=1.5cm, top=2cm, bottom=2cm}
+\title{数学笔记}
+\author{朱英杰}
+\date{\today}
+
+\begin{document}
+\newcounter{nproof}
+\setcounter{nproof}{1}  % 设置计数器的初始值为1
+\newcommand{\nextproof}{\roman{nproof}\stepcounter{nproof}}
+
+\zihao{-4}
+
+\maketitle
+\newcommand{\wvert}{\,\vert\,}
+\renewcommand{\newline}{~}
+
+\tableofcontents
+
+\input{inequal/inequal.tex}
+
+% 陶哲轩实分析 part 1
+\input{real-analysis/tao1.tex}
+
+\input{real-analysis/tao2.tex}
+
+
+% 概率论
+\input{prob/prob.tex}
+
+\input{number-theory/element-number-theory.tex}
+
+\input{algebra/algebra.tex}
+
+\end{document}
