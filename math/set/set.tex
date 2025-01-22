@@ -1,0 +1,136 @@
+\chapter{集合 \& 序列}
+
+\section{像集和原像}
+
+\subsection{像集对并运算保持同态}
+
+\[
+f(\bigcup_{i \in I} X_i) = \bigcup_{i \in I} f(X_i)
+\]
+
+
+证明: 左边是右边子集，$y$ 在左边的集合内， 则有 $f(x) = y$ 且至少存在一个 $X_i$ 满足 $x \in X_i$，所以我们找到了 $X_i$ 满足 $y \in X_i$。也就是
+
+\begin{align*}
+    & x \in \bigcup_{i \in I}X_i,\, x \in X_k \\
+    & y \in f(X_k) \subseteq \bigcup_{i \in I}f(X_i)
+\end{align*}
+
+继续证明右边是左边子集，如果 $y$ 在右边集合内，则至少有一个 $x \in X_i$，满足 $f(x) = y$，所以我们找到了 $X_i$ 满足 $x \in X_i,\, f(x) = y$，所以 
+$y$ 位于左边的集合呢。
+
+\begin{align*}
+    & x \in \bigcup_{i \in I}X_i,\, x \in X_k \\
+    & X_k \subseteq \bigcup_{i \in I}X_i ,\, y \in f(X_k) \subseteq f(\bigcup_{i \in I}X_i)
+\end{align*}
+
+\subsection{像集对交运算不一定保持同态}
+
+想像这样一个函数，它存在两个不同的定义域上的元素，有相同的值，即 $f(x_1) = f(x_2) = y$
+
+显然 $X = \{ x_1 \}$ 和 $Y = \{ x_2 \}$ 有 $X \cap Y = \emptyset$，$f(X) \cap f(Y) = \{ y \} $
+
+如果 $f$ 是单射，那么有 
+
+\[
+f(\bigcap_{i \in I}X_i) = \bigcap_{i \in I}f(X_i)
+\]
+
+证明: 左边是右边子集，$y$ 在左边的集合内，所以存在 $x \in X_i, \forall i \in I$ 且 $f(x) = y$，所以我们找到了一个 $x$ 满足 $\forall i \in I,\, f(x) \in f(X_i)$，所以左边是右边的子集。
+
+\begin{align*}
+    & x \in \bigcap_{i \in I}X_i,\, f(x) = y \\
+    & \forall i \in I,\, y \in f(X_i)
+\end{align*}
+
+继续证明右边是左边的子集，$y$ 在右边的集合内，那么对每一个 $X_i$ 都有 $x_i \in X_i,\, f(x_i) = y$。因为 $f$ 是单射，所以必然有 $\forall i,j \in I,\, x_i = x_j = x$，所以我们找到了
+$x$ 满足 $\forall i \in I,\, x \in X_i,\, f(x) = y$，所以 $y$ 在左边的集合内。
+
+
+\begin{align*}
+    & \forall i \in I,\, x_i \in X_i,\, f(x_i) = y \\
+    & \forall i \in I,\, x = x_i,\, x \in \bigcap_{i \in I}X_i
+\end{align*}
+
+\subsection{原像对并运算保持同态}
+
+\[
+f^{-1}(\bigcup_{i \in I} Y_i) = \bigcup_{i \in I} f^{-1}(Y_i)
+\]
+
+
+证明: 左边是右边子集，$x$ 在左边的集合内， 则有 $f(x) = y$ 且至少存在一个 $Y_i$ 满足 $y \in Y_i$，所以我们找到了 $Y_i$ 满足 $x \in f^{-1}(Y_i)$。
+
+继续证明右边是左边子集，如果 $x$ 在右边集合内，则至少有一个 $y \in Y_i$，满足 $f(x) = y$，所以我们找到了 $Y_i$ 满足 $f(x) \in Y_i$，所以 
+$y$ 位于左边的集合。
+
+
+\subsection{原像对交运算保持同态}
+
+
+\[
+f^{-1}(\bigcap_{i \in I}Y_i) = \bigcap_{i \in I}f^{-1}(Y_i)
+\]
+
+证明: 左边是右边子集，$x$ 在左边的集合内，所以存在 $y \in Y_i, \forall i \in I$ 且 $f(x) = y$，所以左边是右边的子集。
+
+继续证明右边是左边的子集，$x$ 在右边集合内，则每个 $Y_i$ 都有 $f(x) = y_i$，显然 $y_i$ 之间相等，令 $y = y_i$，那么有
+
+\[
+f(x) = y \in \bigcap_{i \in I}Y_i
+\]
+
+\subsection{原像和补集运算}
+
+假设 $f: \Omega \to Y, \, A \subseteq Y$
+
+\[
+f^{-1}(Y \setminus A) = \Omega \setminus (f^{-1}(A))
+\]
+
+左边到右边，假设 $x \in f^{-1}(Y \setminus A)$ 必然有 $f(x) = y,\, y \notin A$，所以左边是右边的子集。
+
+右边到左边，假设 $x \in \Omega, x \notin f^{-1}(A) $则有 $f(x) \notin A$，也就是 $f(x) \in Y \setminus A$，所以得到 $x \in f^{-1}(Y \setminus A)$
+
+\section{上下极限}
+
+
+\subsection{序列的上下极限}
+
+假设 $a_n \in \R$ 那么 $a_n$ 的上确界定义为 $\sup_{n \in \N} a_n$，$a_n$ 的上极限定义为
+
+\[
+\overline{\lim_{n \to \infty}}a_n = \lim_{n \to \infty} \sup_{k \ge n} \{ a_k \}
+\]
+
+同理有下确界 $\inf_{n \in \N} \{ a_n \}$ 以及下极限
+
+\[
+\lim_{\overline{n \to \infty}}a_n = \lim_{n \to \infty} \inf_{k \ge n} \{ a_k  \}
+\]
+
+因为上面的两个序列分别都是单调减和单调增的，所以也可以不使用序列极限，用确界的方式定义上下极限。
+
+\[
+\overline{\lim_{n \to \infty}}a_n = \inf_{n \in N} \sup_{k \ge n} \{ a_k \}
+\]
+
+
+\subsection{集合的上下极限}
+
+集合的上极限是这样定义的
+
+\[
+\overline{\lim_{n \to \infty}}A_n  = \bigcap_{n=0}^{\infty}\bigcup_{i \ge n}A_i
+\]
+
+这个定义看次很难理解，其实就是 $x$ 属于 $A_n$ 的上极限，当且仅当对任意 $N \in 0$ 都存在 $n \ge N$ 满足 $x \in A_n$
+
+
+集合的下极限是这样定义的
+
+\[
+\varliminf_{n \to \infty}A_n  = \bigcup_{n=0}^{\infty}\bigcap_{i \ge n}A_i
+\]
+
+其实就是 $x$ 属于 $A_n$ 的下极限，当且仅当存在 $N  \ge 0$ 满足对所有的 $n \ge N$，$x \in A_n$

@@ -16,17 +16,16 @@
 \date{\today}
 
 \begin{document}
-\newcounter{nproof}
-\setcounter{nproof}{1}  % 设置计数器的初始值为1
-\newcommand{\nextproof}{\roman{nproof}\stepcounter{nproof}}
-
+\input{math-macro.tex}
 \zihao{-4}
 
 \maketitle
-\newcommand{\wvert}{\,\vert\,}
-\renewcommand{\newline}{~}
 
 \tableofcontents
+
+\input{examples/example.tex}
+
+\input{set/set.tex}
 
 \input{inequal/inequal.tex}
 

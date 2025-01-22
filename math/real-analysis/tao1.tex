@@ -407,6 +407,43 @@ $T_n$ 和 $T'_n$ 都收敛。\\
 \varliminf_{n \to \infty}\frac{c_{n+1}}{c_n} \le \varliminf_{n \to \infty} c_n ^{1/n} \le \overline{\lim_{n \to \infty}} c_n ^{1/n} \le \overline{\lim_{n \to \infty}} \frac{c_{n+1}}{c_n}
 \end{align*}
 
+\section{集合}
+
+\subsection{$\N \times \N$ 是可数集}
+
+令 $f: \N \times \N \to \N$
+
+\[
+f(m,n) = \frac{(m+n)(m+n+1)}{2} + n
+\]
+
+我们先证明 $f$ 是单射，先不妨设 $m_1+ n_1 < m_2 + n2$ ，则有 $ m_1+ n_1 + 1 \le m_2 + n2$
+
+\begin{align*}
+f(m_2, n_2) - f(m_1, n_1) & \ge \frac{(m_1+n_1+1)(m_1+n_1 + 2)}{2} + n_2 - \frac{(m_1+n_1)(m_1+n_1+1)}{2} - n_1 \\
+    & \ge m_1+n_1+1 + n_2 - n_1 \ge 1
+\end{align*}
+
+再考虑$m_1 + n_1 = m_2 + n_2$ 的情况，不妨令 $m_1 < m_2, \: n_1 > n_2$ ，则有
+
+\[
+f(m_2,n_2) - f(m_1, n_1) = n_2 - n_1 < 0
+\]
+
+接着我们证明 $f$ 是满射，首先 $f(0, 0) = 0$ ，假设 $f(m,n) = k$，我们找 $f(m',n') = k+1$，如果 $m > 0$ ，则有 
+
+\[
+f(m-1,n+1) = k +1
+\]
+
+如果 $m = 0$ ，则有
+
+\[
+f(n+1, 0) = \frac{(n+1)(n+2)}{2} = \frac{n(n+1)}{2} + n + 1 = k + 1
+\]
+
+所以 $f$ 是单射也是满射，所以 $\N \times \N$ 是可数集。
+
 \section{黎曼积分}
 
 \subsection{划分}
@@ -626,5 +663,110 @@ $f: I \to \mathbb{R}$ 且 $g: I \to \mathbb{R}$，如果 $g(x) \ge f(x)$，那�
 
     \item $f(x) = c$ 则 $\int_{I}f = c \lvert I \rvert$，因为 $f(x) =c$ 从上方控制也从下方控制。
 
+    \item 如果 $\{ J, K \} $ 是 $I$ 的一个划分，并且 $f: J \to \mathbb{R}$ 和 $f: K \to \mathbb{R}$ 都是黎曼可积的，那么有
+
+    \[
+        \int_{J}f + \int_{K}f = \int_{I}f
+    \]
+
+    同理 $g$ 和 $h$ 如果分别在 $J$ 和 $K$ 上方控制 $f$ ，那么可以扩展得到 $g + h$ 也在上方控制 $f$，所以有
+
+    \[
+ \underline{\int}_J f + \underline{\int}_K f \le \underline{\int}_I f \le \overline{\int}_I f \le \overline{\int}_J f + \overline{\int}_K f
+    \]
+
+    \item 假设 $(a,b) \subseteq I \subseteq [a,b]$ 并且 $f: I \to \mathbb{R}$  是黎曼可积的，那么 
+
+    \[
+        \int_{I}f = \int_{[a,b]}f 
+    \]
+
+    证明也很简单，利用上方控制函数，还有上下极限是附着点，数列极限的性质。
+
+    \[
+ \underline{\int}_{[a,b]}f \le \underline{\int}_{I}f \le \overline{\int}_{I}f \le \overline{\int}_{[a,b]}f 
+    \]
 
 \end{enumerate}
+
+\subsubsection{$\max$ 和 $\min$ 保持黎曼可积}
+
+若 $f: I \to \mathbb{R}$ 和 $g: I \to \mathbb{R}$ 都是黎曼可积的，那么 $\max(f,g)$ 也是黎曼可积的。
+
+下面给出证明，先证明一个引理，令 $h = \max(f,g)$，对任意区间 $J \subseteq I $
+
+\begin{align*}
+\underline{a} & \le \inf \{ f(x) \wvert x \in J \} \\
+\underline{b} & \le \inf \{ g(x) \wvert x \in J \} \\
+\overline{a} & \ge \sup \{ f(x) \wvert x \in J \} \\
+\overline{b} & \ge \sup \{ g(x) \wvert x \in J \} \\
+\overline{c} & = \sup \{ h(x) \wvert x \in J \} \\
+\underline{c} & = \inf \{ h(x) \wvert x \in J \} \\
+\end{align*}
+
+有
+
+\[
+  \max (\underline{a},\underline{b})  \le \underline{c} \le \overline{c} \le \max (\overline{a},\overline{b})
+\]
+
+证明很容易，利用附着点和数列的性质即可。有了这个不等式后可以得到：
+
+\begin{align*}
+  \overline{c} - \underline{c} & \le \max(\overline{a}, \overline{b}) - \max(\underline{a}, \underline{b}) \\
+  \overline{c} - \underline{c} & \le \max(\overline{a}, \overline{b}) + \min(-\underline{a}, -\underline{b}) \\
+  \overline{c} - \underline{c} & \le \max(\overline{a} + \min(-\underline{a}, -\underline{b}), \overline{b} + \min(-\underline{a}, -\underline{b})) \\
+  \overline{c} - \underline{c} & \le \max(\overline{a} -\underline{a}, \overline{b} -\underline{b}) \\
+\end{align*}
+
+若分段常数函数 $\overline{f}$ 和 $\overline{g}$ 分别从上方控制 $f$ 和 $g$，那么取他们的公共加细，然后在公共加细上对 $h$ 取上下确界，可以得到 $\overline{h}$ 和 $\underline{h}$，而且有
+
+\begin{align*}
+    \overline{h} - \underline{h} & \le \max(\overline{f} - \underline{f}, \overline{g} - \underline{g}) \\
+    \overline{\int}_I h - \underline{\int}_I h \le \int_{I}(\overline{h} - \underline{h}) & \le \max (\int_{I}(\overline{f} - \underline{f}),\int_{I}(\overline{g} - \underline{g}) ) \le \epsilon
+\end{align*}
+
+$\min$ 可积也是同理。只不过把证明过程中的 $\max$ 跟 $\min$ 轮换一下。
+
+\subsubsection{绝对值保持黎曼可积}
+
+令 $f_{+}(x) = \max(f(x), 0) = (f(x) + \lvert f(x) \rvert) / 2$，$f_{-}(x) = \min(f(x), 0) = (f(x) - \lvert f(x) \rvert) / 2$
+则有 $\lvert f(x) \rvert = f_{+}(x) - f_{-}(x)$
+
+\subsubsection{乘积保持黎曼可积}
+
+
+
+若 $f: I \to \mathbb{R}$ 和 $g: I \to \mathbb{R}$ 都是黎曼可积的，那么 $h = f \cdot g$ 也是黎曼可积的。
+
+这里要把 $f$ 和 $g$ 各自拆成 $f = f_{+} + f_{-}$ 还有 $g = g_{+} + g_{-}$ 的形式，那么  $f \cdot g = f_{+}g_{+} + f_{+}g_{-} + f_{-}g_{+} +f_{-}g_{-} $
+
+我们只需要证明 $f_{+}g_{+}$ 可积，下面的证明过程中我们暂时把$\overline{f_{+}}$ 简单记为 $\overline{f}$。只用到 $f_{+}$ 可积并且非负这个性质，$g_{+}$ 同理。其他项的证明类似。假设 $\overline{f}$ 和 $\overline{g}$ 分别从上方控制 $f_{+}$ 和 $g_{+}$， 
+$\underline{f}$ 和 $\underline{g}$ 分别从下方控制 $f_{+}$ 和 $g_{+}$，
+那么有 $ \underline{f} \underline{g} \le f_{+}g_{+} \le \overline{f} \overline{g}$ 注意到有下面不等式
+
+\[
+    \overline{f}\overline{g} - \underline{f} \, \underline{g} =  \overline{f}(\overline{g} - \underline{g}) + \underline{g}(\overline{f} - \underline{f}) \\
+\]
+
+\begin{align*}
+    \int_{I}\overline{f}\overline{g} - \int_{I}\underline{f}\underline{g} &= \int_{I}\overline{f}\overline{g} - \underline{f}\underline{g} \\
+    & \le \int_{I}\overline{f}(\overline{g} - \underline{g}) + \int_{I}\underline{g}(\overline{f} - \underline{f})  \\
+    & \le \int_{I}M(\overline{g} - \underline{g}) + \int_{I}M(\overline{f} - \underline{f}) \le 2M\epsilon
+\end{align*}
+
+上面的 $M$ 是 $\max \{ f_{+}(x), g_{+}(x) \wvert x \in I \}$，$\epsilon$ 是利用 $f_{+}$ 和 $g_{+}$ 黎曼可积。
+
+所以有 
+
+\[
+    \overline{\int}_{I}f_{+}g_{+} - \underline{\int}_{I}f_{+}g_{+} \le 2 M \epsilon
+\]
+
+因为上面的 $\epsilon$ 可以取任意小所以$f_{+}g_{+}$ 黎曼可积，同理可以得到 $(-f_{-})(-g_{-})$ 黎曼可积等。
+
+这是一个经典等式，只要有乘法和加法这个等式可以用于如下形式：
+
+\[
+    x_1y_1 - x_2y_2 = x_1(y_1 - y_2) + y_2(x_1 - x_2)
+\]

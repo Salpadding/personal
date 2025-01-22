@@ -15,3 +15,76 @@
 \lvert x \rvert & \le \lvert x - y \rvert + \lvert y \rvert \\
 \lvert \lvert y \rvert - \lvert x \rvert \rvert & \le  \lvert y - x \rvert \le \lvert x \rvert + \lvert y \rvert
 \end{align*}
+
+\subsection{柯西不等式}
+
+\[
+(\sum_{i=1}^{n} x_i y_i)^2 \le (\sum_{i=1}^{n}x_i^2)(\sum_{i=1}^{n}y_i^2)
+\]
+
+证明：$n=1$ 时显然成立，下面考虑$n=k+1$时，左式等于
+
+\begin{align*}
+ (\sum_{i=1}^{k+1} x_i y_i)^2 &=   (\sum_{i=1}^{k} x_i y_i + x_{k+1}y_{k+1})^2 \\
+ &= (\sum_{i=1}^{k} x_i y_i)^2 + (x_{k+1}y_{k+1})^2 + 2x_{k+1}y_{k+1}\sum_{i=1}^{k} x_i y_i
+\end{align*}
+
+右式等于
+
+\begin{align*}
+(\sum_{i=1}^{k+1}x_i^2)(\sum_{i=1}^{k+1}y_i^2) &= (\sum_{i=1}^{k}x_i^2 + x_{k+1}^2)(\sum_{i=1}^{k}y_i^2 + y_{k+1}^2) \\
+&=(\sum_{i=1}^{k}x_i^2)(\sum_{i=1}^{k}y_i^2) + x_{k+1}^2y_{k+1}^2 + y_{k+1}^2\sum_{i=1}^{k}x_i^2 + x_{k+1}^2\sum_{i=1}^{k}y_i^2
+\end{align*}
+
+
+根据假设有右减去左
+
+\begin{align*}
+    & \ge y_{k+1}^2\sum_{i=1}^{k}x_i^2 + x_{k+1}^2\sum_{i=1}^{k}y_i^2 - 2x_{k+1}y_{k+1}\sum_{i=1}^{k} x_i y_i \\
+    & \ge y_{k+1}^2\sum_{i=1}^{k}x_i^2 + x_{k+1}^2\sum_{i=1}^{k}y_i^2 - 2 \lvert x_{k+1}y_{k+1}\sum_{i=1}^{k} x_i y_i \rvert \\
+    & \ge ( \lvert y_{k+1} \rvert \sqrt{\sum_{i=1}^{k}x_i^2} -  \lvert x_{k+1} \rvert\sqrt{\sum_{i=1}^{k}y_i^2})^2 + 2 \lvert x_{k+1}y_{k+1} \rvert(\sqrt{\sum_{i=1}^{k}x_i^2 \sum_{i=1}^{k}y_i^2}- \lvert \sum_{i=1}^{k}x_iy_i \rvert)
+\end{align*}
+
+因为
+
+\[
+\sum_{i=1}^{k}x_i^2 \sum_{i=1}^{k}y_i^2 \ge \lvert \sum_{i=1}^{k}x_iy_i \rvert^2
+\]
+
+所以有
+
+\[
+\sqrt{\sum_{i=1}^{k}x_i^2 \sum_{i=1}^{k}y_i^2}- \lvert \sum_{i=1}^{k}x_iy_i \rvert \ge 0
+\]
+
+所以上面的右式减去左式大于等于0
+
+\subsection{几何平均数}
+
+定义集合平均数等于 $\sqrt[n]{x_1x_2..x_n}$，其中 $x_i \ge 0$，我们想证明 $n(\sqrt[n]{x_1x_2..x_n}) \le x_1 + x_2 + .. + x_n$
+
+首先当 $n=2$ 的时候，情况就很简单，我们可以通过 $(\sqrt{x} - \sqrt{y})^2 \ge 0$ 证明。当 $n=2^k$ 时，可以通过递归的方式证明。
+
+\begin{align*}
+    \sqrt[2^{k+1}]{\prod_{i=1}^{2^{k+1}}x_i} &=  \sqrt{(\prod_{i=1}^{2^{k}}x_i)^{1/2^k} \cdot (\prod_{i=2^{k} +1}^{2^{k+1}}x_i) ^{1/2^k}}    \\
+    & \le \frac{(\prod_{i=1}^{2^{k}}x_i) ^{1/2^k} + (\prod_{i=2^{k} +1}^{2^{k+1}}x_i) ^{1/2^k}}{2} \\
+    & \le \frac{1}{2}(\frac{1}{2^k}\sum_{i=1}^{2^k}x_i + \frac{1}{2^k}\sum_{i=2^k+1}^{2^{k+1}}x_i) \\
+    & \le \frac{1}{2^{k+1}}\sum_{i=1}^{2^{k+1}}x_i
+\end{align*}
+
+当 $n \ne 2^k$ 时，可以通过填充 $\overline{x} = (\sum_{i=1}^{n}x_i)/n$ 的方式证明，假设 $n + p = 2^k$，根据前面的证明有
+
+\begin{align*}
+    & \sqrt[n+p]{x_1x_2..x_n\overline{x}^p} \le \frac{1}{n+p}(x_1+x_2 + .. + x_n + p\overline{x}) \\
+    & \sqrt[n+p]{x_1x_2..x_n} \overline{x}^{p/(n+p)} \le \overline{x} \\
+    & \sqrt[n+p]{x_1x_2..x_n} \le \overline{x}^{n/(n+p)} \\
+    & \sqrt[n]{x_1x_2..x_n} \le \overline{x}
+\end{align*}
+
+这个不等式也反映了 $-\ln(x)$ 是一个 convex 函数。因为有
+
+\begin{align*}
+    & \sqrt{xy} \le \frac{1}{2}(x+y) \\
+    & \frac{1}{2}(\ln(x) + \ln(y)) \le \ln(\frac{1}{2}(x+y))
+\end{align*}
+
