@@ -134,3 +134,27 @@ f^{-1}(Y \setminus A) = \Omega \setminus (f^{-1}(A))
 \]
 
 其实就是 $x$ 属于 $A_n$ 的下极限，当且仅当存在 $N  \ge 0$ 满足对所有的 $n \ge N$，$x \in A_n$
+
+\subsection{上下极限}
+
+序列的上下极限和集合的上下极限有很大的关系。例如序列的上极限和其他实数比较时，有如下性质
+
+\[
+\overline{\lim_{n \to \infty}} a_n \le a ,\:\text{iff}\: a \in \bigcup_{n=1}^{\infty} \bigcap_{k \ge n} \{ a_i \wvert i \ge k, a_i \le a \} 
+\]
+
+
+\[
+\overline{\lim_{n \to \infty}} a_n \ge a ,\:\text{iff}\: a \in \bigcap_{n=1}^{\infty} \bigcup_{k \ge n} \{ a_i \wvert i \ge k, a_i \ge a \} 
+\]
+
+同理，下极限又有类似的性质。
+
+\[
+\varliminf_{n \to \infty} a_n \le a ,\:\text{iff}\: a \in \bigcap_{n=1}^{\infty} \bigcup_{k \ge n} \{ a_i \wvert i \ge k, a_i \le a \} 
+\]
+
+
+\[
+\varliminf_{n \to \infty} a_n \ge a ,\:\text{iff}\: a \in \bigcup_{n=1}^{\infty} \bigcap_{k \ge n} \{ a_i \wvert i \ge k, a_i \ge a \} 
+\]

@@ -42,14 +42,44 @@ e_1e_2 = e_1 = e_2
 同态可以针对两个不同的幺半群，这两个幺半群会具有很多相似的性质。下面给出定义，幺半群 $(S, \cdot)$ 和 $(T, *)$ 同态当且仅单存在映射 $f: S \to T$
 满足对 $x,y \in S $ 满足 $f(x \cdot x) = f(x) * f(y)$，且 $f(e) = e'$。这里要注意和同构的区别。
 
-
-\subsection{循环群}
+\subsection{群}
 
 \subsubsection{群的定义}
 
 群的定义可以概括为: 封闭的二元运算，结合律，单位元以及逆元。
 
 如果一个群中的元素是有限多个，这个群中元素的数量定义为群的阶。
+
+用符号语言描述就是 $abc = a(bc)$，$ae = ea = a$，$a^{-1}a = aa^{-1} = e$
+
+\subsubsection{更小的充要条件}
+
+群的定义可以简化为：满足结合律的封闭的二元运算，存在左单位元，存在左逆元。
+
+下面给出证明：对于 $a \in G$，我们令它的左逆元为 $a'$，并且这个 $a'$ 的左逆元为 $a''$，于是有 $a'a = a''a'= e$。
+我们分析下 $aa'$，得到了 $aa' = eaa' = a''a'aa' = a''a' = e$，所以左逆元同时也是右逆元。
+继续分析左单位元 $ae = aa'a = ea = a$，所以左单位元也是右单位元。
+
+\subsubsection{另一个等价条件}
+
+这个等价条件没有那么显然，如果一个集合 $G$ 上有满足结合律的二元运算，
+而且对任意 $a,\,b \in G$，$ax = b$ 和 $ya  = b$ 都有解。那么这个集合和二元运算构成群。
+
+下面给出证明，我们证明的目标是找到左单位元和左逆元。首先对于任意 $b \in G$有 $yb = b$ 有解 $y = e_b$，
+令 $bx = a$ 的解为 $c$，有 $e_ba = e_bbc = bc =  a$，所以 $e_b$ 是左单位元，我们可以记作 $e$。
+同理对任意的 $a \in G$，$ya = e$ 有解 $a'$，所以我们找到了左逆元，根据之前的结论，$G$ 一定构成群。
+
+\subsubsection{例题}
+如果 $G$ 是一个非空有限集合，而且上面有满足结合律的二元运算，如果左消去律和右消去律成立，那么 $G$ 构成一个群。
+也就是说 $ac = bc$ 可以得到 $a = b$，$ca= cb$ 可以得到 $a = b$。
+
+下面给出证明：假设 $G = \{ a_1, a_2, .. a_n \}$，那么取任意 $a \in G$，得到 $aG = \{ aa_1, aa_2, .., aa_n\}$。
+根据消去律 $aG$ 包含 $n$ 个元素，所以 $aG = G$，所以对任意 $b \in G$， $ax = b$ 一定有解。同理也可以证明 $ya = b$ 有解。
+根据上面的定理 $G$ 构成一个群。
+
+
+
+\subsection{循环群}
 
 
 \subsubsection{循环群}
@@ -75,27 +105,155 @@ e_1e_2 = e_1 = e_2
 
 \subsubsection{$a^k$ 的阶}
 
-已知 $a$ 的阶等于 $n$，则$a^k$ 的阶等于 $\frac{n}{(n,k)}$。下面给出证明。
+已知 $a$ 的阶等于 $n$，记 $g = (n,k)$ 则$a^k$ 的阶等于 $n/g$。下面给出证明。
 
-假设 $a^{ks} = e$，则必然有 $n \vert ks$，因此有 $\frac{n}{(n,k)} \vert \frac{k}{(n,k)}s $，因为 
+假设 $a^{ks} = e$，则必然有 $n \wvert ks$，因此有 $\frac{n}{g} \vert \frac{k}{g}s $，因为 
 
-$\frac{n}{(n,k)}$ 和 $\frac{k}{(n,k)}$ 互素，所以有  $\frac{n}{(n,k)} \vert s$。
+$\frac{n}{g}$ 和 $\frac{k}{g}$ 互素，所以有  $\frac{n}{g} \vert s$。
 
-再考虑 $(a^k)^{\frac{n}{(n,k)}} = (a ^ {n})^{\frac{k}{(n,k)}} = e$，所以 $s \vert \frac{n}{(n,k)} $
+再考虑 $(a^k)^{\frac{n}{g}} = (a ^ {n})^{\frac{k}{g}} = e$，所以 $s \wvert \frac{n}{g} $
 
-所以 $s = \frac{n}{(n, k)}$
+所以 $s = \frac{n}{g}$
 
 
 \subsubsection{$ab$ 的阶}
 
 若满足 $ab = ba$ 且 $a$ 的阶 $n$ 和 $b$ 的阶 $m$ 互素，则 $ab$ 的阶等于 $nm$。
 
-证明：假设$ab$ 的阶为 $s$， $(ab)^{nm} = a^{nm}b^{mn} = e$ 说明 $s \vert nm$。
-又因为 $e = (ab)^{sn} = b^{sn}$ 所以 $m \vert sn$，因为 $m,n$ 互素可以得出 $m \vert s$，同理可得 $n \vert s$，再结合 $m,n $ 互素得到 $nm \vert s$。
+证明：假设$ab$ 的阶为 $s$， $(ab)^{nm} = a^{nm}b^{mn} = e$ 说明 $s \wvert nm$。
+又因为 $e = (ab)^{sn} = b^{sn}$ 所以 $m \wvert sn$，因为 $m,n$ 互素可以得出 $m \wvert s$，同理可得 $n \wvert s$，再结合 $m,n $ 互素得到 $nm \wvert s$。
 
 
-\subsubsection{有限阿贝尔群}
+\subsubsection{$\langle a \rangle$ = $\langle a^{-1} \rangle$}
 
-有限阿贝群里面，存在一个元素，它的阶是其他所有元素阶的倍数。证明如下：
+这个显然成立。
+
+\subsubsection{若 $G$ 是有限群且 $a \in G$， $G = \langle a \rangle$ 和 $\lvert G \rvert =  \mathrm{ord}\,a$ 等价}
+
+结合 $\langle a \rangle \subseteq G$ 以及 $\lvert \langle a \rangle \rvert = \mathrm{ord}\, a$ 很容易证明。
+
+\subsubsection{若 $\langle a \rangle$ 是无限循环群，则 $\langle a \rangle =  \{ a^{k} \wvert k \in \mathbb{Z}\}$，并且 $a^k = a^l$ 可以得到 $k=l$}
+
+这个可以用反证法，假设有 $k > l$ 且 $a^k = a^l$ 可以得到 $a^{k-l} = e$，这与 $\langle  a \rangle$ 是无限循环群矛盾。
+
+\subsubsection{若 $\langle a \rangle$ 是有限循环群，则 $\langle a \rangle =  \{ a^{k} \wvert 0 \le k < \mathrm{ord}\, \langle a \rangle \}$，并且 $a^k = a^l$ 可以得到 $n \wvert k -l $}
+
+证明很容易 $a^k = a^l$ 可以得到 $a^{k-l} = e$，令 $k-l = s$，$\mathrm{ord}\, a = m$，令 $s = qm + r$，其中 $0 \le r < m$，得到 $a^r = a^{s}a^{-qm} = e$，根据阶的定义得到 $r = 0$，所以 $m \wvert s$。
+
+\subsubsection{$a^k$ 是 $\langle a \rangle$ 生成元的充分必要条件是 $k$ 和 $a$ 的阶互素}
+
+下面给出证明，先证明充分性，记 $\mathrm{ord}\, a = n$，若 $(n,k) = 1$，则有 $\mathrm{ord}\, a^k = n$。因为 $\langle a^k \rangle \subseteq \langle a \rangle$，所以若两个集合不相等，它们的阶一定不相等。
+再证明必要性，若 $(n,k) > 1$ 则 $\mathrm{ord}\, a^k < n$，这两个集合就不可能相等。
+
+\subsubsection{ $\langle a \rangle$ 的生成元数量等于 $\phi(n)$，其中 $\phi$ 是欧拉函数}
+
+上面结论的推论。
+
+\subsubsection{循环群的任意子群都是循环群}
+
+假设 $H$ 是 $G =\langle a \rangle$ 的非空子群，注意这里 $G$ 可能是无限循环群， 若它包含一个不等于单位元的元素，记
+
+$m = \min \{ k \wvert a^k \in H,\, k > 0,\, a^k \ne e \}$
+
+下面证明 $H = \langle a^m \rangle $，假设 $a^s \in H$，我们对 $s$ 做带余除法得到 $s = qm + r,\, 0 \le r < m$。
+于是得到 $a^{r} = a^{s}a^{-qm} \in H$，根据 $0 \le r < m$ 得到 $r = 0$，所以 $m \wvert s$，也就是 $H$ 的任意元素都可以通过 $a^m$ 生成得到。
+
+\subsubsection{若$G = \langle a \rangle $，且 $\lvert G \rvert = \infty$，那么 $G$ 的所有子群是 $\{ \langle a ^d \rangle \wvert d = 0,1,2,..\}$ }
+
+显然右边的每个元素都是子群，而且每个子群都是不同的子群。
+我们希望证明所有的子群都可以用 $\langle a^d \rangle$ 表示。而上面我们证明过，只要取子群的最小正整数 $m$ 满足 $a^m \in H,\, a^m \ne e$即可。
+
+\subsubsection{若$G = \langle a \rangle $，且 $\lvert G \rvert = n$，那么 $G$ 的所有子群是 $\{ \langle a ^d \rangle \wvert d > 0,\, d \wvert n\}$ }
+
+这个也是同理，通过取最大正整数可以得到子群的生成元 $a^d$，上面的结论可以得到子群的阶等于 $\frac{n}{(n,d)}$。
+如果子群的阶不相同，那么一定不是相同的子群，所以所有的子群可以通过枚举有限循环群阶的因子得到。
+
+\subsubsection{无限循环群 $\langle a \rangle$ 同构于整数加法群}
+
+我们可以令 $f(m) = a^m$，容易验证 $f$ 满足 $f(k + l) = f(k)f(l)$，而且 $f$ 是双射。
+
+\subsubsection{有限循环群同构于模 $n$ 下的整数加法群}
+
+我们可以令 $f(m) = a^m$，容易验证 $f$ 满足 $f(k+l) = f(k)f(l)$，而且 $f$ 是双射。
+
+\subsection{子群}
+
+$G$ 的一个非空子集 $H$ 构成子群 iff $H$ 关于 $G$ 的运算构成群，则称 $H$ 是 $G$ 的子群，记作 $H \leq G$。
+
+\subsubsection{判定方法1}
+
+如果群 $G$ 的一个非空子集 $H$ 满足 $\forall a,b \in H,\, ab \in H$，并且 $\forall a \in H,\, a^{-1} \in H$，那么 $H$ 是 $G$ 的子群。
+
+证明如下，我们取任意 $a \in H$，因为 $a^{-1} \in H$，所以必然有 $ aa^{-1} = e \in H$，所以 $H$ 包含了单位元，并且对二元运算封闭。
+
+\subsubsection{判定方法2}
+
+如果$G$ 的非空子集 $H$ 满足对任意 $a,b \in H$ 有 $ab^{-1} \in H$，那么 $H$ 构成 $G$ 的子群。
+这个定义没有要求 $a$ 和 $b$ 不同，所以我们可以取 $a = a,\, b = a$ 得到 $aa^{-1} = e \in H$。我们再取 $a = e$ 得到对任意 $b \in H$ 有 $b^{-1} \in H$。
+然后我们对于任意 $a,b$ 可以先找到 $a, b^{-1}$ 然后代入条件得到 $a(b^{-1})^{-1} = ab \in H$。
+
+\subsubsection{子群的交集}
+
+子群的交集依然是子群，假设 $H_1$ 和 $H_2$ 都是 $G$ 的子群，因为 $e \in H_1$ 并且 $e \in H_2$ 
+所以 $H_1 \cap H_2 \ne \emptyset$，我们取任意 $a, b \in H_1 \cap H_2$，因为 $H_1$ 和 $H_2$
+都是子群，所以有 $a b^{-1} \in H_1 \cap H_2$，所以 $H_1 \cap H_2$ 是子群。
+
+\subsubsection{生成子群}
+
+若集合 $S$ 是群 $G$ 的子集，那么记 $S$ 的生成子群为
+
+\[
+\langle S \rangle = \bigcap_{S \subseteq H \leq G} H
+\]
+
+\subsubsection{生成子群是包含 $S$ 的最小子群}
+
+这个根据定义就可以证明。
+
+\subsubsection{生成子群的性质}
+
+若 $S = \{a_1, a_2, .., a_n \}$，也就是说 $S$ 是大小为 $n$ 的有限集，并且 $S$ 是群 $G$ 的子集。
+那么 $\langle S \rangle = \{ a_{i_1}^{l_1} a_{i_2}^{l_2} .. a_{i_k}^{l_k} \wvert l_j = \pm 1,\, 1 \le j \le n \}$
+
+下面给出证明：记 $T = \{ a_{i_1}^{l_1} a_{i_2}^{l_2} .. a_{i_k}^{l_k} \wvert l_j = \pm 1,\, 1 \le j \le n \}$
+
+首先，对于任意一个包含 $S$ 的子群 $H$，它一定包含了 $a_i,\,a_i^{-1}\, 1 \le i \le n$，因此 $T$ 是每个 $H$ 的子集，所以 $T \subseteq \langle S \rangle $。
+我们继续分析集合 $T$，可以看到 $T$ 不是一个空集，于是我们试图证明 $T$ 是一个群。
+首先有 $a_1a_1^{-1} = e \in T$，所以 $T$ 包含单位元，其次对于任意 $a, b \in T$，显然有 $ab \in T$，所以 $T$ 是一个群并且有 $S \subseteq T$，所以我们有 $\langle S \rangle \subseteq T$，
+最终得到 $\langle S \rangle = T$。
+
+
+\section{对称群}
+
+\subsection{贝尔数}
+
+贝尔数推导的思想如下，我可以吧 $x_{n+1}$ 单独拿出来，然后考虑 $B(n)$，再把 $\{ x_{n+1} \}$ 放到 $B(n)$ 的划分当中。
+同理，我也可以从 $x_1, x_2, .. x_n$ 当中取一个 $x_i$ 和 $x_{n+1}$ 组成 $\{ x_i, x_{n+1} \}$，然后考虑 $B(n-1)$，再把 $\{ x_i, x_{n+1}\}$ 放到 $B(n-1)$ 当中。
+显然上面的划分都是不相交的，而且对于 $B(n+1)$ 的每一个划分，其中必然包含一个包含 $x_{n+1}$ 的集合，这个集合也一定包含在我们的枚举过程中。
+所以有
+
+\[
+B_{n+1} = \sum_{k=0}^{n} \binom{n}{k} B(k)
+\]
+
+\subsection{对称群定义}
+
+对于集合 $X$，对称群 $S_X$ 指的是 $\{ f \wvert f: X \to X,\, f\text{ is bijective}\}$。
+
+\subsection{ $n$ 次对称群}
+
+如果 $X$ 是有限的，并且包含 $n$ 个元素，那么它上面的对称群 $S_X$ 就是 $n$ 次对称群，记作 $S_n$。
+
+\subsection{置换}
+
+$n$ 次对称群中的元素就是置换。
+
+\subsection{置换群}
+
+$n$ 次对称群的子群就是置换群。
+
+
+\subsection{轮换}
+
 
 
