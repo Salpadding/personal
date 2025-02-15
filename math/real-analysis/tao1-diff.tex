@@ -1,0 +1,245 @@
+\chapter{微分学}
+
+\section{基本定义}
+
+\subsection{可微的定义}
+
+函数 $f: X \to \R$ 在极限点 $x_0$ 处可微定义为
+
+\[
+    \lim_{x \to x_0, x \in X \setminus \{x_0\} }\frac{f(x) -f(x_0)}{x -x_0} = L
+\]
+
+注意这里对 $x_0$ 的要求是 $x_0 \in X$ 而且 $x_0$ 是 $X$ 的极限点，比函数极限的定义更严格。
+
+\subsection{牛顿近似逼近}
+
+可微的定义和以下命题等价
+
+$\forall \epsilon > 0, \exists \delta >0 $ 对任意 $0 < \lvert x -x_0\rvert \le \delta $ 有
+
+\[
+    \lvert f(x) - f(x_0) - L(x-x_0) \rvert \le \epsilon \lvert x -x_0 \rvert
+\]
+
+
+\subsection{可微必然连续}
+
+利用牛顿近似逼近很容易证明
+
+$\lvert f(x) -f(x_0)\rvert = \lvert f(x) -f(x_0) - L(x-x_0) + L(x-x_0)\rvert $
+
+\subsection{可微函数}
+
+$f: X \to \R$ 可微定义为 $f$ 在 $X$ 的每一个极限点上可微。
+
+\subsection{可微函数一定是连续函数}
+
+证明很容易，假设 $x_0$ 是 $X$ 的极限点，因为 $f$ 在 $x_0$ 处可微，所以必然在 $x_0$ 处连续。
+
+\subsection{微分学}
+
+\begin{enumerate}
+    \item $f: X \to \R,\, f(x) = c$ 则 $f'(x) = 0$
+
+    根据定义可以证明
+
+    \item $f: X \to \R,\, f(x) = x $ 则 $f'(x) = 1$
+
+    根据定义可以证明
+
+    \item $f,\,g: X \to R\, $ 且 $f,\,g$ 在 $x_0$ 处可微，则 $ (f+g)'(x_0) = f'(x_0) + g'(x_0)$
+
+    根据极限运算法则可以证明
+
+    \item $f,\,g: X \to R\, $ 且 $f,\,g$ 在 $x_0$ 处可微，则 $ (fg)'(x_0) = f'(x_0)g(x_0) + f(x_0)g'(x_0)$
+
+    同样利用极限运算法则
+
+\begin{align*}
+    \lim_{x \to x_0}\frac{f(x)g(x) - f(x_0)g(x_0)}{x-x_0} &= \lim_{x \to x_0}\frac{f(x)g(x) - f(x_0)g(x)}{x-x_0} + \lim_{x \to x_0}\frac{f(x_0)g(x) - f(x_0)g(x_0)}{x-x_0} \\
+    &= f'(x_0)g(x_0) + f(x_0)g'(x_0)
+\end{align*}
+
+
+    \item $f: X \to R$ 且 $f'(x_0) = L$ 则 $cf$ 在 $x_0$ 处可微，且 $(cf)'(x_0) = cL$
+    利用极限运算法则
+
+    \item $(f-g)' = f' - g'$
+    同样用极限运算法则
+
+    \item $f: X \to R$ 且 $f(x) \ne 0,\, f'(x_0) = L$ 则 $g=\frac{1}{f}$ 在 $x_0$ 处可微，而且 $g'(x_0) = -\frac{f'(x_0)}{f(x_0)^2}$
+
+    利用极限运算法则
+
+\begin{align*}
+    \lim_{x \to x_0}\frac{1/f(x) - 1/f(x_0)}{x-x_0} = - \lim_{x \to x_0}\frac{f(x) - f(x_0)}{f(x)f(x_0)(x-x_0)} = - \frac{f'(x_0)}{f(x_0)^2}
+\end{align*}
+
+    \item 除法法则，这里要求 $g(x) \ne 0$ 而且 $f,\,g$ 在 $x_0$ 处可微
+
+\[
+    (\frac{f}{g})'(x_0) = \frac{f'(x_0)g(x_0) - f(x_0)g'(x_0)}{g(x_0)^2}
+\]
+\end{enumerate}
+
+\subsection{链式法则}
+
+$f: X \to Y,\, f(x_0) = y_0,\, f'(x_0) = L_1,\, g: Y \to \R,\, g'(y_0) = L_2$ 注意这里要求 $f(x_0)$ 是 $Y$ 的极限点
+那么
+
+\[
+(f \circ g)'(x_0) = g'(y_0)f'(x_0)
+\]
+
+证明要用到极限运算法则，这里因为 $f$ 在 $x=x_0$ 处连续，所以我们作代换
+
+\begin{align*}
+    \lim_{x \to x_0}\frac{g \circ f(x) - g \circ f(x_0)}{x-x_0} &= \lim_{x \to x_0} \frac{g \circ f(x) - g \circ f(x_0)}{f(x) - f(x_0)} \lim_{x \to x_0}\frac{f(x) - f(x_0)}{x-x_0} \\
+    &= f'(x_0)\lim_{y \to y_0} \frac{g(y) - g(y_0)}{y - y_0} = g'(y_0)f'(x_0)
+\end{align*}
+
+\section{极值}
+
+\subsection{极值点定义}
+
+$f: X \to R,\, x_0 \in X$ 若存在 $\delta > 0$ 使得 $f: X \cap (x_0 -\delta, x_0 + \delta)$ 在 $x_0$ 处取得最大值，那么 $x_0$ 为极大值点。
+同理定义极小值点。
+
+\subsection{极值点是驻点}
+
+$f: (a,b) \to \R,\, a<b,\, x_0 \in (a,b),\, f'(x_0) = L$ 且 $x_0$ 是极值点那么 $L=0$ 
+
+证明: 若 $x_0$ 为极小值点
+
+\begin{align*}
+L &= \lim_{n \to \infty} \frac{f(x_0+1/n) - f(x_0)}{1/n} \ge 0 \\
+  &= \lim_{n \to \infty} \frac{f(x_0-1/n) - f(x_0)}{-1/n} \le 0
+\end{align*}
+
+所以 $L = 0$
+
+
+\subsection{罗尔定理}
+
+$a < b,\, f: [a,b] \to \R $ 连续并且在 $(a,b)$ 上可微。若 $f(a) = f(b)$ 那么存在 $x_0 \in (a,b)$ 满足 $f'(x_0) = 0$
+
+因为闭区间上的函数一定能取得最小值 $m$ 和最大值 $M$，若 $m = M$ 那么 $f(x)$ 是一个常数函数，所以 $\forall x \in [a,b],\, f'(x) = 0$。若 $m < M$
+那么 $m$ 和 $M$ 一定有一个不等于 $f(a),\, f(b)$，不妨设 $f(a) \ne m$。那么必然有 $c \in (a,b)$ 满足 $f(c) = m$，根据极值点的性质得到 $f'(c) = 0$。
+
+\subsection{中值定理}
+
+$a < b,\, f: [a,b] \to \R $ 连续并且在 $(a,b)$ 上可微，那么存在 $x_0 \in (a,b)$ 满足 
+
+\[
+f'(x_0) = \frac{f(b)- f(a)}{b-a}
+\]
+
+证明: 构造函数 $g: [a,b] \to \R$
+
+\[
+g(x) = f(x) - f(a) + \frac{f(b)-f(a)}{b-a}(x-a)
+\]
+
+容易验证 $g(b) = g(a) = 0$ 而且 $g(x)$ 在 $(a,b)$ 上可微，根据罗尔定理必然有 $c \in (a,b),\, g'(c) = 0$ 也就是
+
+\[
+f'(c) - \frac{f(b)-f(a)}{b-a} = 0
+\]
+
+\subsection{柯西中值定理}
+
+$a < b,\, f,\,g: [a,b] \to \R,\, g(b) \ne g(a),\, g'(x) \ne 0 $ 连续并且在 $(a,b)$ 上可微，那么存在 $x_0 \in (a,b)$ 满足 
+
+\[
+\frac{f'(x_0)}{g'(x_0)} = \frac{f(b)- f(a)}{g(b)-g(a)}
+\]
+
+证明: 构造函数 $h: [a,b]\to \R$
+
+\[
+h(x) = f(x) - f(a) - \frac{f(b) - f(a)}{g(b) - g(a)}(g(x) - g(a))
+\]
+
+容易验证 $h(a) = h(b) = 0$ 且 $h(x)$ 在 $(a,b)$ 上可微，根据罗尔定理有 $c \in (a,b),\, h'(c) = 0$ 也就是
+
+\[
+f'(c) - \frac{f(b) - f(a)}{g(b) -  g(a)}g'(c) = 0
+\]
+
+\section{单调函数的微分}
+
+\subsection{单调函数的微分 I}
+
+$f: X \to \R$ 是单调增函数，并且 $x_0 \in X$ 是极限点，若 $f$ 在 $x_0$ 处可微，那么必然有 $f(x_0) \ge 0$
+
+证明，根据极限运算法则有
+
+\[
+f'(x_0) = \lim_{n \to \infty}\frac{f(x_0 + 1/n) - f(x_0)}{1/n} \ge 0
+\]
+
+同理，
+$f: X \to \R$ 是单调减函数，并且 $x_0 \in X$ 是极限点，若 $f$ 在 $x_0$ 处可微，那么必然有 $f(x_0) \le 0$
+
+\subsection{单调函数的微分 II}
+
+$a,b \, f: [a,b] \to \R$ 可微，若 $\forall x \in [a,b],\, f'(x) > 0$ 那么 $f$ 是严格单调增函数。
+
+用中值定理很容易证明
+
+\section{反函数的微分}
+
+\subsection{反函数的微分 I}
+
+$f: X \to Y,\, f(x_0) = y_0$ 是可逆函数，并且 $x_0$ 和 $y_0$ 各自是 $X$ 和 $Y$ 的极限点。令 $g(x) = f^{-1}(x)$，若
+$f$ 在 $x_0$ 处可微， $g$ 在 $y_0$ 处连续，并且 $f'(x_0) = L \ne 0$，那么 $g$ 在 $y_0$ 处可微，而且 $g'(y_0) = \frac{1}{f'(x_0)}$
+
+这个证明只需要用到函数极限运算法则
+
+\[
+\lim_{y \to y_0}\frac{g(y) - g(y_0)}{y -y_0} = \lim_{x \to x_0}\frac{x-x_0}{f(x) - f(x_0)} = 1/L
+\]
+
+\section{L'h\^{o}pital 法则}
+
+\subsection{L'h\^{o}pital I}
+
+若 $f,\,g : X \to \R$ 并且 $x_0 \in X$ 是极限点，假设 $f(x_0) = g(x_0) = 0$ 并且 $f,\,g$ 在 $x_0$ 处可微，并且 $g'(x_0) \ne 0 $，那么存在 $\delta > 0$ 满足
+$X_{\delta} = \{ x \in X \wvert 0 < \lvert  x - x_0\rvert <\delta \},\, \forall x  \in X_{\delta},\, g(x) \ne 0$ 并且有
+
+\[
+\lim_{x \to x_0, x \in X_{\delta}} \frac{f(x)}{g(x)} = \frac{f'(x_0)}{g'(x_0)}
+\]
+
+我们先证明 $X_{\delta}$ 存在，不妨设 $g'(x_0) = L > 0$，根据牛顿近似逼近，取 $\epsilon = L/2$ 有 $\delta$ 满足 $\forall x \in X, 0 < \lvert x -x_0\rvert < \delta$ 有
+$ \lvert f(x) - f(x_0) - L(x-x_0)\rvert \le L/2 \lvert x -x_0 \rvert$
+于是有 
+
+\[
+0 < L/2 \lvert x -x_0 \rvert\le \lvert f(x) \rvert
+\]
+
+所以 $X_{\delta}$ 存在，根据极限运算法则有
+
+\[
+\lim_{x \to x_0, x \in X_{\delta}} \frac{f(x)}{g(x)} = \frac{f(x)/(x-x_0)}{g(x)/(x-x_0)} = \frac{f'(x_0)}{g'(x_0)}
+\]
+
+
+\subsection{L'h\^{o}pital II}
+
+若 $f,\,g : (a,b] \to \R$ 可微
+
+
+\subsection{L'h\^{o}pital III}
+
+根据已知条件有 $\forall x \in (a, a+\delta)$，令 $c = a + \delta$
+
+\begin{align*}
+    & \lvert \frac{f'(x)}{g'(x)} - L \rvert \le \epsilon \\
+    & \frac{f(x) - f(c)}{g(x) - g(c)} = \frac{f'(\alpha_x)}{g'(\alpha_x)}= \frac{f(x)/g(x)- f(c)/g(x)}{1- g(c)/g(x)} \\
+    & \frac{f'(\alpha_x)}{g'(\alpha_x)} - \frac{f(x)}{g(x)} = \frac{f'(\alpha_x)g(c)}{g'(\alpha_x) g(x)} -f(c)/g(x) \\
+    & \lvert \frac{f'(\alpha_x)}{g'(\alpha_x)} - \frac{f(x)}{g(x)}  \rvert \le \epsilon \\
+    & \lvert \frac{f(x)}{g(x)}  - L \rvert \le 2\epsilon \\
+\end{align*}

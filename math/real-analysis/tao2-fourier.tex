@@ -1,0 +1,145 @@
+\newcommand{\CRZ}{C(\R / \Z; \C)}
+\chapter{傅里叶级数}
+
+\section{周期函数}
+
+\subsection{周期函数的定义}
+
+$f: \R \to \C$ 是以 $L$ 为周期当且仅当 $f(x+L) = f(x)$
+
+\subsection{ $\Z$ 周期函数}
+
+我们定义以 $1$ 为周期的函数为 $\Z$ 周期函数，例如 $f(x) = \sin(2\pi x),\, x \in \R$ 就是 $\Z$ 周期函数，特别的我们记连续的 $\Z$ 周期函数的集合为
+$\CRZ$
+
+\subsection{连续 $\Z$ 周期函数的性质}
+
+\begin{enumerate}
+    \item 有界
+
+    我们只要证明 $f(x)$ 在 $[0,1]$ 上即可，然后利用周期性。而闭区间上的连续函数就是有界的。
+
+    \item $f,g \in \CRZ$ 则 $f+g,\, f-g,\, cf,\, fg$ 都属于 $\CRZ)$
+
+    $f(x+T)g(x+T) = f(x)g(x)$
+
+    \item 一致收敛保持连续周期性
+
+    假设 $f_n \in \CRZ)$ 并且 $f_n$ 一致收敛到 $f$，根据一致收敛保持连续性， $f$ 一定连续。逐点收敛就能保持周期性，因为
+
+    \[
+        f(x+T) = \lim_{n \to \infty}f_n(x+T) = \lim_{n \to \infty}f_n(x) = f(x)
+    \]
+
+    \item 连续 $\Z$ 周期函数在上确界范数度量下构成度量空间
+
+    显然有
+    \begin{enumerate}
+        \item $d_\infty(f, g) \ge 0$
+        \item $d_\infty(f,g) = 0$ 当且仅当 $f=g$
+        \item $d_\infty(f,g) = d_\infty(g,f)$
+        \item $d_\infty(f,g) \le d_\infty(f,h) + d_\infty(h,g)$
+
+        \begin{align*}
+        \lvert f(x) - g(x)\rvert & \le \lvert f(x) - h(x)\rvert + \lvert h(x) - g(x)\rvert \\
+            & \le d_\infty(f,h) + d_\infty(h, g) \\
+        d_\infty(f,g) & \le d_\infty(f,h) + d_\infty(h, g)
+        \end{align*}
+    \end{enumerate}
+
+\end{enumerate}
+
+\section{$\Z$ 周期函数的内积}
+
+\subsection{复值函数的积分}
+
+针对复值函数 $f: \R \to \C,\, f(x) = g(x) + ih(x)$，假设 $g(x)$ 和 $h(x)$ 都是黎曼可积的，我们定义 
+
+\[
+\int_{[a,b]}f(x) dx = \int_{[a,b]}g(x) dx + i\int_{[a,b]}h(x) dx
+\]
+
+
+\subsection{复值函数积分的性质}
+
+\begin{enumerate}
+    \item $\overline{\int_{[a,b]}f(x)} = \int_{[a,b]}\overline{f(x)}$
+
+    证明:
+
+    \[
+    \overline{\int_{[a,b]}f(x) dx} = \int_{[a,b]}g(x) dx + i\int_{[a,b]}-h(x) dx = \int_{[a,b]} g(x) + i(-h(x))dx = \int_{[a,b]}\overline{f(x)}
+    \]
+\end{enumerate}
+
+\subsection{$\Z$ 周期函数内积定义}
+
+对于 $f,g \in \CRZ$ 定义内积 
+
+\[
+\langle f, g\rangle = \int_{[0,1]}f(x)\overline{g(x)} dx
+\]
+
+其中 $\overline{f(x)}$ 定义为 
+
+\[
+\overline{f(x)} = \mathrm{Re}(f(x)) - i\mathrm{Im}(f(x))
+\]
+
+
+\subsection{$\Z$ 周期函数内积性质}
+
+\begin{enumerate}
+    \item $\langle g, f\rangle = \overline{\langle f, g\rangle} $
+
+\[
+\overline{\langle g, f\rangle} = \overline{\int_{[0,1]}g(x)\overline{f(x)} dx} = \int_{[0,1]}f(x)\overline{g(x)} \ 
+\]
+
+    \item $\langle f, f\rangle \ge 0$ 并且 $\langle f, f\rangle = 0$ 当且仅当 $f = 0$
+
+\[
+\langle f, f\rangle = \int_{[0,1]} \lvert f(x)\rvert^2 dx
+\]
+
+因为 $\lvert f(x)\rvert^2$  非负而且连续，若过存在 $x_0 \in [0,1]$ 且 $ \lvert f(x)\rvert^2 = \epsilon > 0$，那么 $x_0$ 附近一定有一个区间 $I$ 满足 
+$\forall x \in I, \lvert f(x)\rvert^2 \ge \epsilon / 2$，因为下黎曼积分的定义，必然有 $\langle f, f\rangle \ge \epsilon \lvert I \rvert / 2$，和条件矛盾。
+
+
+    \item $\langle f+g, h\rangle = \langle f, h\rangle +  \langle g, h\rangle$
+
+    \[
+    \int_{[0,1]}(f(x) + g(x)) \overline{h(x)} dx = \int_{[0,1]}f(x)\overline{h(x)} +  \int_{[0,1]}g(x)\overline{h(x)}dx = \langle f, h\rangle +  \langle g, h\rangle
+    \]
+
+    \item $\langle f, g+h\rangle = \langle f, g\rangle +  \langle f, h\rangle$
+
+
+    \[
+    \int_{[0,1]}f(x) (\overline{g(x)} + \overline{h(x)}) dx = \int_{[0,1]}f(x)\overline{g(x)} +  \int_{[0,1]}f(x)\overline{h(x)}dx = \langle f, g\rangle +  \langle f, h\rangle
+    \]
+\end{enumerate}
+
+\subsection{$\Z$ 周期函数的二范数}
+
+$\| f \|_2 = \sqrt{\langle f, f\rangle} $
+
+\subsection{$\Z$ 周期函数的二范数的性质}
+
+\begin{enumerate}
+    \item $0 \le \| f \|_2 \le \| f \|_\infty$
+
+    证明:
+
+    令 $M = \| f \|_\infty = \max \{ \lvert f(x) \rvert \wvert x \in [0,1] \}$
+
+    \[
+\| f \|_2 = \sqrt{\int_{[0,1]}\lvert f(x)\rvert^2 dx} \le \sqrt{\int_{[0,1]}M^2 dx} \le M
+    \]
+
+    \item $\| f \|_2 = 0 $ 当且仅当 $f = 0$
+
+    利用 $\langle f, f\rangle $ 的性质
+
+    \item 柯西不等式 $\lvert \langle f, g\rangle \rvert \le \| f \|_2 \| g \|_2$
+\end{enumerate}

@@ -164,3 +164,23 @@ e - \sum_{k=0}^{p}\frac{1}{k!} \le \epsilon
 \subsubsection{中值定理}
 
 \subsubsection{洛必达法则}
+
+\subsection{泰勒级数}
+
+\begin{align*}
+    & \lvert f(x) - L_0 - L_1(x-x_0) - \frac{L_2(x-x_0)^2}{2}- \frac{L_3(x-x_0)^3}{6} \rvert = \\
+    & = \lvert\int_{x_0}^{x}f_1(t) - L_1 - L_2(t-x_0) - \frac{L_3(t-x_0)^2}{2} \rvert\\ 
+    & = \lvert \int_{x_0}^{x} \int_{x_0}^{t} f_2(s) - L_2 - L_3(s-x_0) \rvert \\ 
+    & \le \int_{x_0}^{x} \int_{x_0}^{x} \lvert f_2(s) - L_2 - L_3(s-x_0) \rvert \\
+    & \le \int_{x_0}^{x} \int_{x_0}^{t} \epsilon \lvert s-x_0 \rvert \\
+    & \le \int_{x_0}^{x} \epsilon \frac{(t-x_0)^2}{2} \\
+    & \le \epsilon \frac{(x-x_0)^3}{6} \\
+\end{align*}
+
+\begin{align*}
+    & \lvert f(x) - L_0 - L_1(x-x_0) - \frac{L_2(x-x_0)^2}{2}- \frac{L_3(x-x_0)^3}{6} \rvert = \\
+    & = \lvert\int_{x_0}^{x}f_1(t) - L_1 - L_2(t-x_0) - \frac{L_3(t-x_0)^2}{2} \rvert\\ 
+    & = \lvert \int_{x_0}^{x} \int_{x_0}^{t} f_2(s) - L_2 - L_3(s-x_0) \rvert \\ 
+    & = \lvert \int_{x_0}^{x} \int_{x_0}^{t} \int_{x_0}^{s} f_3(u) - L_3 \rvert \\ 
+    & = \lvert \int_{x_0}^{x} \int_{x_0}^{t} \int_{x_0}^{s} \int_{x_0}^{u} f_4(v) \rvert \\ 
+\end{align*}
