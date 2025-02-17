@@ -1,0 +1,107 @@
+\chapter{勒贝格积分}
+
+\section{简单可测函数}
+
+\subsection{定义}
+
+若$\Omega \subseteq \R^{n},\, f: \Omega \to \R$ 可测，则 $f$ 是简单可测函数当且仅当 $f(\Omega) \subseteq \R$ 是有限集。 
+
+\subsection{保持简单可测函数的运算}
+
+若 $f,g$ 都是简单可测函数那么
+$f + g,\, cf$ 都是简单可测函数。用上一章的定理可以证明。
+
+
+\subsection{表示成示性函数}
+
+简单可测函数可以表示成示性函数的和，若 $f: \Omega \to \R$ 是简单可测函数，那么存在一组有限的不相交的示性函数 $\chi_{E_i},\, 1 \le i \le n$，和常数 $c_i$ 满足
+
+\[
+f(x) = \sum_{i=1}^{n}c_i \chi_{E_i}
+\]
+
+这个证明也很容易，既然 $f$ 简单可测，那么令 $f(\Omega) = \{ y_1, y_2, .. y_n\}$，然后令 $E_i = \{ x \in \Omega \wvert f(x) = y_i\}$。容易验证得到
+
+\[
+f(\Omega) = \bigcup_{i}E_i,\, \forall i \ne j,\, E_i \cap E_j = \emptyset
+\]
+
+并且对 $f(x)$ 的取值分类讨论后有 
+
+\[
+f(x) = \sum_{i=1}^{n}y_i \chi_{E_i}
+\]
+
+
+\subsection{简单可测函数逼近非负可测函数}
+
+该命题如下，假设 $f: \Omega \to \R$ 非负，那么存在函数列 $f_n: \Omega \to \R$ 满足 $f_n$ 是简单可测函数，$f_n$ 非负，并且 $f_n$ 单调增，即
+
+\[
+\forall x \in \Omega,\, f_1(x) \le f_2(x) .. \le f_n(x) 
+\]
+
+并且 $f_n$ 逐点收敛到 $f$
+
+证明如下，我们可以按照如下方式构造 $f_n$，我们把 $[0,n)$ 分割成 $n2^n$ 个区间 
+
+\[
+[0,n) = \bigcup_{i=0}^{n-1} \bigcup_{j=0}^{2^n-1} [i+\frac{j}{2^n}, i+\frac{j+1}{2^n}) = \bigcup_{i=0}^{n-1}\bigcup_{j=0}^{2^n-1}Y_{i,j}
+\]
+
+容易验证 $Y_{i,j}$ 不相交，令 $c_{i,j} = \inf \{ Y_{i,j}  \}$，令
+$E_{i,j} = f^{-1}(Y_{i,j})$，容易得到 $E_{i,j}$  也不相交。
+
+\[
+f_n(x) = \begin{cases}
+    \sum_{i,j}c_{i,j}\chi_{E_{i,j}} ,\, x \in \bigcup_{i,j}E_{i,j} \\
+    n ,\, x \notin \bigcup_{i,j}E_{i,j}
+\end{cases}
+\]
+
+显然 $f_n$ 的像集是一个有限集，而且 $f_n$ 像集的任意一个子集的原像都是可测集，所以 $f_n$ 是简单可测函数。根据$f_n$定义容易得到 $f_n(x) \ge 0$。
+
+我们继续证明 $f_n$ 单调增，对此我们要分析 $f_n$ 和 $f_{n+1}$ 以及 $f(x)$ 所在范围，首先当 $0 \le f(x) < n$ 时，我们有
+
+\[
+i + \frac{j}{2^n} \le f(x) \le i + \frac{j+1}{2^n}
+\]
+
+计算得到 $i = \lfloor f(x)\rfloor$，$j = \lfloor 2^n(f(x) - i) \rfloor $，同理把 $f_{n+1}$ 的定义代入得到
+
+\begin{align*}
+    f_n(x) & = \lfloor f(x)\rfloor + \frac{\lfloor 2^n(f(x) - \lfloor f(x) \rfloor) \rfloor}{2^n} \\
+    f_{n+1}(x) &= \lfloor f(x)\rfloor + \frac{\lfloor 2^{n+1}(f(x) - \lfloor f(x)\rfloor) \rfloor}{2^{n+1}} \\
+    \text{let}\: \alpha & = 2^{n+1}(f(x) - \lfloor f(x) \rfloor) \rfloor \\
+    f_{n+1}(x) - f(x) &= \frac{1}{2^{n+1}}( \lfloor \alpha \rfloor -   2\lfloor \frac{\alpha}{2} \rfloor)
+\end{align*}
+
+
+注意到有 $\lfloor \frac{\alpha}{2} + \frac{\alpha}{2}  \rfloor -   \lfloor \frac{\alpha}{2} \rfloor - \lfloor \frac{\alpha}{2} \rfloor \ge 0$，所以当 $f(x) < n$ 时有 $f_n(x) \le f_{n+1}(x)$
+而当 $n \le f(x) $ 时 $f_n(x) = n$，$f_{n+1}(x) \ge \lfloor f(x)\rfloor \ge n$，所以 $f_{n+1} \ge f_n$。
+
+继续证明 $f_n$ 逐点收敛到 $f(x)$。我们任取 $x \in \Omega$ 得到 $f(x) = y$，假设 $\lfloor y \rfloor = m$，我们得到 $\forall n \ge m + 1$ 有
+
+\[
+f_n(x) = m + \frac{\lfloor 2^n(f(x) - m \rfloor)}{2^n} 
+\]
+
+注意到 $0 \le f(x) -m < 1$，令 $\alpha = f(x) -m$ 得到
+
+\[
+f_n(x) -f(x) =\frac{\lfloor 2^n \alpha \rfloor}{2^n} - \alpha  = \frac{1}{2^n} (\lfloor2^n \alpha \rfloor-2^n\alpha)
+\]
+
+所以 $n \ge m + 1$ 时有
+
+\[
+- \frac{1}{2^n}\le f_n(x) -f(x) \le 0
+\]
+
+根据两边夹法则得到 
+
+\[
+\lim_{n \to \infty}f_n(x) = f(x)
+\]
+
+

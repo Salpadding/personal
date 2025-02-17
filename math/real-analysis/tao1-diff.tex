@@ -229,17 +229,214 @@ $ \lvert f(x) - f(x_0) - L(x-x_0)\rvert \le L/2 \lvert x -x_0 \rvert$
 
 \subsection{L'h\^{o}pital II}
 
-若 $f,\,g : (a,b] \to \R$ 可微
+若 $f,\,g : [a,b] \to \R$ 在 $(a,b]$  可微在 $[a,b]$ 连续 并且 $f(a) = g(a) = 0,\, \forall x \in (a,b),\, g'(x) \ne 0$
+若有
 
+\[
+\lim_{x \to a,\, x>a}\frac{f'(x)}{g'(x)} =L ,\, L \in \R^*
+\]
+
+那么
+
+\[
+\lim_{x \to a,\, x>a}\frac{f(x)}{g(x)} =L
+\]
+
+证明如下
+
+我们要先证明 $\forall x \in (a,b),\, g(x) \ne 0$，假设 $g(c) = 0$，根据罗尔定理得到 $g'(\alpha) = 0$ 和命题中条件矛盾。有了 $g(x) \ne 0$ 后，
+我们可以使用柯西中值定理，我们先证明 $- \infty < L < \infty$ 的情况，套用$f'(x)/g'(x)$ 的 $\delta$ 和 $\epsilon$ 得到
+
+\[
+\lvert \frac{f(x)}{g(x)} - L \rvert = \lvert \frac{f'(\alpha_x)}{g'(\alpha_x)} -L \rvert \le \epsilon
+\]
+
+若 $L = \infty$，套用 $\forall x \in (a,\delta),\, f'(x)/g'(x) \ge M$ 得到
+
+\[
+\frac{f(x)}{g(x)} = \frac{f'(\alpha_x)}{g'(\alpha_x)} \ge M
+\]
+
+若 $L = -\infty$，同理。
 
 \subsection{L'h\^{o}pital III}
 
-根据已知条件有 $\forall x \in (a, a+\delta)$，令 $c = a + \delta$
+已知 $a < b,\, f : (a,b) \to \R,\, g : (a,b) \to \R $ 都可微，并且有 
+
+\[
+\lim_{x \to a,\, x > a}  f(x) = \lim_{x \to a,\, x > a}  g(x) = \pm \infty
+\]
+
+
+\[
+\lim_{x \to a,\, x >a} \frac{f'(x)}{g'(x)} = L ,\, L \in \R^*
+\]
+
+那么有
+
+\[
+\lim_{x \to a,\, x >a} \frac{f(x)}{g(x)} = L
+\]
+
+证明: 我们先证明 $-\infty < L < \infty$ 的情况
+
+根据已知条件存在 $\delta$ 满足 $\forall x \in (a, a+\delta)$
+
+\[
+    \lvert \frac{f'(x)}{g'(x)} - L \rvert \le \epsilon 
+\]
+
+令 $c = a + \delta$，取任意 $a < x < a + \delta$，根据柯西中值定理得到，其中 $x < \alpha_x < c$
+
+\[
+    \frac{f(x) - f(c)}{g(x) - g(c)} = \frac{f'(\alpha_x)}{g'(\alpha_x)}
+\]
+
+注意这里我们可以调整 $\delta$ 满足 $\lvert g(x) - g(c)\rvert \ge \lvert g(x)\rvert - \lvert g(c)\rvert >0$
+
+因为 $g(a^+) = \pm \infty$，所以我们可以继续调整 $\delta$ 满足 $\lvert g(x) \rvert > 0$ 以及 $1- g(c)/g(x) > 0$ 所以得到
+
 
 \begin{align*}
-    & \lvert \frac{f'(x)}{g'(x)} - L \rvert \le \epsilon \\
-    & \frac{f(x) - f(c)}{g(x) - g(c)} = \frac{f'(\alpha_x)}{g'(\alpha_x)}= \frac{f(x)/g(x)- f(c)/g(x)}{1- g(c)/g(x)} \\
+    & \frac{f(x) - f(c)}{g(x) - g(c)} = \frac{f(x)/g(x)- f(c)/g(x)}{1- g(c)/g(x)} = \frac{f'(\alpha_x)}{g'(\alpha_x)} \\
     & \frac{f'(\alpha_x)}{g'(\alpha_x)} - \frac{f(x)}{g(x)} = \frac{f'(\alpha_x)g(c)}{g'(\alpha_x) g(x)} -f(c)/g(x) \\
-    & \lvert \frac{f'(\alpha_x)}{g'(\alpha_x)} - \frac{f(x)}{g(x)}  \rvert \le \epsilon \\
-    & \lvert \frac{f(x)}{g(x)}  - L \rvert \le 2\epsilon \\
 \end{align*}
+
+令
+
+\[
+r(x) = \frac{f'(\alpha_x)g(c)}{g'(\alpha_x) g(x)} -f(c)/g(x)
+\]
+
+显然有
+
+\[
+\lim_{x \to a,\, x>a}r(x) = 0
+\]
+
+所以我们可以再继续调整 $\delta$ 满足
+
+\begin{align*}
+    & \lvert \frac{f'(\alpha_x)}{g'(\alpha_x)} - \frac{f(x)}{g(x)}  \rvert \le \epsilon \\
+    & \lvert \frac{f(x)}{g(x)}  - L \rvert = \lvert \frac{f(x)}{g(x)}  - \frac{f'(\alpha_x)}{g'(\alpha_x)} + \frac{f'(\alpha_x)}{g'(\alpha_x)} - L \rvert \le 2\epsilon \\
+\end{align*}
+
+因为 $\epsilon$ 是任意的，所以证明完毕。
+
+如果 $L = \infty$，同理我们可以取 $\delta$ 满足 
+
+\begin{align*}
+    & \lvert g(x) - g(c)\rvert \ge \lvert g(x)\rvert - \lvert g(c)\rvert >0 \\
+    & \lvert g(x)\rvert > 0 \\
+    & 1- \frac{g(c)}{g(x)} > 0 \\
+    & \frac{f'(\alpha_x)}{g'(\alpha_x)} \ge M 
+\end{align*}
+
+利用柯西中值定理得到
+
+\[
+     \frac{f'(\alpha_x)}{g'(\alpha_x)}(1-\frac{g(c)}{g(x)}) + \frac{f(c)}{g(x)}  =  \frac{f(x)}{g(x)}
+\]
+
+利用极限运算法则我们可以调整 $\delta$ 满足 $f(x)/g(x) \ge M/2 - 1$，因为 $M$ 可以任意大，所以有
+
+\[
+\lim_{x \to a,\, x >a} \frac{f(x)}{g(x)} = \infty
+\]
+
+当 $L = -\infty$ 同理
+
+\subsection{L'h\^{o}pital IV}
+
+$\exists a \in \R,\,  a > 0,\, f,g: (a, +\infty) \to \R$ 可微并且 $\forall x > a,\, g'(x) \ne 0$。若
+
+\begin{align*}
+& \lim_{x \to \infty}f(x) = 0 \\
+& \lim_{x \to \infty}g(x) = 0 \\
+\end{align*}
+
+或者
+
+
+\begin{align*}
+& \lim_{x \to \infty}f(x) = \pm \infty \\
+& \lim_{x \to \infty}g(x) = \pm \infty \\
+\end{align*}
+
+并且
+
+\[
+ \lim_{x \to \infty}\frac{f'(x)}{g'(x)} =L,\, L \in \R^*
+\]
+
+那么有
+
+\[
+\lim_{x \to \infty} \frac{f(x)}{g(x)} = L
+\]
+
+证明如下
+
+根据已知条件构造函数 $h_1: (0,1/a) \to \R,\, h_1(x) = f(1/x)$ 和 $h_2: (0,1/a) \to \R,\, h_2(x) = g(1/x)$ 
+
+我们先证明 $\lim_{x \to \infty}f(x) = \lim_{x \to \infty}g(x) = 0$ 的情况， 于是我们得到
+
+\begin{align*}
+& \lim_{x \to 0, x >0} h_1(x) = 0  \\
+& \lim_{x \to 0, x >0} h_2(x) = 0  
+\end{align*}
+
+如果我们定义 $h_1(0) = 0$ 和 $h_2(0) = 0$，那么 $h_1$ 和 $h_2$ 就在 $x=0$ 处连续。于是对 $h_1$ 和 $h_2$ 使用 L'h\^{o}pital rule 得到
+
+\[
+\lim_{x \to 0,\, x > 0}\frac{h_1(x)}{h_2(x)} = \lim_{x \to 0,\, x >0}\frac{f'(1/x)}{g'(1/x)} = \lim_{x \to \infty}\frac{f(x)}{g(x)} = L
+\]
+
+同理如果
+
+\begin{align*}
+& \lim_{x \to 0, x >0} h_1(x) = \pm \infty  \\
+& \lim_{x \to 0, x >0} h_2(x) = \pm \infty
+\end{align*}
+
+也有
+
+\[
+\lim_{x \to 0,\, x > 0}\frac{h_1(x)}{h_2(x)} = \lim_{x \to 0,\, x >0}\frac{f'(1/x)}{g'(1/x)}= \lim_{x \to \infty}\frac{f(x)}{g(x)} = L
+\]
+
+\section{习题}
+
+\subsection{$f: \R \to \R,\, f(x) = x^n,\, n \in \N$ 的导函数}
+
+$f'(x) = nx^{n-1}$ 用数学归纳法，以及乘法法则很容易证明
+
+\subsection{$f: (-\infty,0)\cup (0, \infty) \to \R,\, f(x) = x^{n},\, n \in \Z$ 的导函数}
+
+当 $n \ge 0$ 时候可以用前面的结论，若 $n < 0$ 有 $f(x) = 1/x^{-n}$，利用除法法则有 $f'(x) = nx^{n-1}$
+
+\subsection{$f: (0, \infty) \to (0, \infty),\, f(x) = x^{1/n},\, n \in \N^+$ 的导函数}
+
+首先 $g: (0, \infty) \to (0, \infty),\, g(x) = x^n$ 是严格单调而且可微的，所以 $f = g^{-1}$ 一定连续，因此 
+$f = g^{-1}$ 可微有 
+
+\[
+f'(y = x^n) = \frac{1}{nx^{n-1}} = (ny^{\frac{n-1}{n}})^{-1} = \frac{1}{n}y^{\frac{1}{n} - 1}
+\]
+
+\subsection{$f: (0, \infty) \to (0, \infty),\, f(x) = x^{q},\, q \in \Q$ 的导函数}
+
+令 $q = n/m ,\, n,m \in \Z,\, m \ne 0$ 于是得到
+
+$x^q = x^{\frac{n}{m}} = (x^n)^{\frac{1}{m}}$，根据复合函数的微分法则得到
+
+\begin{align*}
+    f'(x) = \frac{1}{m}(x^n)^{\frac{1}{m} - 1}n x^{n-1} = \frac{n}{m}x^{\frac{n}{m}-1} = qx^{q-1}
+\end{align*}
+
+
+\subsection{$f: (0, \infty) \to (0, \infty),\, f(x) = x^{\alpha},\, \alpha \in \R$ 的导函数}
+
+我们构造 $f_n = x^{q_n}$ 并且在任意闭区间上一致收敛到 $x^\alpha$，根据一致收敛的性质，注意到 $f'_n = q_nx^{q_n -1}$ 也一致收敛到 $\alpha x^{\alpha - 1}$，
+并且 $f_n'(1)$ 极限存在，
+所以有 $f'(x) = \alpha x^{\alpha - 1}$，。

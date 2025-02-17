@@ -1,0 +1,376 @@
+\chapter{$\R$ 上的连续函数}
+
+\section{点集拓扑}
+
+\subsection{区间}
+
+\begin{enumerate}
+    \item 闭区间
+
+    闭区间定义为 $a,b \in \R^*,\, [a,b] = \{x \in \R^* \wvert a \le x \le b \}$
+
+    \item 半开区间
+
+
+    半开区间定义为 $a,b \in \R^*,\, (a,b] = \{x \in \R^* \wvert a < x \le b \},\, [a,b) = \{x \in \R^* \wvert a \le x < b \}$
+
+    \item 开区间
+
+
+    开区间定义为 $a,b \in \R^*,\, (a,b) = \{x \in \R^* \wvert a < x < b \}$
+\end{enumerate}
+
+\subsection{附着点}
+
+$X \subseteq \R$，$x \in \R$ 是 $X$ 的附着点当且仅当 $\forall \epsilon > 0, \exists y \in X,\, \lvert y -x \rvert \le \epsilon$
+
+\subsection{闭包}
+
+$X \subseteq \R$ 的闭包 $\overline{X}$ 定义为所有 $X$ 的附着点的集合。
+
+\subsection{闭包运算性质}
+
+\begin{enumerate}
+    \item $x \in \overline{X} \: \text{iff} \: \exists y_n \in X,\, \lim_{n \to \infty} y_n = x$
+
+    选择公理
+
+    \item $X \subseteq \overline{X}$
+
+    \item $\overline{X \cup Y} = \overline{X} \cup \overline{Y}$
+
+    利用1 很容易证明
+
+    \item $\overline{X \cap Y} \subseteq \overline{X} \cap \overline{Y}$
+
+
+    利用1 很容易证明
+\end{enumerate}
+
+\subsection{区间的闭包}
+
+\begin{enumerate}
+    \item $(a,b),\, (a,b],\, [a,b),\, [a,b]$ 的闭包是 $[a,b]$
+
+
+    我们先证明 $[a,b]$ 的闭包就是 $[a,b]$，令 $X = [a,b]$，自然有 $[a,b] \subseteq \overline{X}$，设 $x_n \in [a,b]$ 根据极限的性质有
+
+    \[
+        a \le \lim_{n \to \infty} x_n \le b
+    \]
+    所以有 $\overline{X} \subseteq [a,b]$
+
+    $X= (a,b)$ 也是同理，利用 $(a,b) \subseteq [a,b]$ 得到 $\overline{X} \subseteq [a,b]$，再根据
+
+    \[
+        \lim_{n \to \infty} a+ \frac{1}{n} = a
+    \]
+
+    以及
+
+    \[
+        \lim_{n \to \infty} b- \frac{1}{n} = b
+    \]
+
+    得到 $a,b \in \overline{X}$ 而且 $(a,b) \subseteq \overline{X}$，所以 $[a,b] \subseteq \overline{X}$
+
+    \item $(a, \infty)$ 或 $[a,\infty)$ 的闭包是 $[a, \infty)$
+
+    证明方法类似
+
+    \item $(-\infty, a)$ 或 $[-\infty, a]$ 的闭包是 $[-\infty, a]$
+
+    \item $(-\infty, \infty)$ 的闭包是 $(-\infty, \infty)$
+
+\end{enumerate}
+
+\subsection{闭集}
+
+集合 $X \subseteq \R$ 是闭集 当且仅当 $\overline{X} = X$
+
+\subsection{极限点}
+
+定义 $x \in \R$ 是 $X \subseteq \R$ 的极限点当且仅当 $x$ 是 $X \setminus \{ x\} $ 的附着点。也就是存在 $x_n \in X,\, x_n \ne x$ 满足
+
+\[
+\lim_{n \to \infty} x_n =x
+\]
+
+\subsection{Heine-Borel 定理}
+
+若 $X \subseteq \R$ 以下两个命题等价:
+
+\begin{enumerate}
+    \item $X$ 是有界闭集
+    \item $a_n \in X$，则必然有 $a_n$ 的某个子列收敛到某个 $L \in X$ 
+\end{enumerate}
+
+利用实数数列的性质很容易证明。
+
+\section{函数的极限}
+
+\subsection{函数极限定义}
+
+函数 $f: E \to \R$，设 $x_0$ 是 $E$ 的附着点，我们称 $f$ 在 $x=x_0$ 处取得极限当且仅当 对任意 $\epsilon > 0$ 存在 $\delta > 0$ 
+对任意 $x \in E \cap (x_0 - \delta, x_0 + \delta)$ 有 $\lvert f(x) - L \rvert \le \epsilon $。
+
+\subsection{函数极限等价定义}
+
+以下两个命题等价。
+
+\begin{enumerate}
+    \item $f: E \to \R$ 在 $x = x_0$ 处取得极限 $L$
+    \item 对任意 $\lim_{n \to \infty} a_n = x_0,\, a_n \in E$，有 $\lim_{n \to \infty} f(a_n) = L$
+\end{enumerate}
+
+先证明 $1 \to 2$，只要找到 $N$ 满足 $\forall n \ge N,\, \lvert a_n - L\rvert \le \epsilon$ 即可。再证明 $2 \to 1$，用反证法，假设存在 $\epsilon$，
+存在无限多的 $x$ 满足 $\lvert f(x) - L\rvert > \epsilon $，根据选择公里可以构造出序列 $c_n$ 满足 $\lim_{n \to \infty} c_n = x_0$ 但 $c_n$ 不收敛到 $L$。
+
+\subsection{函数在一个点只能有一个极限}
+
+证明很容易，假设存在两个极限，然后用三角不等式证明这两个极限的距离小于任意的 $\epsilon$。
+
+\subsection{函数极限运算法则}
+
+假设 $f,g : E \to \R$ 在 $x = x_0$ 处分别取得极限 $L_1, L_2$
+
+\begin{enumerate}
+    \item $f+g$ 在 $x = x_0$ 处取得极限 $L_1 + L_2$
+
+    用数列的极限法则易证
+
+    \item $c \in \R, cf$ 在 $x = x_0$ 处取得极限 $cL_1$
+
+    用数列的极限法则易证
+
+    \item $fg$ 在 $x = x_0$ 处取得极限 $L_1 L_2$
+
+    用数列的极限法则易证
+
+    \item $\max(f,g)$ 在 $x = x_0$ 处取得极限 $\max(L_1, L_2)$
+
+    用数列的极限法则易证
+
+    \item $\min(f,g)$ 在 $x = x_0$ 处取得极限 $\min(L_1, L_2)$
+    
+    $\min(f,g) = -\max(-f,-g)$
+
+    \item 若 $L_2 \ne 0$，$f/g$ 在 $x = x_0$ 处取得极限 $L_1/L_2$
+
+    用数列的极限法则易证
+
+\end{enumerate}
+
+\subsection{复合函数的极限}
+
+设 $f: X \to Y,\, g: Y \to \R\quad X,\, Y \subseteq \R$ 若有
+
+\begin{align*}
+& \lim_{x \to x_0} f(x) = y_0 \\
+& \lim_{y \to y_0} g(y) = L \\
+\end{align*}
+
+那么有
+
+\[
+    \lim_{x \to x_0} g \circ f(x) = L 
+\]
+
+这个可以用数列来证明，下面假设有任意序列 $x_n \in X$ 满足
+
+\[
+\lim_{n \to \infty} x_n = x_0
+\]
+
+根据 $f$ 在 $x_0$ 处取得极限得到
+
+\[
+\lim_{n \to \infty} f(x_n) = y_0
+\]
+
+我们令 $y_n = f(x_n)$，注意到有 $y_n \in Y$ 利用 $g$ 在 $y_0$ 处的极限定义得到
+
+
+\[
+\lim_{n \to \infty} g(y_n) = \lim_{n \to \infty} g \circ f(x_n) = L
+\]
+
+\section{连续函数}
+
+\subsection{连续的定义}
+
+$f: X \to \R,\, X \subseteq \R$，若 $x_0 \in X$ 我们称 $f$ 在 $x = x_0$ 处连续如果满足
+
+\[
+\lim_{x \to x_0} f(x) = f(x_0)
+\]
+
+\subsection{连续的等价命题}
+
+\begin{enumerate}
+    \item 对任意点列 $x_n \in X, \lim_{n \to \infty} x_n = x_0$ 有 $\lim_{n \to \infty}f(x_n) = f(x_0)$
+    \item 对任意 $\epsilon >0$ 存在 $\delta > 0$  满足对任意 $x \in X,\, \lvert x-x_0 \rvert \le \epsilon$
+    \item 对任意 $\epsilon >0$ 存在 $\delta > 0$  满足对任意 $x \in X,\, \lvert x-x_0 \rvert < \epsilon$
+\end{enumerate}
+
+
+\subsection{保持连续的运算}
+
+\begin{enumerate}
+    \item $f+g$
+    \item $cf$
+    \item $\max(f,g)$
+    \item $\min(f,g)$
+    \item $fg$
+    \item $f/g$ 如果 $g(x_0) \ne 0$
+\end{enumerate}
+
+以上这些可以套用数列极限证明
+
+\subsection{指数函数连续}
+
+\begin{enumerate}
+    \item $a > 0,\, f: \R \to \R,\, f(x) = a^x$ 是连续函数
+
+    很容易证明: $f(x+\delta) - f(x) = a^x(a^{\delta} - 1)$ 因为 $a^x$ 有界而且 $\lvert a^{\delta} -1 \rvert \le \epsilon$
+
+
+    \item $p \in \R,\, f: (0,\infty) \to \R,\, f(x) = x^p$ 是连续函数
+
+    首先我们证明 $p \in \N$ 的情况，这个用数学归纳法就可以证明。然后证明 $p \in \Z$ 的情况，这个用到复合函数的连续性。然后继续证明 $p \in \Q$ 的情况，这个会用到单调反函数的连续性以及复合函数的连续性。
+    然后我们构造函数列 $f_n(x) = x^{p_n}$ 一致收敛到 $f(x) = x^p$，然后证明 $f(x)$ 的连续性。
+
+\end{enumerate}
+
+\subsection{绝对值函数是连续的}
+
+$\lvert x\rvert = \max(x, -x)$
+
+\subsection{连续函数的复合保持连续}
+
+用复合函数极限的性质，很容易证明
+
+
+\section{闭区间上连续函数的良好性质}
+
+\subsection{有界}
+
+$f: [a,b] \to \R$ 连续，那么 $f$ 在 $[a,b]$ 上有界。
+
+假设 $f$ 在 $[a,b]$ 上无界，那么可以取无限个 $x_n \in [a,b]$ 满足 $\lvert f(x_n) \rvert \ge n$，根据有界序列必有收敛子列，我们可以取 $x_n$ 的一个收敛子列满足
+
+\[
+\lim_{n \to \infty}x_{h(n)} = x_0,\, x_0 \in [a,b]
+\]
+
+根据连续性得到 
+
+
+\[
+\lim_{n \to \infty}f(x_{h(n)}) = f(x_0),\, \lvert f(x_0) \rvert < \infty
+\]
+
+这显然和 $\lvert f(x_n) \rvert \ge n$ 矛盾了。
+
+
+\subsection{有最大值和最小值}
+
+取 $\{f(x) \wvert x \in [a,b]\}$ 的上确界 $L$，那么存在 $x_0 \in [a,b]$ 满足 $f(x_0) = L$。
+
+证明：根据上确界的定义，那么一定有 $x_n \in [a,b]$ 满足 
+
+\[
+    \lim_{n \to \infty}f(x_n) = L,\, f(x_n) \le L
+\]
+
+因为$x_n$ 有界，那么一定有收敛子列 $x_{h(n)}$ 满足
+
+\[
+    \lim_{n \to \infty}x_{h(n)} = x_0,\, x_0 \in [a,b]
+\]
+
+根据 $f$ 的连续性得到
+
+\[
+f(x_0) = f(\lim_{n \to \infty}x_{h(n)}) = \lim_{n \to \infty}f(x_{h(n)}) = L
+\]
+
+\subsection{介值定理}
+
+若 $f: [a,b] \to \R$ 且 $f(a) \le y \le f(b)$，那么存在 $x \in [a,b]$ 满足 $f(x) = y$
+
+证明：若 $f(a) = f(b)$ 或者 $y = f(a)$ 时显然有。下面说明 $f(a) < y < f(b)$ 的情况。我们采用二分法，取 $l_1 = a,\, r_1 = b,\, m_1 = (a+b)/2$。然后我们按照 $l_n, \, r_n,\, m_n$ 不断
+生成 $l_{n+1},\, r_{n+1},\, m_{n+1}$ 规则是这样的，如果 $f(m_n) \le y$，那么取 $l_{n+1} = m_n,\, r_{n+1} = r_n,\, m_{n+1} = (l_{n+1} + r_{n+1}) /2$，否则取
+$l_{n+1} = l_n,\, r_{n+1} = m_n,\, m_{n+1} = (l_{n+1} + r_{n+1}) /2$。通过数学归纳法可以得到 $f(l_n) \le y$ 并且 $f(r_n) \ge y$。
+我们还要证明 $l_n$ 和 $r_n$ 是等价的柯西列。注意到有 $\lvert r_n - l_n \rvert \le (b-a)/n$，并且固定 $N$ 后用数学归纳法容易证明有 $\forall k  \ge N,\, l_N \le l_k \le r_N$，于是有 $\forall k, p \ge N,\, \lvert l_k - l_p \rvert \le r_N - l_N \le 1/N $，所以有
+
+\[
+    y \le \lim_{n \to \infty} f(l_n) = \lim_{n \to \infty} f(r_n) \le y
+\]
+
+假设
+
+\[
+\lim_{n \to \infty} l_n = x_0,\, x_0 \in [a,b]
+\]
+
+根据连续函数的性质那么有
+
+\[
+f(x_0) = \lim_{n \to \infty}f(l_n) = y
+\]
+
+\subsection{像集封闭而且连通}
+
+利用上面两条很容易证明。
+
+
+\subsection{反函数连续}
+
+假设 $f: [a,b] \to \R$ 可逆，那么必然有 $f(a) \ne f(b)$，不妨设 $f(a) < f(b)$ 那么根据介值定理，运用反证法很容易证明 $f$ 严格单调增。
+
+根据上面的条件，若 $f$ 连续，不妨设 $f$ 单调增，对任意 $x_0 \in (a,b)$，我们可以取很小的 $\epsilon$ 满足 $I_{\epsilon}  = [x_0 - \epsilon, x_0 + \epsilon] \subseteq [a,b]$，然后
+可以计算得到 $f(I_{\epsilon}) = [f(x_0 - \epsilon), f(x_0 + \epsilon)]$ 同样也是一个闭区间，注意到 $y_0 = f(x_0) \in f(I_{\epsilon})$ 是一个内点，所以存在 $\delta > 0$ 满足
+$(y_0 - \delta, y_0 + \delta) \subseteq f(I_{\epsilon})$。我们两边同时计算$f^{-1}$的像集得到 $f((y_0 - \delta, y_0 + \delta)) \subseteq I_{\epsilon}$。如果 $x_0 = a$，也是同理
+此时 $I_{\epsilon} = [a, a + \epsilon],\, f(I_{\epsilon}) = [f(a), f(a+\epsilon)]$，此时 $y_0$ 不是内点，但是可以找到 $\delta > 0$ 满足 $(y_0 - \delta, y_0 + \delta) \cap [f(a), f(b)] \subseteq f(I_{\epsilon})$。
+
+对于单调减函数，我们可以利用 $-f^{-1}(x)= (-f)^{-1}(x)$，然后利用 $-f$ 连续并且单调增这一事实。
+
+
+\section{一致连续}
+
+\subsection{定义}
+$f: X \to R$ 一致连续定义为 $\forall \epsilon > 0,\, \exists \delta >0,\, \forall x,y\, \in X,\, \lvert x - y \rvert \le \delta,\, \lvert f(x) -f(y) \rvert \le \epsilon$
+
+\subsection{等价序列映射到等价序列}
+
+一致连续可以理解为把等价序列映射到等价序列，证明如下。首先证明从左到右，假设 $\lim_{n \to \infty} x_n -y_n = 0,\quad x_n,\, y_n \in X$。
+根据一致连续的定义，$\forall \epsilon >0$，只要 $\lvert x_n - y_n \rvert \le \delta$ ，就有 $\lvert f(x_n) - f(y_n)\rvert \le \epsilon $，所以我们只要取 $n$ 充分大就可以。
+
+继续证明从右到左，这里我们用反证法，假设存在 $\lim_{n \to \infty} x_n -y_n = 0,\quad x_n,\, y_n \in X$ 并且存在 $\epsilon > 0$ 使得有无限多的 $\lvert f(x_n) - f(y_n)\rvert > \epsilon$。显然这个和一致连续的定义矛盾了，我们把 $\epsilon$ 代入一致连续
+的定义就能得到矛盾。
+
+
+\subsection{柯西列映射到柯西列}
+
+只要利用 $k,p$ 充分大时有 $d(x_k, x_p) \le \delta$ 从而有 $d(f(x_k),f(x_p)) \le \epsilon$ 即可。
+
+
+\subsection{闭区间上的连续函数一致连续}
+
+我们可以利用反证法，假设存在 $\epsilon > 0$ 对任意 $\delta > 0$ 都有 $x,y \in X,\, d(x,y) \le \delta$ 满足 $d(f(x), f(y)) > \epsilon$。我们取 $\delta_n = 1/n$，于是得到了序列 $x_n ,y_n$。
+注意到 $x_n$ 有收敛子列 $x_{h(n)}$，而 $ y_{h(n)}$ 也有收敛子列 $y_{g(h(n))}$，注意到 $x_{g(h(n))}$ 是 $x_{h(n)}$ 的子列。于是我们得到了
+
+\begin{align*}
+    & \lim_{n \to \infty}x_{g(h(n))} = x_0 \\
+    & \lim_{n \to \infty}y_{g(h(n))} = y_0 \\
+\end{align*}
+
+因为 $d(x_{g(h(n))}, y_{g(h(n))}) \le 1/n$，所以 $x_0 = y_0$ 且 $x_0 \in X$，根据连续函数的定义有
+
+
+\begin{align*}
+     \lim_{n \to \infty}f(x_{g(h(n))}) = \lim_{n \to \infty}f(y_{g(h(n))}) = f(x_0)
+\end{align*}
+
+这显然和 $d(f(x_{g(h(n))}), f(y_{g(h(n))})) > \epsilon$ 矛盾了。

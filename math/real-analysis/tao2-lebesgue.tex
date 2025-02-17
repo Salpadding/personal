@@ -608,53 +608,42 @@ $\f$ 可测定义为，对于任意一个开集 $V \subseteq \R^m$，它的原�
 
 $\f$ 可测，当且仅当对任意 $\R^m$ 上的开盒子 $B$，$f^{-1}(B)$ 可测。
 
-充分性：假设 $V \subseteq \R^m$ 是一个开集，根据原像的同态性质得到：
+充分性：假设 $V \subseteq \R^m$ 是一个开集，因为开集可以表示可数个开盒子的并集，根据原像的同态性质得到：
 
 \begin{align*}
 & \bigcup_{i \in I}B_i = V \\
-& X = \bigcup_{i \in I}f^{-1}(B_i) = f^{-1}(V)
+& \bigcup_{i \in I}f^{-1}(B_i) = f^{-1}(V)
 \end{align*}
 
-所以 $f^{-1}(V)$ 可测。 
+其中 $f^{-1}(B_i)$ 是可测的，而 $I$ 是可数集， 所以 $f^{-1}(V)$ 可测。 
 
 必要性很容易证明，因为 $\R^m$  上的开盒子都是开集，根据可测函数的定义可知， $f^{-1}(B)$ 可测。
 
 
 \subsection{分量}
 
-我们可以利用内积运算把 $\f$ 写成分量的形式，也就是 $f_i(\vecx) = f(\vecx)^T \mathbf{e_j}$，于是得到了 
+我们可以利用内积运算把 $\f$ 写成分量的形式，也就是 $f_i(\vecx) = f(\vecx)^T \mathbf{e}_j$，于是得到了 
 $f(\vecx) = [f_1(\vecx), f_2(\vecx), .., f_m(\vecx)]^T $
 
 我们想证明 $f$ 可测当且仅当每个 $f_i$ 可测。
 
-首先我们证明充分性，假设 $B=(a_1,b_1) \cdot (a_2, b_2),.., \cdot(a_m,b_m)$ 是 $\R^m$ 上的一个开盒子，我们令 $I_j = (a_j, b_j)$。于是我们可以得到对于每个 $1 \le j \le m$，
-$f_j^{-1}(I_j)$ 都是可测的，根据原像的同态性质得到
+首先我们证明充分性，假设 $B=(a_1,b_1) \cdot (a_2, b_2),.., \cdot(a_m,b_m)$ 是 $\R^m$ 上的一个开盒子，
+我们令 $I_j \subseteq \R^m,\, I_j = \{ \vecy \in \R^m \wvert \vecy^T \mathbf{e}_j \in (a_j, b_j)\}$。于是我们可以得到对于每个 $1 \le j \le m$，
+$f^{-1}(I_j) = f_j^{-1}((a_j,b_j))$ 都是可测的，根据原像的同态性质得到
 
 \[
-X = \bigcap_{j \le m}f_j^{-1}(I_j)
+f^{-1}(B) = f^{-1}(\bigcap_{j \le m}I_j) =\bigcap_{j \le m}f_j^{-1}((a_j, b_j))
 \]
 
-则 $X = f^{-1}(B)$ 先证明左边是右边的子集，假设 $\vecx \in X$ 则可以确定 $a_j \le f_j(\vecx) \le b_j$，于是得到 $f(\vecx) \in B$。
-我们继续证明右边是左边的子集，假设 $f(\vecx) \in B$ 则可以确定 $a_j \le f_j(\vecx) \le b_j$，所以有 $\vecx \in f_j^{-1}(I_j) $，从而有
-$\vecx \in X$
+因为可测集的有限交集是可测集，所以 $ f^{-1}(B)$  是可测集。
 
 
-然后我们证明必要性，假设 $f$ 可测，对于 $f_j$ 值域上的开盒子 $I_j = (a_j, b_j)$，我们可以扩充到 $\R^m$ 上，令
+然后我们证明必要性，假设 $f$ 可测，对于 $f_j$ 值域上的开盒子 $ (a_j, b_j)$，令
+$I_j = \{ \vecy \in \R^m \wvert \vecy^T \mathbf{e}_j \in (a_j, b_j)\}$，于是我们得到 $f_j^{-1}((a_j, b_j)) = f^{-1}(I_j)$，
+因为 $I_j$ 是一个开集，所以 $f_j^{-1}((a_j, b_j))$ 可测。
 
-\[
-Y_j = \{ \vecy \in \R^m \wvert\ \vecy = [y_1, y_2, .. y_m] ,\, y_j \in (a_j, b_j)\}
-\]
+这个定理也可以理解为，两个可测函数的笛卡尔积是可测的，可测函数的某个分量也是可测的。
 
-我们希望证明有
-
-\[
-f^{-1}(Y_j) = f_j^{-1}(I_j)
-\]
-
-先证明左边是右边的子集，假设 $\vecx \in f^{-1}(Y_j)$ 则有 $f_j(\vecx) = f(\vecx)^T \mathbf{e_j} \in (a_j, b_j)$，所以得到 $\vecx \in f_j^{-1}(I_j)$
-再证明右边是左边的子集，假设 $\vecx \in f_j^{-1}(I_j)$ 则有 $f_j(\vecx) = f(\vecx)^T \mathbf{e_j} \in (a_j, b_j)$，所以得到 $\vecx \in f^{-1}(Y_j)$
-
-显然根据定义左边是可测的，所以右边也是可测的。
 
 \subsection{连续函数复合可测函数}
 
