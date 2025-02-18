@@ -1,12 +1,12 @@
 \chapter{勒贝格积分}
 
-\section{简单可测函数}
+\section{简单函数}
 
 \subsection{定义}
 
-若$\Omega \subseteq \R^{n},\, f: \Omega \to \R$ 可测，则 $f$ 是简单可测函数当且仅当 $f(\Omega) \subseteq \R$ 是有限集。 
+若$\Omega \subseteq \R^{n},\, f: \Omega \to \R$ 可测，则 $f$ 是简单函数当且仅当 $f(\Omega) \subseteq \R$ 是有限集。 
 
-\subsection{保持简单可测函数的运算}
+\subsection{保持简单函数的运算}
 
 若 $f,g$ 都是简单可测函数那么
 $f + g,\, cf$ 都是简单可测函数。用上一章的定理可以证明。
@@ -14,7 +14,7 @@ $f + g,\, cf$ 都是简单可测函数。用上一章的定理可以证明。
 
 \subsection{表示成示性函数}
 
-简单可测函数可以表示成示性函数的和，若 $f: \Omega \to \R$ 是简单可测函数，那么存在一组有限的不相交的示性函数 $\chi_{E_i},\, 1 \le i \le n$，和常数 $c_i$ 满足
+简单函数可以表示成示性函数的和，若 $f: \Omega \to \R$ 是简单函数，那么存在一组有限的不相交的示性函数 $\chi_{E_i},\, 1 \le i \le n$，和常数 $c_i$ 满足
 
 \[
 f(x) = \sum_{i=1}^{n}c_i \chi_{E_i}
@@ -33,9 +33,9 @@ f(x) = \sum_{i=1}^{n}y_i \chi_{E_i}
 \]
 
 
-\subsection{简单可测函数逼近非负可测函数}
+\subsection{简单函数逼近非负可测函数}
 
-该命题如下，假设 $f: \Omega \to \R$ 非负，那么存在函数列 $f_n: \Omega \to \R$ 满足 $f_n$ 是简单可测函数，$f_n$ 非负，并且 $f_n$ 单调增，即
+该命题如下，假设 $f: \Omega \to \R$ 非负，那么存在函数列 $f_n: \Omega \to \R$ 满足 $f_n$ 是简单函数，$f_n$ 非负，并且 $f_n$ 单调增，即
 
 \[
 \forall x \in \Omega,\, f_1(x) \le f_2(x) .. \le f_n(x) 
@@ -59,12 +59,12 @@ f_n(x) = \begin{cases}
 \end{cases}
 \]
 
-显然 $f_n$ 的像集是一个有限集，而且 $f_n$ 像集的任意一个子集的原像都是可测集，所以 $f_n$ 是简单可测函数。根据$f_n$定义容易得到 $f_n(x) \ge 0$。
+显然 $f_n$ 的像集是一个有限集，而且 $f_n$ 像集的任意一个子集的原像都是可测集，所以 $f_n$ 是简单函数。根据$f_n$定义容易得到 $f_n(x) \ge 0$。
 
 我们继续证明 $f_n$ 单调增，对此我们要分析 $f_n$ 和 $f_{n+1}$ 以及 $f(x)$ 所在范围，首先当 $0 \le f(x) < n$ 时，我们有
 
 \[
-i + \frac{j}{2^n} \le f(x) \le i + \frac{j+1}{2^n}
+i + \frac{j}{2^n} \le f(x) < i + \frac{j+1}{2^n}
 \]
 
 计算得到 $i = \lfloor f(x)\rfloor$，$j = \lfloor 2^n(f(x) - i) \rfloor $，同理把 $f_{n+1}$ 的定义代入得到
@@ -105,3 +105,291 @@ f_n(x) -f(x) =\frac{\lfloor 2^n \alpha \rfloor}{2^n} - \alpha  = \frac{1}{2^n} (
 \]
 
 
+\subsection{非负简单函数的勒贝格积分}
+非负简单函数 $f: \Omega \to \R $ 的勒贝格积分定义为
+
+\[
+\int_{\Omega}f = \sum_{\lambda \in f(\Omega)} \lambda m(\{ x \wvert f(x) = \lambda \})
+\]
+
+\subsection{示性函数勒贝格积分}
+
+下面证明，若简单函数表示成有限个不相交的示性函数的非负线性组合，那么可以按如下方式计算勒贝格积分，并且和表示方法无关。
+
+若
+
+\[
+f = \sum_{i=1}^{n}c_i\chi_{E_i},\, c_i \ge 0
+\]
+
+则
+
+\[
+\int_{\Omega} f = \sum_{i}^{n}c_im(E_i)
+\]
+
+证明如下，我们不妨设 $\forall i,\, c_i > 0$，因为如果 $c_i = 0$ 我们可以去掉该项，根据定义得到
+
+\begin{align*}
+\int_{\Omega} f &= \sum_{\lambda \in \{ c_i \wvert 1 \le i \le n\}}\lambda m(f(x) = \lambda)  \\
+    & = \sum_{\lambda \in \{ c_i \wvert 1 \le i \le n\}}\lambda m(\bigcup_{c_i = \lambda }E_i) \\
+    & = \sum_{\lambda \in \{ c_i \wvert 1 \le i \le n\}}\lambda (\sum_{c_i = \lambda}m(E_i)) \\
+    & = \sum_{\lambda \in \{ c_i \wvert 1 \le i \le n\}}\sum_{c_i = \lambda}\lambda m(E_i) \\
+    & = \sum_{\lambda \in \{ c_i \wvert 1 \le i \le n\}}\sum_{c_i = \lambda}c_i m(E_i)  \\
+    & = \sum_{1 \le i \le n}c_i m(E_i)  \\
+\end{align*}
+
+
+\subsection{简单函数勒贝格积分的性质}
+
+下面假设 $f,\,g: \Omega \to \R$ 都是非负简单函数。
+
+\begin{enumerate}
+    \item $0 \le \int_{\Omega}f \le \infty$ 并且 $\int_{\Omega} f =0$ 当且仅当 $\{ x \wvert f(x) \ne 0 \}$ 是零测集
+
+    下面给出证明，$0 \le \int_{\Omega}f \le \infty$ 根据定义很容易证明。
+
+    先证明右到左，因为 $f(\Omega)$ 是有限集， 所以假设 $f(\Omega) = \{ c_1,c_2,.. c_n\},\, E_i = \{x \in \Omega \wvert f(x) = c_i\}$，不妨设 $c_k = 0$，根据定义有
+
+    \[
+        \int_{\Omega}f = \sum_{1 \le i \le n}c_i m(E_i) = 0 \cdot m(E_k) + \sum_{1 \le i \le n,\, c_i \ne 0}c_i \cdot 0  = 0
+    \]
+
+    如果 $0 \notin f(\Omega)$ 那么我们可以把 $E_k$ 移出去，所以上面依然成立。
+
+
+    继续证明左到右，我们这里用反证法，假设 $X= \{ x \in \Omega \wvert f(x) \ne 0 \} $ 不是零测集，然后枚举 $f(\Omega) = \bigcup_{1 \le i \le n}E_i,\, E_i = f^{-1}([c_i, c_i])$，我们取 $c_i > 0$ 的最小值为 $c$，
+    我们之所以能这么做是因为 $\{ c_i > 0\}$ 不是空集
+
+    \[
+    \int_{\Omega}f = \sum_{1 \le i \le n}c_i m(E_i) \ge c\sum_{1 \le i \le n} m(E_i) \ge c \cdot m(X) > 0
+    \]
+
+    于是我们得到矛盾。
+
+    \item $\int_{\Omega}(f + g) = \int_{\Omega}f + \int_{\Omega}g$
+
+    证明如下:
+
+    令 $h = f + g$，我们尝试把 $h$ 表示成示性函数，假设 $f = \sum_{i} c_i \chi_{E_i},\, g = \sum_{j} d_j \chi_{F_j}$ 得到
+
+    \begin{align*}
+    h &= \sum_{i \in I} c_i \chi_{E_i} + \sum_{j \in J} d_j \chi_{F_j}  \\
+    &=  \sum_{(i,j) \in I \times J} (c_i + d_j) \chi_{E_i \cap F_j}
+    \end{align*}
+
+    所以有
+
+    \begin{align*}
+        \int_{\Omega}h &= \sum_{(i,j) \in I \times J}(c_i + d_j) m(E_i \cap F_j) =\sum_{(i,j) \in I \times J}c_i m(E_i \cap F_j) + \sum_{(i,j) \in I \times J}d_j m(E_i \cap F_j) \\
+            & = \sum_{i \in I} \sum_{j \in J}c_im(E_i \cap F_j) + \sum_{j \in J} \sum_{i \in I}d_jm(E_i \cap F_j)  \\
+            & = \sum_{i \in I} c_i\sum_{j \in J}m(E_i \cap F_j) + \sum_{j \in J} d_j \sum_{i \in I}m(E_i \cap F_j)  \\
+            & = \sum_{i \in I} c_i m(\bigcup_{j \in J}E_i \cap F_j) + \sum_{j \in J} d_j \sum_{i \in I}m(\bigcup_{i \in I}F_j \cap E_i) \\  
+            & = \sum_{i \in I} c_i m(E_i \cap \bigcup_{j \in J} F_j) + \sum_{j \in J} d_j \sum_{i \in I}m(F_j \cap \bigcup_{i \in I}E_i) \\  
+            & = \sum_{i \in I} c_i m(E_i \cap \Omega) + \sum_{j \in J} d_j \sum_{i \in I}m(F_j \cap \Omega) \\  
+            & = \int_{\Omega} f + \int_{\Omega}g \\  
+    \end{align*}
+
+    \item $\forall c >0,\, \int_{\Omega}cf = c\int_{\Omega}f$
+
+    直接利用定义就可以证明。
+
+    \item 若 $\forall x \in \Omega,\, f(x) \le g(x)$ 那么 $\int_{\Omega}f(x) \le \int_{\Omega}g(x)$
+
+    我们分别对 $E_i$ 和 $F_j$ 作笛卡尔积，然后用示性函数表示 $\int_{\Omega}f$ 和 $\int_{\Omega}g$，很容易证明。
+
+
+\end{enumerate}
+
+\section{非负可测函数的勒贝格积分}
+
+\subsection{定义}
+
+假设 $f: \Omega \to \R$ 非负并且可测，那么 $f$ 的勒贝格积分定义为
+
+\[
+\int_{\Omega}f = \sup \{ \int_{\Omega}g \wvert g \text{ is simple},\, 0 \le g \le f \}
+\]
+
+注意到对于非负简单函数，该定义仍然适用
+
+\subsection{非负可测函数的勒贝格积分性质}
+
+对于任意非负可测函数 $f: \Omega \to \R$，我们有
+
+\begin{enumerate}
+    \item $0 \le \int_{\Omega}f \le \infty$ 并且 $\int_{\Omega}f = 0$ 当且仅当 $f(x)$ 几乎处处为 0
+
+    首先上确界是一个极限点，我们可以用序列的运算法则证明。
+
+    后面一个定理，先证明充分性。假设 $g$ 是非负简单函数，并且 $g \le f$。首先我们可以枚举 $g(\Omega)$ 然后得到有限个不相交的像集以及原像集。设这些不相交原像集为 $E_i, \, i \in I$。
+    注意到 $g(E_i) \subseteq (0, \infty)$ 可以推导出 $f(E_i) \subseteq (0, \infty)$ 所以有 $E_i \subseteq f^{-1}((0, \infty)),\, m(E_i) \le 0$。
+
+    我们把 $g$ 的勒贝格积分按照示性函数展开后得到结果一定为 $0$，所以充分性成立。
+
+    继续证明必要性，这里我们用反证法，假设 $m(f^{-1}((0, \infty))) > 0$。注意到有
+
+    \begin{align*}
+        (0, \infty) &= [1, \infty) \cup \bigcup_{i=1} [\frac{1}{i+1}, \frac{1}{i}) \\
+        m(f^{-1}((0, \infty))) &= m(f^{-1}([1, \infty))) + \sum_{i=1}^{\infty}m(f^{-1}([\frac{1}{i+1},\frac{1}{i})))
+    \end{align*}
+
+    所以要么存在 $K_0 = f^{-1}([1, \infty))$ 满足 $m(K_0) > 0$，要么存在 $i \ge 1,\, K_i = m(f^{-1}([\frac{1}{i}, \frac{1}{i+1}))) $ 满足$m(K_i) > 0$，此时 $i = \lceil 1/x\rceil - 1$。
+    我们记这个原像集为 $K$ ，然后按照如下方式构造非负简单函数 $g$
+
+    \[
+        g = \begin{cases}
+            & \inf(f(K)),\, x \in K \\
+            & 0,\, x \notin K \\
+        \end{cases}
+    \]
+
+    容易验证 $f \le g$ 并且 $g$ 是非负可测函数，而且有 $\int_{\Omega} g  > 0$，所以得到矛盾。
+
+    \item $\int_{\Omega} cf = c \int_{\Omega} f$
+
+    令 $L = \int_{\Omega} f$，我们先证明 $\int_{\Omega} cf \le cL$。假设有非负简单函数列 $g_n$ 从下方控制 $cf$ 并且有
+
+    \[
+        \lim_{n \to \infty} \int_{\Omega} g_n = \int_{\Omega} cf
+    \]
+
+    注意到 $g_n \le cf$ 可以得到 $g_n /c \le f$，所以 $g_n/c$ 是从下方控制 $f$  的函数列，根据极限的运算法则以及 $L$ 最大的极限点这一性质有
+
+    \begin{align*}
+        \lim_{n \to \infty} \int_{\Omega} g_n/ c &= \frac{1}{c}\int_{\Omega} cf \le L \\
+        & \int_{\Omega} cf \le cL
+    \end{align*}
+
+    我们继续证明 $\int_{\Omega} cf \ge cL$
+
+    假设有非负简单函数列 $h_n$ 从下方控制 $f$ 并且有
+
+    \[
+        \lim_{n \to \infty} \int_{\Omega} h_n = \int_{\Omega} f
+    \]
+
+    注意到 $h_n \le f$ 可以得到 $ch_n \le cf$，所以 $c h_n$ 是从下方控制 $cf$ 的非负简单函数列，根据极限运算法则有
+
+    \begin{align*}
+        \lim_{n \to \infty} \int_{\Omega} ch_n &=  cL \\
+        & \le \int_{\Omega} cf
+    \end{align*}
+
+    \item $f \le g$ 则 $\int_{\Omega} f \le \int_{\Omega} g$
+
+    用序列极限的性质很容易证明。
+
+    \item 若 $f$ 几乎处处等于 $g$ 则 $\int_{\Omega}f = \int_{\Omega}g $
+
+    假设 $L_1 = \int_{\Omega} f,\, L_2 = \int_{\Omega} g$，我们先证明 $L_1 \ge L_2$，假设有非负简单函数 $f_n$ 且 $f_n$ 从下方控制 $f$
+
+    \begin{align*}
+        \lim_{n \to \infty}\int_{\Omega}f_n = L_1
+    \end{align*}
+    
+    记 $E = \{x \in \Omega f(x) \ne g(x)\}$，我们可以构造 $g_n$
+
+    \begin{align*}
+        g_n = \begin{cases}
+            & f_n(x),\, x \notin E \\
+            & 0,\, x \in E \\
+        \end{cases} 
+    \end{align*}
+
+    注意到 $g_n$ 也是非负的简单函数，而且 $g_n$从下方控制 $g$，并且把 $g_n$ 按照示性函数展开后可以得到
+
+    \begin{align*}
+        g_n &= \sum_{i}c_i \chi_{E_i \cap (\Omega \setminus E)} \\
+        \int_{\Omega} g_n &= \sum_{i}c_i m(E_i \cap (\Omega \setminus E))
+    \end{align*}
+
+    注意到
+
+    \begin{align*}
+        E_i &= (E_i \cap E) \cup (E_i \cap (\Omega \setminus E)) \\
+        m(E_i) &= m(E_i \cap E) + m(E_i \cap (\Omega \setminus E)) \\
+    \end{align*}
+
+    因为 $m(E) = 0$，所以
+
+    \[
+        m(E_i \cap (\Omega \setminus E)) = m(E_i)
+    \]
+
+    所以有
+
+    \[
+        \int_{\Omega} f_n = \int_{\Omega} g_n
+    \]
+
+    所以根据极限的性质有
+
+    \[
+        \lim_{n \to \infty}\int_{\Omega} f_n = \lim_{n \to \infty}\int_{\Omega} g_n = L_1 \le L_2
+    \]
+
+    同理可以证明 $L_2 \le L_1$，所以 $L_1 = L_2$
+
+    \item 若 $\Omega' \subseteq \Omega$ 可测，那么 $\int_{\Omega'}f \le \int_{\Omega} f$
+
+    令 $h = f: \Omega' \to \R,\, h(x) = f(x)$ 并且有非负简单函数列满足
+
+    \[
+       \lim_{n \to \infty}\int_{\Omega'}h_n = \int_{\Omega'}h = L
+    \]
+
+    我们对 $h_n$ 稍作修改就能得到从下方控制 $f$ 的函数列 $f_n: \Omega \to \R$
+
+    \[
+        f_n(x) = \begin{cases}
+           & h_n(x),\, x \in \Omega' \\
+           & 0,\, x \notin \Omega'
+        \end{cases}\
+    \]
+
+    容易验证 $f_n $ 是非负简单函数，而且 $f_n$ 从下方控制 $f$，并且
+
+    \[
+        \int_{\Omega} f_n = \int_{\Omega'}h_n
+    \]
+
+    根据上确界的性质，我们得到
+
+    \[
+    \lim_{n \to \infty}\int_{\Omega} f_n = L \le \int_{\Omega} f
+    \]
+
+    \item 若 $\Omega' \subseteq \Omega$ 可测，那么 $\int_{\Omega'}f = \int_{\Omega} f\chi_{\Omega'}$
+
+    注意到有
+
+    \[
+        \int_{\Omega'}f = \int_{\Omega'}f\chi_{\Omega'} \le \int_{\Omega}f\chi_{\Omega'}
+    \]
+
+    然后我们在 $\Omega$ 上构造非负简单函数列 $f_n$ 从下方控制  $f \chi_{\Omega'}$，并且有
+
+    \[
+        \lim_{n \to \infty}\int_{\Omega} f_n = \int_{\Omega}f \chi_{\Omega'}
+    \]
+
+    我们可以对 $f_n$ 稍加改动得到从下方控制 $f: \Omega' \to \R$ 的简单函数列 $g_n$
+
+    \[
+        g_n(x) = f_n(x) = \sum_{i \in I} c_i \chi_{E_i \cap \Omega'},\, \forall x \in \Omega'
+    \]
+
+    根据 $0 \le f_n(x) \le f(x)\chi_{\Omega'}(x) \le 0,\, \forall x \notin \Omega'$，我们有 $\forall c_i >0,\, E_i \subseteq \Omega'$
+
+    \[
+        \int_{\Omega} f_n = \sum_{i \in I} c_i m(E_i) = \sum_{i \in I,\, c_i > 0} c_i m(E_i \cap \Omega') = \int_{\Omega'}f_n = \int_{\Omega'}g_n
+    \]
+
+    所以有
+
+    \[
+        \lim_{n \to \infty}\int_{\Omega} f_n = \lim_{n \to \infty}\int_{\Omega'}g_n = \int_{\Omega}f \chi_{\Omega'} \le \int_{\Omega'}f 
+    \]
+
+\end{enumerate}
