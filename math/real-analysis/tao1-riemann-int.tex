@@ -4,45 +4,129 @@
 
 \subsection{有界区间}
 
-回顾下有界区间的定义，$(a,b) \,\, (a,b] \,\, [a,b) \,\, [a,b]$ 都是区间。注意这里不要求 $a$ 和 $b$ 不相等，也没有要求 $a \le b$，所以空集也是区间，一个只包含一个实数的集合也是区间。
+回顾下有界区间的定义，$(a,b) \,\, (a,b] \,\, [a,b) \,\, [a,b]$ 都是有界区间，其中 $a, b \in \R$。注意这里不要求 $a$ 和 $b$ 不相等，也没有要求 $a \le b$，所以空集也是区间，一个只包含一个实数的集合也是区间。
 
 \subsection{连通集}
 
-连通集 $A$ 定义为 $x, y \in A$ 则 $\forall x \le t \le y, \, t \in A$ 
+连通集 $A$ 定义为对任意两个 $x, y \in A,\, x \le y$ 则 $\forall x \le t \le y, \, t \in A$ 
 
 \subsection{实数集上的有界连通集和区间等价}
 
-下面证明实数集上的有界连通集是区间，我们分别取 $A$ 的上确界为 $b$，下确界为 $a$，下面证明 $(a,b) \subseteq A \subseteq [a,b]$。
-假设存在 $c \in (a,b), c \notin A$，因为上确界和下确界都是附着点，
-所以我们可以找到 $a' \in A $ 和 $b' \in A$ 满足 $a \le a' < c < b' \le b$，这就跟 $A$ 是连通集矛盾了。
-右半部分易证明，所以 $A$ 是一个区间。
+下面证明实数集上的有界连通集是区间，我们分别取 $A$ 的上确界为 $b$，下确界为 $a$，下面证明 $(a,b) \subseteq A,\, A \subseteq [a,b]$。
+假设存在 $c \in (a,b)$，因为上确界和下确界都是附着点，我们可以找到 $a'$ 和 $b'$ 满足
+
+\[
+a \le a' < c < b' \le b,\quad a', b' \in A
+\]
+
+根据 $A$ 是连通集的定义，可以得出 $c \in A$，因为 $c$ 是任意的，所以 $(a,b) \subseteq A$，再根据上下确界的性质得到
+
+\[
+A \subseteq [a,b]
+\]
+
 
 \subsection{有界区间的交集也是有界区间}
 
 连通集合的交集依然是连通集，有界集合的交集依然是有界的。
 
+\subsection{有界区间的上下确界}
 
-\subsection{区间的长度}
+如果有界区间 $I$ 有 $a = \inf I,\, b = \sup I$ 那么 $(a,b) \subseteq I$。
 
-对于空集，定义区间长度为 $0$，对于非空的区间 $(a,b) \subseteq I \subseteq [a,b]$ 定义 $I$ 的长度为 $b-a$，这里也包含了单点集。
+\subsection{区间的 $\alpha$ 长度}
+令 $\alpha: \R \to \R$。
+对于空集，定义区间的 $\alpha$ 长度为 $0$，对于非空的区间 $I$ 定义 $I$ 的 $\alpha$ 长度 $\alpha(I)$ 为 $\alpha(b)-\alpha(a)$，
+其中 $a = \inf I,\, b = \sup I$
+这里也包含了单点集。
 
 \subsection{划分}
 
-$\mathbf{P} = \{ J \vert J \subseteq I,\, J \in \mathbf{P} \}$ 是对有界区间 $I$ 的一个划分当且仅当 $I$ 中的每个元素 $x$ 恰好属于 $\mathbf{P}$ 中的一个有界区间 $J$。
+$\mathbf{P} = \{ J \wvert J \subseteq I \}$ 是对有界区间 $I$ 的一个划分当且仅当 $I$ 中的每个元素 $x$ 恰好属于 $\mathbf{P}$ 中的一个有界区间 $J$。
 
 \subsection{有限可加性}
 
-我们上面之所以这样定义划分就是为了能够满足有限可加性，这对黎曼积分的定义有重要的意义。
+我们上面之所以这样定义划分就是为了能够满足长度的有限可加性，这对黎曼积分的定义有重要的意义。
+有限可加性的命题如下，若 $I$ 是有界区间，$\mathbf{P} = \{ J \wvert J \subseteq I \}$ 是对有界区间 $I$ 的一个划分，那么有
 
 \[
-    \lvert I \rvert = \sum_{J \in \mathbf{P}} \lvert J \rvert
+    \alpha(I) = \sum_{J \in \mathbf{P}} \lvert \alpha(J) \rvert
 \]
 
-下面给出证明，假设 $(a,b) \subseteq I \subseteq [a,b] $，并且 $\mathbf{P}$ 是对 $I$ 的一个划分。如果 $I$ 是空集，那么成立。如果 $I$ 不是空集，那么设 $\mathbf{P}$ 中元素的数量为 $n > 0$。令 $a_0=a, I_0 = I, \mathbf{P_0} = \mathbf{P}$ 我们讨论 $a_0$ 是否属于 $I_0$，
-如果 $a_0 \in I_0$，那么必然有 $a_0 \in J_0 ,\, J_0 \in \mathbf{P_0}$ 令 $[a_0, b_0) \subseteq J_0 \subseteq [a_0, b_0]$ 同时有 $I_0 = \bigcup_{J \in \mathbf{P_0}} J $ 两边同时对 $J_0$ 作差集得到 $I_0 \setminus J_0 = \bigcup_{J \in \mathbf{P_0}, J \ne J_0}J$ 
-注意到 $I_0 \setminus J_0$ 依然是一个区间，我们可以记它为 $I_1$ ，注意到此时 $J \in \mathbf{P_0}, J \ne J_0$ 组成了对 $I_1$ 的一个划分，我们记这个划分为 $\mathbf{P_1}$ 所以我们可以对 $I_1, \mathbf{P_1}$ 作重复的操作，同时 $I_1$ 的下确界一定是 $b_0$。同理如果 $a_0 \notin I_0$，那么 $\mathbf{P_0}$ 中一定存在一个 $J_0$ 满足 $J_0$ 的下确界等于 $a_0$，否则 $a_0$ 附近一定有点不会被覆盖。同样的可以做上面的操作得到 $I_1, \mathbf{P_1}$。
-我们重复以上操作和得到了 $\{ J_0, J_1, .., J_{n-1} \} = \mathbf{P}$，注意到 $J_0$ 的上确界就是 $J_1$ 的下确界，以此类推。我们得到 $\lvert J_0 \rvert + \lvert J_1 \rvert  + .. + \lvert J_{n-1} \rvert = a_1 -a_0 + a_2 - a_1 + .. + a_n - a_{n-1} = a_n - a_0 = b - a$。
-注意到 $I_{n-1} \setminus J_{n-1} = I_n = \emptyset$，所以 $J_{n-1}$ 的上确界一定是 $b$。
+我们先证明两个引理:
+
+\begin{enumerate}
+    \item 若非空有界区间 $I_1,\, I_2$ 不相交，且 $I = I_1 \cup I_2$ 也是有界区间。那么不妨令 $\inf I_1 \le \inf I_2$，于是有 $\sup I_1 = \inf I_2,\, \inf I = \inf I_1,\, \sup I = \sup I_2$。
+
+    证明 $\inf I = \inf I_1$ 比较容易，因为 $I_1 \subseteq I $ 所以 $\inf I \le \inf I_1$。又因为 $\forall x \in I,\, x \ge \inf I_1$ 所以 $\inf I \ge \inf I_1$。
+
+    同理可以证明 $\sup I = \sup I_2$。
+
+    若 $I_1$ 和 $I_2$ 其中有一个是单点集，为了保持连通性，必然有 $\sup I_1 = \inf I_2$。
+    
+    这里我们不讨论 $I_1,\, I_2$ 都是单点集的情况，因为两个不相交的单点集的并集显然不连通。
+
+    如果 $I_1,\, I_2$ 都不是单点集，我们用反证法，先假设 $\sup I_1 < \inf I_2$，那么存在 $c$ 满足 $\sup I_1 < c < \inf I_2$，
+    显然 $\inf I < c < \sup I$，根据$I$ 是有界区间，所以 $c \in I$，但这和 $c \notin I_1,\, c \notin I_2$ 矛盾。
+
+    继续假设 $\sup I_1 > \inf I_2$ 的情况，这个显然和 $I_1,\, I_2$ 不相交矛盾了。
+
+    \item 若 $I$ 是非空有界区间，$\mathbf{P}$ 是 $I$ 的一个划分，
+    如果 $\inf I \in I$，那么存在唯一的 $J \in \mathbf{P}$ 满足 $\inf I \in J,\, \inf J = \inf I$。如果 $\inf I \notin I$，那么存在唯一的非空 $J \in \mathbf{P}$
+    满足 $\inf J = \inf I$。以上两种情况找到的 $J$ 都有 $I \setminus J$ 要么是空集 要么是非空的有界区间。
+    若 $I \setminus J$ 非空，那么 $\sup (I \setminus J) = \sup I,\, \inf (I \setminus J) = \sup J$
+
+    如果 $\inf I \in I$，而 $\mathbf{P}$ 是一个划分，根据不相交的并的性质，必然存在唯一的 $J$ 满足 $\inf I \in J,\, \inf J \le \inf I$，而 $J$ 是 $I$ 的子集，
+    所以有 $\inf I \le \inf J$，最终得到 $\inf J = \inf I$。然后我们可以把 $J$ 的补集拆成两个连通集的并集，
+    其中一个是$(-\infty, \inf J)$ 另一个可能是 $(\sup J, \infty)$ 或者 $[\sup J, \infty)$
+    然后有
+
+    \begin{align*}
+    I \setminus J &= I \cap ((-\infty, \inf J) \cup (\sup J, \infty)) \\
+    & = (I \cap (-\infty, \inf J)) \cup (I \cap (\sup J, \infty)) \\ 
+    & = I \cap (\sup J, \infty) \\
+    \end{align*}
+
+    所以 $I \setminus J$ 也是有界区间。所以 $J$ 和 $I \setminus J$ 构成了一个对 $I$ 的一个划分，因为 $\inf J \le \inf I \setminus J$，
+    所以有 $\sup J = \inf I \setminus J,\, \sup(I \setminus J) = \sup I$
+
+    如果 $\inf I \notin I$，我们取所有 $\{ a_J = \inf J \wvert J \in \mathbf{P} \}$，显然根据子集的性质有 $\forall J \in \mathbf{P},\, \inf I \le a_J$。
+    我们用反证法，假设 $\forall J,\, a_J > \inf I$，因为 $(\inf I, \sup I) \subseteq I$，这样会有部分 $\inf I$ 附近的点不属于任何 $J$，与条件矛盾。
+    所以存在 $J \in \mathbf{P}$ 满足 $a_J = \inf I$。
+
+    还有继续证明这个 $J$ 是唯一的，假设 $\inf J_1 = \inf J_2 = \inf I$，因为 $\inf I \notin J_1,\, \inf I \notin J_2$，所以
+    $J_1,\, J_2$ 都是左开的区间，为了保证 $J_1$ 和 $J_2$ 各自非空，它们各自的上确界一定大于下确界，这样它们的交集一定非空，矛盾。
+
+    同理我们可以证明 $I \setminus J$ 是有界区间。$\sup J = \inf I \setminus J,\, \sup(I \setminus J) = \sup I$
+
+
+\end{enumerate}
+
+下面给出证明
+
+我们不考虑 $\mathbf{P}$ 中的空集，因为空集的长度等于$0$，所以可以直接去掉。 
+
+假设 $\inf I = a,\, \sup I = b $，并且 $\mathbf{P}$ 是对 $I$ 的一个划分。如果 $I$ 是空集，那么成立。如果 $I$ 不是空集，那么设 $\mathbf{P}$ 中元素的数量为 $n > 0$。令 $a_0=a, I_0 = I, \mathbf{P_0} = \mathbf{P}$，然后我们通过递归的方式进行证明。
+
+我们先讨论 $ a_0$ 是否属于 $I_0$。
+
+如果 $a_0 \in I_0$，根据引理，那么必然存在 $J_0 \in \mathbf{P_0}$ 满足 $a_0 \in J_0,\, \inf J_0 = a_0$
+
+对 $I_0 = \bigcup_{J \in \mathbf{P_0}} J $ 两边  作 $J_0$ 差集得到，这里用到交并运算的分配律。
+
+\[
+I_0 \setminus J_0 = (\bigcup_{J \in \mathbf{P_0}}J) \setminus J_0 = \bigcup_{J \in \mathbf{P_0},\, J \ne J_0}J
+\]
+
+根据引理 $I_0 \setminus J_0$ 依然是一个有界区间，我们可以记它为 $I_1$ ，并且有 $\inf I_1 = \sup J_0,\, \sup I_1 = \sup I_0$ 注意到此时 $J \in \mathbf{P_0}, J \ne J_0$ 组成了对 $I_1$ 的一个划分，我们记这个划分为 $\mathbf{P_1}$ 所以我们可以对 $I_1, \mathbf{P_1}$ 作重复的操作。
+
+同理如果 $a_0 \notin I_0$，那么 $\mathbf{P_0}$ 中一定存在一唯一个 $J_0$ 满足 $J_0$ 的下确界等于 $a_0$
+所以同样可以做上面的操作得到 $I_1, \mathbf{P_1}$。
+
+我们重复以上操作和得到了 $\{ J_0, J_1, .., J_{n-1} \} = \mathbf{P}$，注意到 $J_0$ 的上确界就是 $J_1$ 的下确界，以此类推。
+我们得到 $\alpha(J_0) + \alpha( J_1) + .. + \alpha( J_{n-1})  = \alpha(a_1) - \alpha(a_0) + \alpha(a_2) - \alpha(a_1) + .. + \alpha(b_{n-1}) - \alpha(a_{n-1}) = \alpha(a_n) - \alpha(a_0) = \alpha(b) - \alpha(a)$。
+
+注意到 $I_1, I_2, .. I_{n-1}$ 的上确界都没有发生变化，而 $I_n = \emptyset$，所以有 $J_{n-1} = I_{n-1}$，所以 $\sup J_{n-1} = b$
 
 \subsection{更细划分}
 
@@ -56,43 +140,65 @@ $\mathbf{P} = \{ J \vert J \subseteq I,\, J \in \mathbf{P} \}$ 是对有界区�
     \mathbf{P} \# \mathbf{P'} = \{ J \cap K \wvert J \in \mathbf{P}, K \in \mathbf{P'}\}
 \]
 
+容易证明公共加细是对 $I$ 的划分，而且既是 $ \mathbf{P}$ 的更细划分，也是 $\mathbf{P'}$ 的更细划分。
+
 \section{分段常数函数}
 
 \subsection{定义}
 设 $f: I \to \mathbb{R}$，其中 $I$ 是有界区间，如果存在一个划分 $\mathbf{P}$ 使得 $\forall J \in \mathbf{P}, J \ne \emptyset \, f(J)$ 是一个单点集，那么 $f$ 就是关于 $\mathbf{P}$ 的分段常数函数。
 
-注意到如果 $\mathbf{P'}$ 比 $\mathbf{P}$ 更细，那么 $f$ 也是在 $\mathbf{P'}$ 上的分段常数函数。所以分段常数函数对加减乘，$\max$ 和 $\min$ 运算保持封闭，如果 $\forall x, g(x) \ne 0$ 那么 $f/g$ 也是分段常数函数。
+注意到如果 $\mathbf{P'}$ 比 $\mathbf{P}$ 更细，那么 $f$ 也是在 $\mathbf{P'}$ 上的分段常数函数。
+
+利用公共加细这个性质，可以证明分段常数函数对加减乘，$\max$ 和 $\min$ 运算保持封闭，如果 $\forall x, g(x) \ne 0$ 那么 $f/g$ 也是分段常数函数。
 
 \subsection{分段常值积分}
 
 若 $f$ 是在划分 $\mathbf{P}$ 上的分段常数函数，定义 $f$ 的分段常值积分为 
 \[
-    \int_{[\mathbf{P}]} f = \sum_{J \in \mathbf{P}}c_J \lvert J \rvert
+    \int_{[\mathbf{P}]} f \mathrm{d}\alpha = \sum_{J \in \mathbf{P}}c_J \alpha(J)
 \]
 
 分段常值积分是和 $\mathbf{P}$ 无关的，为了证明这个，我们需要证明一个引理，如果 $\mathbf{P'}$ 是比 $\mathbf{P}$ 更细的划分，那么
 
 \[
-    \int_{[\mathbf{P}]} f =\int_{[\mathbf{P'}]} f
+    \int_{[\mathbf{P}]} f \mathrm{d}\alpha =\int_{[\mathbf{P'}]} f\mathrm{d}\alpha
 \]
 
-如果 $\mathbf{P'}$ 是比 $\mathbf{P}$ 更细的划分，那么 $J' \in \mathbf{P'}$ 可以分类成 $J'_{11}, J'_{12}, .. \subseteq J_1$， $J'_{21}, J'_{22}, .. \subseteq J_2$ 其中 $J_i \in \mathbf{P}$。
-并且 $J' \subseteq J_i$ 也是对 $J_i$ 的划分。首先 $J'$ 是不相交的有界区间，其次 $x \in J_i$ 必然有 $x \in J'$ 且 $J' \subseteq J_i$ ，因为如果 $J'$ 不是 $J_i$ 的子集的话就会出现 $J_i \cap J_j \ne \emptyset$。
-于是我们计算 $f$ 在 $\mathbf{P'}$ 上的分段常值积分可以分组计算再求和，按照 $J \in \mathbf{P}$ 进行分组，这样各组的结果相加得到了 $\sum_{J \in \mathbf{P}}c_J \lvert J \rvert$
+如果 $\mathbf{P}'$ 是比 $\mathbf{P}$ 更细的划分，对于任意 $J \in \mathbf{P}$，
+我们取所有的 $\mathbf{K_J} = \{ K \in \mathbf{P}' \wvert K \subseteq J \}$。我们先证明 $K_J$ 是 $J$ 的一个划分。
+
+先证明任意 $K_1 ,\, K_2 \in \mathbf{K_J}$，不相交，这个可以通过 $\mathbf{P}'$时一个划分证明。再证明 
+
+\[
+J \subseteq \bigcup_{K \in \mathbf{K_J}} K
+\]
+
+我们用反证法，假设存在 $x \in J$，但对任意 $K \in \mathbf{K_J},\, x \notin K$，那么一定存在 $K'$ 不是 $J$ 的子集满足 $x \in K'$，
+不妨设 $K'$ 是另一个 $\mathbf{P}$ 中的 $J'$ 的子集，得到 $x \in J \cap J'$，得到矛盾。
+
+于是我们计算 $f$ 在 $\mathbf{P'}$ 上的分段常值积分可以分组计算再求和。
+
+\begin{align*}
+\sum_{K \in \mathbf{P'}}c_K \alpha(K) &= \sum_{J \in \mathbf{P}}\sum_{K \in \mathbf{K_J}}c_K \alpha(K)  \\
+&= \sum_{J \in \mathbf{P}}\sum_{K \in \mathbf{K_J}}c_J \alpha(K) = \sum_{J \in \mathbf{P}}c_J\sum_{K \in \mathbf{K_J}} \alpha(K) \\
+&= \sum_{J \in \mathbf{P}}c_J \alpha(J) = \int_{[\mathbf{P}']} f \mathrm{d}\alpha\\
+\end{align*}
 
 证明如下假设 $\mathbf{P}$ 和 $\mathbf{P'}$ 都是 $f$ 的一个划分，而且 $f$ 在 $\mathbf{P}$ 和 $\mathbf{P'}$ 上都是分段常值函数。我们根据引理可以得到  
 
 \[
-    \int_{[\mathbf{P}]} f =\int_{[\mathbf{P \# P'}]} f = \int_{[\mathbf{P'}]} f
+    \int_{[\mathbf{P}]} f \mathrm{d}\alpha =\int_{[\mathbf{P \# P'}]} f \mathrm{d}\alpha= \int_{[\mathbf{P'}]} f \mathrm{d}\alpha
 \]
 
-所以分段常值函数的积分可以写成如下形式
+因为分段常数函数的积分和划分无关了，所以可以写成如下形式
 
 \[
-\int_{I} f
+\int_{I} f \mathrm{d}\alpha
 \]
 
 \subsection{分段常值积分性质}
+
+以下我们暂时省略 $\mathrm{d} \alpha$
 
 \begin{enumerate}
     \item $\int_{I} (f + g) = \int_{I} f + \int_{I} g$ 这个用公共加细很容易证明。
@@ -101,7 +207,7 @@ $\mathbf{P} = \{ J \vert J \subseteq I,\, J \in \mathbf{P} \}$ 是对有界区�
     \item 如果 $f(x) \ge 0$， $\int_{I} f \ge 0$，套定义。
     \item 如果 $f(x) \ge g(x)$ 那么 $\int_{I} f \ge \int_{I}g $，也是套定义。
     \item 如果 $f(x) = c$ 那么 $\int_{I} f  = c \lvert I \rvert $，也是套定义。
-    \item 有限可加性，如果 $\{J,K \}$ 是对 $I$ 的一个划分，那么 $\int_{I}f = \int_{J}f + \int_{K} f$，因为我们可以从 $J$ 和 $K$ 各自的划分得到 $I$ 的一个划分。
+    \item 有限可加性，如果 $\{J,K \}$ 是对 $I$ 的一个划分，那么 $\int_{I}f = \int_{J}f + \int_{K} f$，因为我们可以从 $J$ 和 $K$ 各自的划分取并集得到 $I$ 的一个划分。
 \end{enumerate}
 
 \section{黎曼积分}
@@ -113,16 +219,18 @@ $f: I \to \mathbb{R}$ 且 $g: I \to \mathbb{R}$，如果 $g(x) \ge f(x)$，那�
 
 \subsection{上下黎曼积分的定义}
 
-假设 $A = \{ g(x) \}$ 是所有上方控制 $f(x)$ 的分段常数函数的集合，有界函数 $f(x)$ 的上黎曼积分定义为:
+上下黎曼积分是定义在有界函数以及有界区间上的。
+
+令 $I \subseteq \R$ 是有界区间， $\alpha$ 单调增，有界函数 $f: I \to \R$ 的上黎曼积分定义为:
 
 \[
-   \overline{\int}_I f =  \inf \{ \int_{I} g \wvert \forall x \in I ,\, g(x) \ge f(x), g(x) \mathrm{\; is\; p.c.} \}
+   \overline{\int}_I f =  \inf \{ \int_{I} g \mathrm{d}\alpha ,\quad g\text{\,是从上方控制 \:}f \text{的分段常数函数}\}
 \]
 
 下黎曼积分定义为
 
 \[
-    \underline{\int}_I = f\sup \{ \int_{I} g \wvert \forall x \in I ,\, g(x) \le f(x), g(x) \mathrm{\; is\; p.c.} \}
+   \underline{\int}_I f =  \sup \{ \int_{I} g \mathrm{d}\alpha,\quad g\text{\,是从下方控制 \:}f \text{的分段常数函数}\}
 \]
 
 这里要注意的是，上黎曼积分是用下确界定义的，而下黎曼积分是用上确界定义的。因为上确界可以用最大附着点定义，下确界可以用最小附着点定义，后面做证明的时候可以利用数列极限的性质。
@@ -135,21 +243,20 @@ $f: I \to \mathbb{R}$ 且 $g: I \to \mathbb{R}$，如果 $g(x) \ge f(x)$，那�
 
 \subsection{分段常数函数是黎曼可积的}
 
-这个很容易证明。
-
+这个很容易证明。分段常数函数既从上方控制它自身，又从下方控制它自身。
 
 \subsection{黎曼和}
 
-为了便于构造分段常数函数，我们定义上黎曼和 还有 下黎曼和。假设 $f: I \to \mathbb{R}$ 是有界的，而且 $\mathbf{P}$ 是 $I$ 的一个划分，那么定义 $f$ 的上黎曼和为
+为了便于构造分段常数函数，我们定义上黎曼和 还有 下黎曼和。假设 $f: I \to \R$ 是有界的，而且 $\mathbf{P}$ 是 $I$ 的一个划分，那么定义 $f$ 的上黎曼和为
 
 \[
-    U(f, \mathbf{P}) = \sum_{J \in \mathbf{P}} (\sup_{x \in J}f(x)) \lvert J \rvert
+    U(f, \mathbf{P}) = \sum_{J \in \mathbf{P}} (\sup_{x \in J}f(x)) \alpha(J)
 \]
 
 定义下黎曼和为
 
 \[
-    L(f, \mathbf{P}) = \sum_{J \in \mathbf{P}} (\inf_{x \in J}f(x)) \lvert J \rvert
+    L(f, \mathbf{P}) = \sum_{J \in \mathbf{P}} (\inf_{x \in J}f(x)) \alpha(J)
 \]
 
 \subsection{上下黎曼和与上下黎曼积分}
@@ -192,17 +299,17 @@ $f: I \to \mathbb{R}$ 且 $g: I \to \mathbb{R}$，如果 $g(x) \ge f(x)$，那�
 下面假设有界函数 $f: I \to \mathbb{R}$ 和 $g: I \to \mathbb{R}$ 都是黎曼可积的
 
 \begin{enumerate}
-    \item $\int(f+g) = \int f + \int g $ 这个很好证明，$f'$从上方控制 $f$，$g'$ 从上方控制 $g$ 可以得到 $f'+g'$ 从上方控制 $f+g$。利用附着点的性质得到
+    \item $\int(f+g) = \int f + \int g $ 这个很好证明，$\overline{f}$从上方控制 $f$，$\overline{g}$ 从上方控制 $g$ 可以得到 $\overline{f}+\overline{g}$ 从上方控制 $f+g$。利用附着点的性质得到
     \[
   \underline{\int}f + \underline{\int}g \le \underline{\int}(f+g)  \le \overline{\int}(f+g) \le \overline{\int}f + \overline{\int}g
     \]
 
-    \item $\int cf = c \int f$ 这个要讨论 $c > 0$ 和 $c < 0$，$c > 0$ 时，$f'$ 上方控制 $f$ 可以得到 $cf'$ 上方控制 $cf$。
+    \item $\int cf = c \int f$ 这个要讨论 $c > 0$ 和 $c < 0$，$c > 0$ 时，$\overline{f}$ 上方控制 $f$ 可以得到 $c\overline{f}$ 上方控制 $cf$。
     \[
   c\underline{\int}f \le  \underline{\int}cf \le \overline{\int}cf \le c \overline{\int}f 
     \]
 
-    如果 $c < 0$，如果 $f'$ 上方控制 $f$ 可以得到 $cf'$ 从下方控制 $cf$ 所以得到
+    如果 $c < 0$，如果 $\overline{f}$ 上方控制 $f$ 可以得到 $c\overline{f}$ 从下方控制 $cf$ 所以得到
 
     \[
       c\overline{\int}f   \le \underline{\int}cf \le \overline{\int} cf \le c \underline{\int}f
@@ -212,12 +319,36 @@ $f: I \to \mathbb{R}$ 且 $g: I \to \mathbb{R}$，如果 $g(x) \ge f(x)$，那�
 
     \item $f(x) \ge 0$ 则 $\int_{I} f(x) \ge 0$，因为 $0$ 从下方控制了 $f(x)$ 所以有
     \[
-        0 \le \underline{\int}_{I} f
+        0 \le \underline{\int}_{I} f \le \int_{I} f
     \]
 
     \item $f(x) \ge g(x)$ 则 $\int_{I}f \ge \int_{I} g$ 用上面的结论很容易证明。
 
-    \item $f(x) = c$ 则 $\int_{I}f = c \lvert I \rvert$，因为 $f(x) =c$ 从上方控制也从下方控制。
+    \item $f(x) = c$ 则 $\int_{I}f = c \alpha(I)$，因为 $f(x) =c$ 从上方控制也从下方控制。
+
+    \[
+        c\alpha(I) \le \underline{\int}_I f \le \overline{\int_I}f \le c \alpha(I)
+    \]
+
+    \item 若 $I \subseteq J$ 而且 $J$ 是有界区间，构造函数 $F$
+
+    \[
+    F(x) = \begin{cases}
+        f(x),\, x \in I \\
+        0,\, x \notin I 
+    \end{cases}
+    \]
+
+    那么 $F$ 在 $J$ 上黎曼可积，而且有
+
+    \[
+        \int_{J} F = \int_{I} f = \int_{I} F
+    \]
+
+    这里只要对从上方控制 $f$ 的分段常数函数 $\overline{f}$ 以及从下方控制 $f$
+    的分段常数函数 $\underline{f}$ 作定义域扩展得到分别从上方和下方控制 $F$ 的分段常数函数即可。
+    注意这里麻烦的地方在于要对 $K = J \setminus I$ 是否是一个连通集作讨论，如果不连通的话，需要分解成两个不相交但各自是连通的子集，
+    也就是 $K \cap (-\infty, \sup I),\: K \cap (\inf I, \infty)$
 
     \item 如果 $\{ J, K \} $ 是 $I$ 的一个划分，并且 $f: J \to \mathbb{R}$ 和 $f: K \to \mathbb{R}$ 都是黎曼可积的，那么有
 
@@ -225,69 +356,115 @@ $f: I \to \mathbb{R}$ 且 $g: I \to \mathbb{R}$，如果 $g(x) \ge f(x)$，那�
         \int_{J}f + \int_{K}f = \int_{I}f
     \]
 
-    同理 $g$ 和 $h$ 如果分别在 $J$ 和 $K$ 上方控制 $f$ ，那么可以扩展得到 $g + h$ 也在上方控制 $f$，所以有
+    我们先证明从左边到右边，利用上面的结论我们可以得到
 
-    \[
- \underline{\int}_J f + \underline{\int}_K f \le \underline{\int}_I f \le \overline{\int}_I f \le \overline{\int}_J f + \overline{\int}_K f
-    \]
+    \begin{align*}
+    \int_{J}f &= \int_{J}f \chi_{J} = \int_{I}f \chi_{J} \\
+    \int_{K}f &= \int_{K}f \chi_{K} = \int_{I}f \chi_{K} \\
+    \int_{J}f + \int_{K} f &= \int_{I}(\chi_{J} + \chi_{K})f  = \int_{I}f
+    \end{align*}
 
-    \item 假设 $(a,b) \subseteq I \subseteq [a,b]$ 并且 $f: I \to \mathbb{R}$  是黎曼可积的，那么 
-
-    \[
-        \int_{I}f = \int_{[a,b]}f 
-    \]
-
-    证明也很简单，利用上方控制函数，还有上下极限是附着点，数列极限的性质。
-
-    \[
- \underline{\int}_{[a,b]}f \le \underline{\int}_{I}f \le \overline{\int}_{I}f \le \overline{\int}_{[a,b]}f 
-    \]
+    再证明从右边可积可以得到左边两项都可积即可，只要把从上方控制 $f$ 的分段常数函数
+    $\overline{f}$ 拆成 $J$ 和 $K$ 的两部分即可。
 
 \end{enumerate}
 
 \subsection{$\max$ 和 $\min$ 保持黎曼可积}
 
-若 $f: I \to \mathbb{R}$ 和 $g: I \to \mathbb{R}$ 都是黎曼可积的，那么 $\max(f,g)$ 也是黎曼可积的。
+若 $f: I \to \mathbb{R}$ 和 $g: I \to \mathbb{R}$ 都是黎曼可积的，那么 $h=\max(f,g)$ 也是黎曼可积的。
 
-下面给出证明，先证明一个引理，令 $h = \max(f,g)$，对任意区间 $J \subseteq I $
-
-\begin{align*}
-\underline{a} & \le \inf \{ f(x) \wvert x \in J \} \\
-\underline{b} & \le \inf \{ g(x) \wvert x \in J \} \\
-\overline{a} & \ge \sup \{ f(x) \wvert x \in J \} \\
-\overline{b} & \ge \sup \{ g(x) \wvert x \in J \} \\
-\overline{c} & = \sup \{ h(x) \wvert x \in J \} \\
-\underline{c} & = \inf \{ h(x) \wvert x \in J \} \\
-\end{align*}
-
-有
+先证明一个引理，假设 $\overline{f}$ 和 $\overline{g}$ 分别从上方控制 $f$ 和 $g$ 那么 $\overline{h} = \max(\overline{f},\overline{g})$
+从上方控制 $\max(f,g)$。若 $\underline{f}$ 和 $\underline{g}$ 分别从下方控制 $f$ 和 $g$ 那么
+$\underline{h} = \max(\underline{f}, \underline{g})$ 从下方控制 $\max(f,g)$，并且有
 
 \[
-  \max (\underline{a},\underline{b})  \le \underline{c} \le \overline{c} \le \max (\overline{a},\overline{b})
+\overline{h} - \underline{h} \le \max(\overline{f} - \underline{f}, \overline{g} - \underline{g})
 \]
 
-证明很容易，利用附着点和数列的性质即可。有了这个不等式后可以得到：
+证明如下：
 
 \begin{align*}
-  \overline{c} - \underline{c} & \le \max(\overline{a}, \overline{b}) - \max(\underline{a}, \underline{b}) \\
-  \overline{c} - \underline{c} & \le \max(\overline{a}, \overline{b}) + \min(-\underline{a}, -\underline{b}) \\
-  \overline{c} - \underline{c} & \le \max(\overline{a} + \min(-\underline{a}, -\underline{b}), \overline{b} + \min(-\underline{a}, -\underline{b})) \\
-  \overline{c} - \underline{c} & \le \max(\overline{a} -\underline{a}, \overline{b} -\underline{b}) \\
+    f \le \overline{f} \le & \max(\overline{f}, \overline{g}) \\
+    g \le \overline{g} \le & \max(\overline{f}, \overline{g}) \\
+    \max(f,g)\le & \max(\overline{f}, \overline{g}) \\
 \end{align*}
 
-若分段常数函数 $\overline{f}$ 和 $\overline{g}$ 分别从上方控制 $f$ 和 $g$，那么取他们的公共加细，然后在公共加细上对 $h$ 取上下确界，可以得到 $\overline{h}$ 和 $\underline{h}$，而且有
+同理有
+
 
 \begin{align*}
-    \overline{h} - \underline{h} & \le \max(\overline{f} - \underline{f}, \overline{g} - \underline{g}) \\
-    \overline{\int}_I h - \underline{\int}_I h \le \int_{I}(\overline{h} - \underline{h}) & \le \max (\int_{I}(\overline{f} - \underline{f}),\int_{I}(\overline{g} - \underline{g}) ) \le \epsilon
+    \underline{f} \le f \le & \max(\overline{f}, \overline{g}) \\
+    \underline{g} \le g \le & \max(\overline{f}, \overline{g}) \\
+    \max(\underline{f},\underline{g})\le & \max(f, g) \\
 \end{align*}
 
-$\min$ 可积也是同理。只不过把证明过程中的 $\max$ 跟 $\min$ 轮换一下。
+最后得到
+
+\[
+\max(\underline{f},\underline{g})\le  \max(f, g) \le \max(\overline{f}, \overline{g})
+\]
+
+并且有
+
+\begin{align*}
+  \overline{h} - \underline{h} & = \max(\overline{f}, \overline{g}) - \max(\underline{f}, \underline{g}) \\
+    & = \max(\overline{f}, \overline{g}) + \min(-\underline{f}, -\underline{g}) \\
+    & = \max(\overline{f} + \min(-\underline{f}, -\underline{g}), \overline{g} + \min(-\underline{f}, -\underline{g})) \\
+    & \le \max(\overline{f} -\underline{f}, \overline{g} -\underline{g}) \\
+\end{align*}
+
+若任意分段常数函数 $\overline{f}$ 和 $\overline{g}$ 分别从上方控制 $f$ 和 $g$，那么取他们的公共加细，然后在公共加细上取 $\overline{h} = \max(\overline{f},\, \overline{g})$
+可以得到一个在上方控制 $\max(f,g)$ 的分段常数函数。同理在公共加细上取 $\underline{h} = \max(\underline{f}, \underline{g})$
+可以得到在下方控制 $\max(f,g)$ 的分段常数函数。
+
+我们取分段常数函数的函数列 $\overline{f}_n$ 和 $\overline{g}_n$ 满足
+
+\begin{align*}
+    \lim_{n \to \infty}\int_{I}\overline{f}_n = \overline{\int}_{I}f \\
+    \lim_{n \to \infty}\int_{I}\overline{g}_n = \overline{\int}_{I}g \\
+\end{align*}
+
+
+同理分段常数函数的函数列 $\underline{f}_n$ 和 $\underline{g}_n$ 满足
+
+\begin{align*}
+    \lim_{n \to \infty}\int_{I}\underline{f_n} = \underline{\int}_{I}f \\
+    \lim_{n \to \infty}\int_{I}\underline{g_n} = \underline{\int}_{I}g \\
+\end{align*}
+
+然后取 $\overline{h_n} = \max(\overline{f}_n, \overline{g}_n)$，$\underline{h_n} = \max(\underline{f_n}, \underline{g_n})$
+
+根据引理的条件有
+
+\begin{align*}
+\int_{I}\overline{h}_n - \int_{I}\underline{h_n} & = \int_{I}\overline{h}_n - \underline{h_n} \\
+& \le \int_{I} \max(\overline{f}_n -\underline{f_n}, \overline{g}_n -\underline{g_n}) \\
+& \le \int_{I} \overline{f}_n -\underline{f_n} + \overline{g}_n - \underline{g_n} \\ 
+&\le \int_{I} \overline{f}_n -\underline{f_n} + \int_{I} \overline{g}_n -\underline{g_n}
+\end{align*}
+
+所以有
+
+\begin{align*}
+0 \le \overline{\int}h - \underline{\int}h & \le \int_{I}\overline{h}_n - \int_{I}\underline{h_n} \\
+& \le \int_{I} \overline{f}_n -\underline{f_n} + \int_{I} \overline{g}_n -\underline{g_n}
+\end{align*}
+
+然后对 $n$ 取极限得到 
+
+\[
+\overline{\int}h - \underline{\int}h = 0
+\]
+
+所以 $\max$ 保持黎曼可积，注意到 $\min(f,g) = - \max(-f,-g)$，所以 $\min$ 也是黎曼可积的。
 
 \subsection{绝对值保持黎曼可积}
 
-令 $f_{+}(x) = \max(f(x), 0) = (f(x) + \lvert f(x) \rvert) / 2$，$f_{-}(x) = \min(f(x), 0) = (f(x) - \lvert f(x) \rvert) / 2$
-则有 $\lvert f(x) \rvert = f_{+}(x) - f_{-}(x)$
+$\lvert f \rvert = \max(f, -f)$
+
+\subsection{正部和负部保持黎曼可积}
+
+注意到 $f_{+} = \max(f,0)$ 且 $f_{-} = \max(-f,0)$
 
 \subsection{乘积保持黎曼可积}
 
@@ -323,4 +500,466 @@ $\underline{f}$ 和 $\underline{g}$ 分别从下方控制 $f_{+}$ 和 $g_{+}$，
 
 \[
     x_1y_1 - x_2y_2 = x_1(y_1 - y_2) + y_2(x_1 - x_2)
+\]
+
+\section{黎曼可积的函数}
+
+\subsection{有界区间上一致连续的函数}
+
+假设 $f: I \to \R$ 一致连续，根据一致连续的定义，那么 $f$ 一定是有界的。假设 $f$ 无界，那么可以构造出一个发散到无穷的序列$f(x_n)$ 满足 $f(x_n) \ge n$
+，这个 $x_n$ 可以有一个收敛的子列$x_{g(n)}$，于是 $f(x_{g(n)})$ 是柯西列，因为一致连续会把柯西列映射到柯西列，这显然和 $f(x_{g(n)})$ 发散矛盾了。
+
+既然 $f$ 有界，我们可以分析它的上下黎曼积分。令 $\inf I =a$ 且 $\sup I = b$，我们把 $I$ 分成 $n$ 个有界区间 $J_1, J_2, .. J_n$，每个区间长度为 $(b-a)/n$。然后在每个有界区间上取上下确界
+得到分段常数函数 $\overline{f}_n$ 和 $\underline{f_n}$ 
+
+我们可以把$I$ 分的充分小，让每个划分中的区间满足一致收敛的条件，也就是 $(b-a)/n \le \delta$ $\overline{f}_n - \underline{f_n} \le \epsilon$
+取 
+
+\[
+\lim_{n \to \infty}f(x_n) = \sup_{x \in J}f(x)
+\]
+
+和
+
+\[
+\lim_{n \to \infty}f(y_n) = \inf_{x \in J}f(x)
+\]
+
+可以得到
+
+\[
+\sup_{x \in J}f(x) - \inf_{x \in J}f(x) = \lim_{n \to \infty}f(x_n) - f(y_n)
+\]
+
+因为有 $f(x_n) - f(y_n) \le \epsilon$，所以有
+
+\[
+\sup_{x \in J}f(x) - \inf_{x \in J}f(x) \le \epsilon
+\]
+
+也就是说有 $\overline{f}_n - \underline{f_n} \le \epsilon $
+
+因此有
+
+\[
+\overline{\int_I}f - \underline{\int_I}f \le \int_{I}\overline{f}_n - \underline{f_n} \le (\alpha(b) - \alpha(a))\epsilon
+\]
+
+因为 $\epsilon$ 是任意的，所以
+
+\[
+\overline{\int_I}f = \underline{\int_I}f
+\]
+
+\subsection{闭区间上的连续函数}
+
+闭区间上的连续函数是一致连续的。
+
+\subsection{有界区间上有界的连续函数}
+
+这里要求 $\alpha$ 在区间的上下确界处是连续的
+
+这里我们用闭区间上的连续函数分别从上方和下方控制黎曼积分。假设 $f: I \to \R$ 有界而且连续，那么 $f$ 在 $I$ 的任意一个闭区间子集上是黎曼可积的。
+令 $a = \inf I,\, b = \sup I$ 也是对任意充分小的 $\epsilon > 0$ 有 $f$ 在 $[a+\epsilon, b-\epsilon]$ 上可积。
+
+我们根据 $\epsilon$ 生成在 $I$ 上从上方控制 $f$ 的分段常数函数。$\overline{f}$ 在 $[a+\epsilon, b- \epsilon]$ 上从上方控制 $f$，那么令
+$I_{\epsilon} = [a+\epsilon, b- \epsilon]$
+
+\[
+\overline{h}(x) = \begin{cases}
+    \overline{f}(x),\, x \in I_{\epsilon} \\
+    M,\, x \notin I_{\epsilon} \\
+\end{cases}
+\]
+
+其中 $M$ 是 $f$ 的上确界，容易证明 $\overline{h}$ 是分段常数函数，而且从上方控制 $f$。
+同理可以构造$\underline{h}$
+
+
+\[
+\underline{h}(x) = \begin{cases}
+    \underline{f}(x),\, x \in I_{\epsilon} \\
+    m,\, x \notin I_{\epsilon} \\
+\end{cases}
+\]
+
+接下来我们取 $\overline{f}_n$ 和 $\underline{f_n}$ 满足
+
+\[
+\lim_{n \to \infty}\int_{I_\epsilon}\overline{f}_n = \lim_{n \to \infty}\int_{I_\epsilon}\underline{f_n}
+\]
+
+根据 $\overline{f}_n: I_\epsilon \to \R$ 和 $\underline{f_n}: I_\epsilon \to \R$ 我们可以构造对应的 $\overline{h}_n: I \to \R$
+和 $\underline{h_n}: I_\epsilon \to \R$，注意到有
+
+\[
+\int_{I}\overline{h}_n - \int_{I}\underline{h_n} = \int_{[a,a+\epsilon]}(M-m)\mathrm{d}\alpha + \int_{[b-\epsilon,b]}(M-m)\mathrm{d}\alpha + \int_{I_\epsilon}\overline{f}_n + \int_{I_\epsilon}\underline{f_n}
+\]
+
+令 
+
+\[
+o(\epsilon) = \int_{[a,a+\epsilon]}(M-m)\mathrm{d}\alpha + \int_{[b-\epsilon,b]}(M-m)\mathrm{d}\alpha
+\]
+
+所以有
+
+\[
+\overline{\int_{I}}f - \underline{\int_{I}}f \le \int_{I}\overline{h}_n - \int_{I}\underline{h_n} \le o(\epsilon)  + \int_{I_\epsilon}\overline{f}_n + \int_{I_\epsilon}\underline{f_n}
+\]
+
+对 $n$ 取极限得到
+
+\[
+\overline{\int_{I}}f - \underline{\int_{I}}f \le  o(\epsilon)
+\]
+
+因为 $\alpha$ 在 $a$ 和 $b$ 处是连续的，所以对 $\epsilon \to 0$ 取极限得到
+
+\[
+\overline{\int_{I}}f = \underline{\int_{I}}f
+\]
+
+\subsection{有界区间上分段连续的有界函数}
+
+利用之前的结论，先证明 $f$ 在每个划分上是黎曼可积的，然后利用黎曼积分的性质，合并区间。
+
+\subsection{闭区间上的单调函数}
+
+这里同样要求 $\alpha(x) = x$
+我们先假设 $f$ 是单调的，然后把 $[a,b]$ 分成 $n$ 份左闭右开的区间，在并上一个单点集 $\{b\}$。每份上取上下确界得到上方控制的分段常数函数 $\overline{f}_n$，和从下方控制的分段常数函数 $\underline{f_n}$。
+于是得到
+
+\begin{align*}
+\int_{[a,b]}\overline{f}_n - \int_{[a,b]}\underline{f_n} & \le \sum_{i=1}^{n}\frac{b - a}{n}(f(b_i) - f(a_i)) \\
+    & \le (f(b) - f(a))\frac{b-a}{n}
+\end{align*}
+
+对 $n$ 取极限得到
+
+\[
+\int_{[a,b]}\overline{f}_n = \int_{[a,b]}\underline{f_n}
+\]
+
+
+\subsection{区间上的有界单调函数}
+
+这里同样要求 $\alpha(x) = x$
+我们可以通过在 $[a+\epsilon, b-\epsilon]$ 这个闭区间上构造单调函数，然后因为它是黎曼可积的，
+所以可以用来构造在 $I$ 上从上方控制 $f$ 的函数，以及在 $I$ 上从下方控制 $I$ 的函数。
+
+具体证明如下
+
+令 $I_\epsilon = [a+\epsilon, b-\epsilon]$，因为 $f$ 在 $I_\epsilon$ 上可积，
+取 $\overline{f}_n$ 在上方控制 $f$，以及 $\underline{f_n}$ 在下方控制 $f$，并且有
+
+\[
+\lim_{n \to \infty}\int_{I_\epsilon}\overline{f}_n = \overline{\int_{I_\epsilon}}f = \lim_{n \to \infty}\int_{I_\epsilon}\underline{f_n} = \underline{\int}_{I_\epsilon}f
+\]
+
+对 $\overline{f}_n$ 的定义域作扩展，补充$f$ 的上界得到在 $I$ 从上方控制 $f$ 的函数 $\overline{f}_n$，同理可得 $\underline{f_n}$。
+于是有
+
+\[
+\int_{I}\overline{f_n} - \int_{I}\underline{f_n} \le \int_{I_\epsilon}\overline{f_n} - \int_{I_\epsilon}\underline{f_n} + 2\epsilon(M-m)
+\]
+
+对 $n$ 取极限得到证明。
+
+\subsection{积分判别法}
+
+\section{微积分基本定理}
+
+\subsection{微积分第一基本定理}
+
+$a < b,\, a,b \in \R$ 令 $f: [a,b] \to \R$ 是黎曼可积的函数。那么构造函数
+
+\[
+F(x) = \int_{[a,x]}f \mathrm{d}x
+\]
+
+那么 $F$ 是连续的，此外若 $x_0 \in [a,b]$ 且 $f$ 在 $x_0$ 处连续，那么 $F$ 在 $x_0$ 处可微，而且 $F'(x_0) = f(x_0)$
+
+下面给出证明：
+
+先不妨设 $\delta > 0$ 计算右极限
+
+\[
+F(x_0 + \delta) - F(x_0) = \int_{[x_0, x_0 + \delta]}f \mathrm{d}x 
+\]
+
+因为 $f$ 有界，所以
+
+\[
+\delta m \le \int_{[x_0, x_0 + \delta]}f \mathrm{d}x \le \delta M
+\]
+
+对 $\delta \to 0$ 取极限得到
+
+\[
+\lim_{\delta \to 0} F(x_0 + \delta) - F(x_0) = \lim_{\delta \to 0}\int_{[x_0, x_0 + \delta]}f \mathrm{d}x = 0
+\]
+
+左极限也是同理
+
+如果 $f$ 在 $x_0$ 处连续，那么对任意 $\epsilon > 0$ 存在 $\delta$，对任意 $\lvert x - x_0 \rvert \le \delta$ 有
+
+\[
+-\epsilon \le f(x) - f(x_0) \le \epsilon
+\]
+
+我们取 $x_0 < y < x_0 + \delta$，在上面同时取积分得到
+
+\[
+-\epsilon(y-x_0) \le \int_{[x_0,y]}f(x) - (y-x_0)f(x_0) \le \epsilon(y-x_0)
+\]
+
+化简得到
+
+\[
+\lvert \frac{F(y) - F(x_0)}{y-x_0} - f(x_0) \rvert \le \epsilon 
+\]
+
+然后对 $\delta \to 0^+$ 取极限得到
+
+\[
+F'(x_0^+) = f(x_0)
+\]
+
+同理我们可以证明 $F'(x_0^-) = f(x_0)$
+
+\subsection{微积分第二基本定理}
+
+若 $a<b,\, a,b \in \R$ 且 $f: [a,b] \to \R$ 黎曼可积，若 $F$ 是 $f$ 的原函数，那么有
+
+\[
+\int_{[a,b]}f \mathrm{d} x = F(b) - F(a)
+\]
+
+假设 $f$ 有一个上黎曼和的序列 $\overline{f}_n$ 满足
+
+\[
+\lim_{n \to \infty} \int_{[a,b]}\overline{f}_n \mathrm{d}x = \int_{[a,b]}f \mathrm{d}x
+\]
+
+我们先证明有 $\forall n$ 
+
+\[
+f(b) - f(a) \le \int_{[a,b]}\overline{f}_n \mathrm{d}x
+\]
+
+因为 $\overline{f}_n$ 是分段常数函数所以有
+
+\[
+\int_{[a,b]}\overline{f}_n \mathrm{d}x = \sum_{J \in \mathbf{P}}\sup f(J) \lvert J \rvert = \sum_{i}\sup f(J_i) (b_i -a_i)
+\]
+
+而 $F(b) - F(a)$ 使用中值定理可以展开成
+
+\[
+F(b) - F(a) = \sum_{i} F(b_i) - F(a_i) = \sum_{i} f(\alpha_i)(b_i - a_i)
+\]
+
+显然有 $\alpha_i \le \sup f(J_i)$
+
+所以有 
+
+
+\[
+F(b) - F(a) \le \int_{[a,b]}\overline{f}_n \mathrm{d}x
+\]
+
+同理可以证明
+
+
+\[
+\int_{[a,b]}\underline{f_n} \mathrm{d}x \le F(b) - F(a) 
+\]
+
+然后对 $n$ 取极限得到
+
+\[
+F(b) - F(a) = \int_{[a,b]}f \mathrm{d}x
+\]
+
+\section{微积分基本定理的结论}
+
+\subsection{分部积分公式}
+
+令 $I = [a,b]$，令 $F: [a,b] \to \R$ 和 $G: [a,b] \to R$ 都是可微，并且 $F'$ 和 $G'$
+在 $[a,b]$ 上黎曼可积
+那么有
+
+\[
+\int_{[a,b]}FG' = F(b)G(b) - F(a)G(a) - \int_{[a,b]}F'G
+\]
+
+因为 $(FG)'= F'G + FG'$，所以
+
+\begin{align*}
+\int_{[a,b]}(FG)' &= \int_{[a,b]}F'G + \int_{[a,b]}FG' = F(b)G(b) - F(a)G(a) \\
+\end{align*}
+
+所以有
+
+\[
+\int_{[a,b]}FG' = F(b)G(b) - F(a)G(a) - \int_{[a,b]}F'G
+\]
+
+\subsection{$\alpha$ 长度 I}
+
+若 $\alpha: [a,b] \to \R$ 单调增且 $\alpha$ 在 $[a,b]$ 上可微，其导函数为 $\alpha'$ 并且 $\alpha'$
+在 $[a,b]$ 上黎曼可积。令 $f: [a,b ] \to \R$ 是分段常数函数，那么有
+
+\[
+\int_{I}f \mathrm{d} \alpha = \int_{I}f \alpha' \mathrm{d}x
+\]
+
+证明:
+
+\begin{align*}
+    \int_{I}f \mathrm{d} \alpha & = \sum_{J \in \mathbf{P}}c_J \int_{J} \alpha' = \sum_{J \in \mathbf{P}}\int_{J} c_J\alpha' \\
+    &= \sum_{J \in \mathbf{P}}\int_{I}f\alpha'\chi_{J} = \int_{I}\sum_{J \in \mathbf{P}}f \alpha' \chi_j \\
+    & = \int_{I}f\alpha'(\sum_{J \in \mathbf{P}}\chi_J) = \int_{I}f \alpha'
+\end{align*}
+
+
+\subsection{$\alpha$ 长度 II}
+
+若 $\alpha: [a,b] \to \R$ 单调增且 $\alpha$ 在 $[a,b]$ 上可微，其导函数为 $\alpha'$ 并且 $\alpha'$
+在 $[a,b]$ 上黎曼可积。若 $f: [a,b ] \to \R$ 黎曼可积，那么有
+
+\[
+\int_{I}f \mathrm{d} \alpha = \int_{I}f \alpha' \mathrm{d}x
+\]
+
+这个证明会用到之前的结论，令 $\overline{f}_n$ 从上方控制 $f$，并且有
+
+\[
+\lim_{n \to \infty}\int_{I}\overline{f}_n \mathrm{d} \alpha = \overline{\int_{I}}f \mathrm{d} \alpha
+\]
+
+注意对任意 $n$ 有
+
+\[
+\int_{I}\overline{f}_n \mathrm{d} \alpha = \int_{I}\overline{f}_n \alpha'
+\]
+
+因为 $\overline{f}_n \alpha'$ 从上方控制 $f\alpha'$，尽管它不是分段常数函数，但是有
+
+\[
+\overline{\int_I}f \alpha' \le \int_{I}\overline{f}_n \alpha'
+\]
+
+对 $n$ 取极限得到
+
+\[
+\overline{\int_I}f \alpha' \le \overline{\int_I} f \mathrm{d} \alpha
+\]
+
+同理我们可以得到
+
+\[
+\underline{\int_I} f \mathrm{d} \alpha \le \underline{\int_I}f \alpha' 
+\]
+
+所以
+
+\[
+\int_{I}f \mathrm{d} \alpha = \int_{I}f \alpha' \mathrm{d}x
+\]
+
+\subsection{变量代换公式 I}
+
+$\phi: [a,b] \to [\phi(a), \phi(b)]$  是连续的单调增函数，$f: [\phi(a), \phi(b)] \to \R$ 是分段常数函数。
+那么 记 $I: [a,b],\, \phi(I) = [\phi(a), \phi(b)]$，有$f \circ \phi$ 依然是分段常数函数，并且有
+
+\[
+\int_{I} f \circ \phi \mathrm{d} \phi = \int_{\phi(I)}f
+\]
+
+先证明 $f \circ \phi$ 是分段常数函数，因为 $f$ 是分段常数函数，所以 $\phi(I)$ 可以划分成若干个不相交的子区间。
+记 $\mathbf{P} = \{J_1, J_2, .. J_n\}$。我们容易证明 $\mathbf{P'} = {\phi^{-1}(J_1),\phi^{-1}(J_2), ..\phi^{-1}(J_n)}$ 
+是对 $[a,b]$ 的划分，单调且连续函数的原像运算保持连通性。
+
+我们可以证明 $\phi^{-1}(J_1)$ 是连通的，不妨令 $x_1,\, x_2 \in \phi^{-1}(J_1)$ 且 $x_1 \le x_2$，
+那么若 $x_1 \le x_3 \le x_2$，必然有 $\phi(x_1) \le \phi(x_3) \le \phi(x_2)$，因为 $J_1$ 是连通的，
+所以一定有 $\phi(x_3) \in J_1$，所以 $x_3 \in \phi^{-1}(J_1)$
+
+所以我们可以这样计算 
+
+\begin{align*}
+ \int_{I} f \circ \phi \mathrm{d} \phi &= \sum_{J \in \mathbf{P}} c_J \: \phi(\phi^{-1}(J)) \\
+ &= \sum_{J \in \mathbf{P}} c_J \lvert J \rvert = \int_{\phi(I)}f
+\end{align*}
+
+
+\subsection{变量代换公式 II}
+
+$\phi: [a,b] \to [\phi(a), \phi(b)]$  是连续的单调增函数，$f: [\phi(a), \phi(b)] \to \R$ 是黎曼可积的函数。
+那么 记 $I: [a,b],\, \phi(I) = [\phi(a), \phi(b)]$，有$f \circ \phi$ 是相对 $\phi$ 在 $[a,b]$ 上黎曼可积，并且有
+
+\[
+\int_{I} f \circ \phi \mathrm{d} \phi = \int_{\phi(I)}f
+\]
+
+证明如下，我们构造在 $\phi(I)$ 上从上方控制 $f$ 的函数 $\overline{f_n}$ 并且有
+
+\[
+\lim_{n \to \infty}\int_{\phi(I)}\overline{f}_n = \overline{\int_{\phi(I)}}f
+\]
+
+利用之前的结论有
+
+\[
+\int_{\phi(I)}\overline{f}_n = \int_{I} \overline{f}_n \circ \phi \,\mathrm{d} \phi
+\]
+
+注意到有 $\overline{f_n} \circ \phi$ 在 $I$ 上从上方控制 $f \circ \phi$，所以有
+
+\[
+\overline{\int_{I}}f \circ \phi \, \mathrm{d} \phi \le \int_{I} \overline{f}_n \circ \phi \,\mathrm{d} \phi
+\]
+
+对 $n$ 取极限得到
+
+\[
+\overline{\int_{I}}f \circ \phi \, \mathrm{d} \phi \le \overline{\int_{\phi(I)}}f
+\]
+
+同理可以得到
+
+
+\[
+\underline{\int_{\phi(I)}}f \le \underline{\int_{I}}f \circ \phi \, \mathrm{d} \phi
+\]
+
+所以
+
+\[
+\int_{I}f \circ \phi \, \mathrm{d} \phi = \int_{\phi(I)}f
+\]
+
+
+\subsection{变量代换公式 III}
+
+$\phi: [a,b] \to [\phi(a), \phi(b)]$  是可微的单调增函数，并且在 $[a,b]$ 上黎曼可积。
+$f: [\phi(a), \phi(b)] \to \R$ 是黎曼可积的函数。
+那么 记 $I: [a,b],\, \phi(I) = [\phi(a), \phi(b)]$，
+有$(f \circ \phi) \phi'$ 是 在 $[a,b]$ 上黎曼可积，并且有
+
+\[
+\int_{I}(f \circ \phi) \phi' = \int_{\phi(I)}f
+\]
+
+证明如下，根据之前的结论有
+
+\[
+\int_{\phi(I)} f = \int_{I} f \circ \phi \: \mathrm{d} \phi
+\]
+
+再结合 $\phi'$ 可微，而且可积有
+
+\[
+\int_{I} f \circ \phi \: \mathrm{d} \phi = \int_{I} (f \circ \phi) \: \phi'
 \]

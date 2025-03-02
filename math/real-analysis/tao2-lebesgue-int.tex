@@ -393,3 +393,102 @@ f = \sum_{i=1}^{n}c_i\chi_{E_i},\, c_i \ge 0
     \]
 
 \end{enumerate}
+
+\subsection{勒贝格单调收敛定理}
+
+假设 $f_n: \Omega \to \R$ 是非负可测函数，并且有 $f_n \le f_{n+1} $，于是我们有
+
+\[
+\int_{\Omega} \sup_{n} f_n = \sup _{n} \int_{\Omega} f_n
+\]
+
+这个定理也可以理解为
+
+\[
+\int_{\Omega} \lim_{n \to \infty} f_n = \lim_{n \to \infty} \int_{\Omega} f_n
+\]
+
+下面给出证明：假设有
+
+先证明左边大于等于右边，记 $f = \lim_{n \to \infty} f_n$，显然对于任意 $n$ 有
+
+\[
+\int_{\Omega} f_n \le \int_{\Omega} f
+\]
+
+由极限的运算法则有
+
+\[
+\lim_{n \to \infty}\int_{\Omega} f_n \le \int_{\Omega} f
+\]
+
+然后我们证明右边大于等于左边，对此我们只需要证明对任意从下方控制的简单函数 $s: \Omega \to \R$ 有
+
+\[
+    \int_{\Omega} s \le \lim_{n \to \infty} \int_{\Omega} f_n
+\]
+
+为此我们先固定一个 $ 0 < \epsilon < 1$，证明对所有的 $\epsilon \in (0,1)$ 有
+
+\[
+    \int_{\Omega} (1-\epsilon)s \le \lim_{n \to \infty} \int_{\Omega} f_n
+\]
+
+首先根据逐点收敛的定义，我们根据 $s \le f$ 然后分类讨论 $s(x) = 0$ 以及 $s(x) > 0$ 可以有如下结论 $\forall x \in \Omega, \exists N,\, \forall n \ge N,\, f_n(x) \ge (1-\epsilon)s(x)$。
+
+我们可以定义 
+
+\[
+E_n = \{ x \in \Omega \wvert f_n(x) \ge (1-\epsilon)s(x)\}
+\]
+
+因为 $f_n$ 单调增，所以有
+
+\[
+E_1 \subseteq E_2 \subseteq E_3 .. 
+\]
+
+并且有
+
+\[
+\bigcup_{i=1}^{\infty} E_i = \Omega
+\]
+
+我们继续分析以下序列的极限
+
+\[
+\int_{E_n}s
+\]
+
+显然这个序列是单调增的，我们把 $s$ 展开成示性函数的线性组合得到
+
+\begin{align*}
+\int_{E_n} s &= \int_{\Omega}s \chi_{E_n} = \int_{\Omega} \sum_{j \in J} c_j \chi_{F_j} \chi_{E_n} \\
+ & = \int_{\Omega} \sum_{j \in J} c_j \chi_{F_j \cap E_n}  = \sum_{j \in J} c_j m(F_j \cap E_n)  \\
+\end{align*}
+
+所以有
+
+\begin{align*}
+\lim_{n \to \infty}\int_{E_n} s &= \lim_{n \to \infty}\sum_{j \in J} c_j m(F_j \cap E_n) = \sum_{j \in J}c_j\lim_{n \to \infty}m(F_j \cap E_n) \\
+    & = \sum_{j \in J}c_j m(F_j) = \int_{\Omega} s
+\end{align*}
+
+我们之所以可以交换次序是因为每一项都是非负的，继续分析 $E_n$ 上的 $s$ 和 $f_n$，于是得到
+
+\[
+    \int_{E_n}(1-\epsilon)s \le \int_{E_n} f_n \le \int_{\Omega} f_n \le \lim_{n \to \infty} \int_{\Omega} f_n
+\]
+
+然后我们再取一次极限得到
+
+\[
+\lim_{n \to \infty}\int_{E_n}(1-\epsilon)s = (1-\epsilon)\int_{\Omega} s \le \lim_{n \to \infty} \int_{\Omega} f_n
+\]
+
+再对 $\epsilon \to 0$ 取极限得到
+
+
+\[
+\int_{\Omega} s \le \lim_{n \to \infty} \int_{\Omega} f_n
+\]
