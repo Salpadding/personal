@@ -171,6 +171,8 @@ a_{n} = \frac{1}{\sqrt{5}}((\frac{1+\sqrt{5}}{2})^{n} - (\frac{1-\sqrt{5}}{2})^{
 
 \subsection{三对角行列式}
 
+\subsubsection{递推公式}
+
 计算三对角行列式，按最后一列展开
 
 \begin{align*}
@@ -192,5 +194,85 @@ a_{n} = \frac{1}{\sqrt{5}}((\frac{1+\sqrt{5}}{2})^{n} - (\frac{1-\sqrt{5}}{2})^{
     &= a_nD_{n-1} + (-1)b_{n-1}c_{n-1}D_{n-2} \\
     &= a_nD_{n-1} - b_{n-1}c_{n-1}D_{n-2}
 \end{align*}
+
+\subsubsection{特殊情况}
+
+计算
+
+\begin{align*}
+\begin{vmatrix}
+    a & b & 0 & 0 & .. & 0 & 0 \\
+    c & a & b & 0 & .. & 0 & 0 \\
+    0 & c & a & b & .. & 0 & 0 \\
+    .. & .. & .. & .. & .. & .. & .. \\
+    0 & 0 & 0 & 0 & ..& a & b \\
+    0 & 0 & 0 & 0 & .. & c & a \\
+\end{vmatrix}
+\end{align*}
+
+我们可以得到递推式 
+
+\[
+D_{n+2} = aD_{n+1} - bcD_{n}
+\]
+
+然后令
+
+\begin{align*}
+a &= \alpha + \beta  \\
+-bc &= -\alpha \beta  \\
+\end{align*}
+
+也就是 $\alpha,\, \beta$ 是方程
+
+\[
+x^2 - ax +bc = 0
+\]
+
+的根
+
+得到
+
+\begin{align*}
+D_{n+2} - \alpha D_{n+1} &= \beta(D_{n+1} - \alpha D_{n} )  \\
+D_{n+2} - \beta D_{n+1} &= \alpha (D_{n+1} - \beta D_{n} )  \\
+\end{align*}
+
+由 $D_0 = 1,\, D_1 = a$ 可以计算得到
+
+\begin{align*}
+D_{n+1}  - \alpha D_{n} &= \beta^{n}(a - \alpha) = \beta^{n+1} \\
+D_{n+1}  - \beta D_{n} &= \alpha^{n}(a - \alpha) = \alpha^{n+1}\\
+\end{align*}
+
+消去 $D_{n+1}$ 得到
+
+\[
+(\alpha - \beta)D_n = \alpha^{n+1} - \beta^{n+1}
+\]
+
+若 $a^2 = 4bc$ 也就是 $\alpha = \beta$ 时
+
+有
+
+\[
+\alpha = \beta = \frac{a}{2}
+\]
+
+\[
+D_{n+1} = \frac{a}{2}(D_n + (\frac{a}{2})^{n})
+\]
+
+经过归纳可以得到
+
+\[
+D_n = (n+1)(\frac{a}{2})^n
+\]
+
+若 $\alpha \ne \beta$，那么有
+
+\[
+D_n = \frac{\alpha^{n+1}- \beta^{n+1}}{\alpha - \beta}
+\]
 
 \end{document}
