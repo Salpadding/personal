@@ -229,7 +229,30 @@ f'(x_2 - 0) &= \lim_{s \to 0,\, s > 0}L(x_2-s, x_2) \\
 \end{enumerate}
 
 
+\section{高等代数}
 
+\subsection{Laplace 定理}
+
+Laplace 定理允许行列式按多行 或者按多列展开，例如我们想按第 $i_1,i_2,..,i_m,\, i_1 < i_2 < .. < i_m$ 行展开有
+
+用数学归纳法证明
+
+\begin{align*}
+    |A| &= \sum_{j=1}^{n}a_{i_r j}(-1)^{i_r + j} D \begin{bmatrix}
+       1 & 2 & .. & i_r - 1 & i_r + 1 & .. & n \\  
+       1 & 2 & .. & j - 1 & j + 1 & .. & n \\  
+    \end{bmatrix} \\
+    &= \sum_{j=1}^{n}a_{i_r j}(-1)^{i_r + j} 
+    \sum_{1 \le k_1 < .. < k_{r-1} \le n,\, k_{*} \ne j}
+    (-1)^{I_{r-1} + k_1 + k_2+ .. + k_{r-1}  - (n-j)} 
+    D \begin{bmatrix}
+        i_1 & i_2 & .. & i_{r-1} \\
+        k_1 & k_2 & .. & k_{r-1} \\
+    \end{bmatrix} \overline{D} \begin{bmatrix}
+        i_1 & i_2 & .. & i_{r-1} & i_r \\
+        j & k_1 & k_2 & .. & k_{r-1} \\
+    \end{bmatrix}
+\end{align*}
 
 \end{document}
 
