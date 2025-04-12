@@ -1,0 +1,119 @@
+%!LW recipe=latexmk
+\documentclass[11pt,a4paper]{article}
+\input\input{../macros.tex}
+\title{Learning Notes}
+\author{Yingjie Zhu}
+\date{\today}
+
+
+\begin{document}
+\maketitle
+
+\section{Theory of Real Variable Function}
+
+\subsection{Exercise}
+
+\begin{lem}
+    $E$ is a perfect set iff it is closed and contains no isolated points.
+\end{lem}
+
+\begin{proof}
+    let $E$ be a perfect set such that $E = E'$, then we have
+
+    \[
+        \overline{E} = E \cup E' = E
+    \]
+
+    so $E$ is closed, and isolated points have
+
+    \[
+        E \setminus E' = E \setminus E = \emptyset
+    \]
+
+    On the other hand, if $E$ is closed and has no isolated points, then we have
+
+    \begin{align*}
+        E \setminus E' &= \emptyset \\
+        E & \subseteq E' \\ 
+        E \cup E' &= E \\
+        E' & \subseteq E
+    \end{align*}
+\end{proof}
+
+
+\begin{lem}
+    let $x$ be a limit point of $E$, $E \subseteq \mathbb{R}^n$, and $y \in E$, then $x$ is also a limit point of $E \setminus y$ 
+\end{lem}
+
+\begin{proof}
+    since $x$ is a limit point of $E$, there should exists a distinct sequence $x_n$ and
+
+    \[
+        \lim_{n \to \infty}x_n = x
+    \]
+
+    then we can construct a sequence of $E \setminus \{ y \}$ by remove $y$ of $x_n$. Since $x_n$ 
+    is distinct, so $y$ occurs at most once. So $x$ is a limit point of $E \setminus \{ y \}$
+\end{proof}
+
+\begin{exercise}
+    Perfect Set on $\mathbb{R}^n$ is not countable. 
+\end{exercise}
+
+\begin{proof}
+    let $E$ be a non empty perfect set and assume it is countable so that
+
+    \[
+        E = \{ x_1, x_2, .. \}
+    \]
+
+    since every finite set under $\mathbb{R}^n$ has isolated points, so $E$ cannot be finite.
+
+    we first pick $y_1 \in E \setminus \{ x_1 \}$, since $y_1$ is a limit point of $E \setminus \{ x_1 \}$. 
+    there should exists an open qube $Q_1$ conatins $y_1$, and $x_1 \notin \overline{Q_1}$
+
+    let's consider $E \setminus \{ x_2 \}$, since $y_1$ is limit point of $E \setminus \{ x_2 \}$, and $Q_1$ is a openset contains $y_1$ so
+    we have
+
+    \[
+       \text{int}(Q_1) \cap \left( E \setminus \{ x_2 \} \right) \ne \emptyset
+    \]
+
+    now we can select $y_2 \in \text{int}(Q_1) \cap E \setminus \{ x_2 \}$, and we can create open cube $Q_2$ contains 
+    $y_2$, so that $Q_2 \subseteq Q_1$, and $\{ x_1, x_2 \} \cap \overline{Q_2} = \emptyset$
+
+    let's consider $E \setminus \{ x_3 \}$, since $y_2$ is a limit point of $E \setminus \{ x_3 \}$, and $Q_2$ is an
+    open set contains $y_2$, so we have
+
+    \[
+       \text{int}(Q_2) \cap \left( E \setminus \{ x_3 \} \right) \ne \emptyset
+    \]
+
+    now we can select $y_3 \in \text{int}(Q_2) \cap \left( E \setminus \{ x_3 \} \right)$
+    as $Q_2$ is open, and $\{ x_1, x_2 \} \cap Q_2 = \emptyset$. so we can create 
+    a smaller qube $Q_3$ contains $y_3$ so that $\{x_1 ,x_2, x_3 \} \cap \overline{Q_3} = \emptyset$
+
+    so we can create a sequence $y_n$ and open qube $Q_n$ contains $y_n$, and also a 
+    sequence of closed cube $\overline{Q_n}$
+
+    let's consider $\overline{Q_n}$, since $\overline{Q_n}$ is closed and non empty, by cantor's theorm,
+    we have
+
+    \[
+        \bigcap_{n=1}^{\infty}\overline{Q_n} \ne \emptyset
+    \]
+
+    howevery, for any $x_n \in E$, the qube $\overline{Q_{n}}$ not contains $x_n$,
+    which is contradict.
+\end{proof}
+
+\end{document}
+
+
+
+
+
+
+
+
+
